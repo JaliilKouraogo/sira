@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="341" height="341" viewBox="0 0 341 341" fill="none">
+  <rect width="341" height="341" rx="60" fill="#19196F"/>
+  <g transform="translate(105.5 48) scale(0.7)">
+    <path fill-rule="evenodd" clip-rule="evenodd" fill="#C6A11D"
+      d="M0 0 H190 V341 H0 Z
+         M5 11 L170 11 L5 70 Z
+         M190 96 L119 120 L190 145 Z
+         M0 180 L86 212 L0 252 Z
+         M190 262 L190 330 L24 330 Z"/>
+  </g>
+</svg>

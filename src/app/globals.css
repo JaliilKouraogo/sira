@@ -1,0 +1,650 @@
+@import "tailwindcss";
+
+/* Le thème suit le réglage système, et une classe .dark sur <html> permet
+   le basculement explicite exigé par [T §19] (version claire / sombre). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* ---- Palette officielle SIRA ------------------------------------------
+     Couleurs relevées sur le fichier de marque fourni :
+       bleu marine  #19196F
+       or antique   #C6A11D
+
+     Elles remplacent la palette de référence utilisée au démarrage du projet,
+     car le logo fait autorité sur l'identité. Les nuances intermédiaires sont
+     dérivées de ces deux teintes pour obtenir une échelle utilisable.
+
+     Direction visuelle : épuré et clair. Le marine et l'or ne servent qu'en
+     touches, sur les actions et les scores. Aucun grand aplat coloré, aucun
+     dégradé, aucune ombre portée. La hiérarchie se fait par le poids du
+     texte, l'espacement et des filets de 1 pixel. */
+
+  --color-blue-50: #f0f0f7;
+  --color-blue-100: #dedeef;
+  --color-blue-200: #bcbcdd;
+  --color-blue-300: #9292c6;
+  --color-blue-400: #6363a8;
+  --color-blue-500: #3b3b8a;
+  --color-blue-600: #19196f; /* officiel — bleu marine de la marque */
+  --color-blue-700: #15155c;
+  --color-blue-800: #111149;
+  --color-blue-900: #0d0d38;
+  --color-blue-950: #070722;
+
+  --color-gold-50: #fbf7e9;
+  --color-gold-100: #f6edcb;
+  --color-gold-200: #eedc9a;
+  --color-gold-300: #e2c75f;
+  --color-gold-400: #d4b334;
+  --color-gold-500: #c6a11d; /* officiel — or antique de la marque */
+  --color-gold-600: #ab8a16;
+  --color-gold-700: #8b7012;
+  --color-gold-800: #6b560e;
+  --color-gold-900: #4e3f0a;
+
+  --color-ink: #121212;
+
+  /* ---- Jetons sémantiques, mode clair ---------------------------------- */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #fafafa;
+  --color-surface-3: #f4f4f5;
+  --color-border: #ebebeb;
+  --color-border-strong: #dcdcdc;
+  --color-text: #121212;
+  --color-text-muted: #6b6b76;
+  --color-text-subtle: #9a9aa5;
+
+  /* Le marine atteint 16,9:1 sur blanc : il porte du texte blanc sans réserve. */
+  --color-primary: #19196f;
+  --color-primary-hover: #111149;
+  --color-primary-fg: #ffffff;
+  --color-primary-soft: #f0f0f7;
+
+  /* L'or n'atteint que 2,5:1 sur blanc : il ne porte jamais de texte clair.
+     Son texte est toujours noir, et pour de l'or EN texte sur fond clair on
+     utilise --color-accent-text, qui monte à 4,8:1. */
+  --color-accent: #c6a11d;
+  --color-accent-hover: #ab8a16;
+  --color-accent-fg: #000000;
+  --color-accent-soft: #fbf7e9;
+  --color-accent-text: #8b7012;
+
+  --color-success: #157f4f;
+  --color-success-soft: #f1f9f5;
+  --color-warning: #9a6200;
+  --color-warning-soft: #fff8ec;
+  --color-danger: #c42b2b;
+  --color-danger-soft: #fdf2f2;
+  --color-info: #19196f;
+  --color-info-soft: #f0f0f7;
+
+  /* ---- Logo -------------------------------------------------------------
+     Version sur fond blanc du fichier de marque : symbole marine, mot en or,
+     signature en marine. */
+  --color-logo-mark: #19196f;
+  --color-logo-word: #c6a11d;
+  --color-logo-tagline: #19196f;
+
+  /* ---- Identité par espace ---------------------------------------------
+     Chaque zone applicative porte une teinte propre, utilisée en touches :
+     le repère de la barre latérale, l'accent des illustrations et le filet
+     de tête d'écran. */
+  --color-zone-public: #19196f;
+  --color-zone-candidate: #19196f;
+  --color-zone-recruiter: #8b7012;
+  --color-zone-trainer: #157f4f;
+  --color-zone-admin: #4b4b57;
+
+  /* ---- Fond animé de la page de présentation --------------------------
+     Lavis de couleur très dilués, dérivés des deux teintes de marque. Ils
+     donnent de la présence sans contredire le parti pris épuré : aucune
+     forme n'est lisible, seulement une variation douce de la lumière. */
+  --aurora-navy: rgba(25, 25, 111, 0.13);
+  --aurora-gold: rgba(198, 161, 29, 0.14);
+  --aurora-navy-soft: rgba(25, 25, 111, 0.08);
+  --grid-line: rgba(25, 25, 111, 0.06);
+
+  /* Rayons discrets : 6 px pour les contrôles, 8 px pour les blocs. */
+  --radius-card: 0.5rem;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* ---- Site public : gabarit de présentation --------------------------
+     Le site public suit la grammaire du modèle HireEdge : des blocs arrondis
+     posés sur un fond de couleur, une barre de navigation flottante, des
+     cartes à bordure basse épaissie. Les couleurs sont celles de SIRA :
+     une page blanche, des blocs marine et des blocs gris très clair ; l'or
+     de la marque est réservé aux accents.
+
+     Ces jetons ne changent PAS en mode sombre : le site public est une
+     vitrine à palette fixe, comme le modèle dont il reprend la mise en page. */
+  --color-site-canvas: #ffffff;
+  --color-site-navy: #19196f;
+  --color-site-navy-deep: #111149;
+  --color-site-light: #f4f4f8;
+  --color-site-white: #ffffff;
+  --color-site-gold: #c6a11d;
+  --color-site-gold-hover: #d8b43a;
+  --color-site-gold-deep: #7a6310;
+  --color-site-ink: #0e0e1f;
+  --color-site-muted: #6c6c89;
+  --color-site-soft: #eeeef6;
+  --color-site-line: rgba(14, 14, 31, 0.12);
+  --color-site-line-dark: rgba(255, 255, 255, 0.2);
+  /* Filet or des blocs et des cartes, qui remplace l'or retiré du fond. */
+  --color-site-border: #c6a11d;
+
+  --font-site: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Points de rupture du modèle : 479, 767 et 991 pixels.
+     `md` (48rem) existe déjà ; on ajoute les deux autres. */
+  --breakpoint-xs: 30rem;
+  --breakpoint-tab: 62rem;
+}
+
+/* ---- Jetons sémantiques, mode sombre ------------------------------------
+   Gris neutres, sans teinte colorée, pour rester cohérent avec le parti pris
+   épuré. Le marine de marque devient illisible sur fond noir : il est éclairci
+   en pervenche. Le logo bascule sur sa version or, celle que le fichier de
+   marque destine aux fonds foncés. */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+
+    --color-bg: #0a0a0b;
+    --color-surface: #0f0f11;
+    --color-surface-2: #16161a;
+    --color-surface-3: #1e1e23;
+    --color-border: #26262a;
+    --color-border-strong: #37373d;
+    --color-text: #f5f5f7;
+    --color-text-muted: #a1a1aa;
+    --color-text-subtle: #71717a;
+
+    --color-primary: #8e9bff;
+    --color-primary-hover: #aab4ff;
+    --color-primary-fg: #0a0a18;
+    --color-primary-soft: #16162e;
+
+    --color-accent: #d8b23a;
+    --color-accent-hover: #e2c75f;
+    --color-accent-fg: #000000;
+    --color-accent-soft: #241e0c;
+    --color-accent-text: #d8b23a;
+
+    --color-success: #45c98f;
+    --color-success-soft: #0e2119;
+    --color-warning: #e0a03a;
+    --color-warning-soft: #221b0f;
+    --color-danger: #f87171;
+    --color-danger-soft: #241415;
+    --color-info: #8e9bff;
+    --color-info-soft: #16162e;
+
+    --color-logo-mark: #d8b23a;
+    --color-logo-word: #d8b23a;
+    --color-logo-tagline: #a1a1aa;
+
+    --color-zone-public: #8e9bff;
+    --color-zone-candidate: #8e9bff;
+    --color-zone-recruiter: #d8b23a;
+    --color-zone-trainer: #45c98f;
+    --color-zone-admin: #9a9aa8;
+
+    --aurora-navy: rgba(122, 139, 255, 0.16);
+    --aurora-gold: rgba(216, 178, 58, 0.14);
+    --aurora-navy-soft: rgba(122, 139, 255, 0.10);
+    --grid-line: rgba(255, 255, 255, 0.05);
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Titres en graisse mesurée : la hiérarchie vient de la taille et de
+     l'espace, pas du gras appuyé. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  /* Accessibilité : cible de focus visible partout [T §19] */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-blue-100);
+    color: var(--color-text);
+  }
+
+  /* Mouvement réduit : tout se fige, et les blocs à révéler restent
+     visibles plutôt que de disparaître. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .sira-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+@layer components {
+  .sira-container {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .sira-container {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  /* Ancienne surface de marque, conservée comme nom de classe pour ne rien
+     casser, mais rendue neutre : plus de dégradé ni d'aplat coloré. */
+  .sira-gradient {
+    background-color: var(--color-surface-2);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  /* Filet de séparation, remplace la plupart des cartes bordées. */
+  .sira-rule {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sira-skeleton {
+    background-color: var(--color-surface-3);
+    animation: sira-pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes sira-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+}
+
+@layer components {
+  /* ---- Fond animé ------------------------------------------------------
+     Trois lavis qui dérivent lentement, plus une trame fine qui glisse.
+     Tout est décoratif et ne reçoit jamais d'événement de pointeur. */
+  .sira-backdrop {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sira-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, var(--orb) 0%, transparent 70%);
+    will-change: transform;
+  }
+
+  .sira-orb-a {
+    animation: sira-drift-a 26s ease-in-out infinite;
+  }
+  .sira-orb-b {
+    animation: sira-drift-b 34s ease-in-out infinite;
+  }
+  .sira-orb-c {
+    animation: sira-drift-c 42s ease-in-out infinite;
+  }
+
+  @keyframes sira-drift-a {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-7%, 9%, 0) scale(1.14);
+    }
+  }
+  @keyframes sira-drift-b {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1.06);
+    }
+    50% {
+      transform: translate3d(8%, -6%, 0) scale(0.94);
+    }
+  }
+  @keyframes sira-drift-c {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(0.96);
+    }
+    50% {
+      transform: translate3d(-5%, -8%, 0) scale(1.1);
+    }
+  }
+
+  /* Trame fine, estompée vers les bords par un masque radial. */
+  .sira-mesh {
+    position: absolute;
+    inset: -2px;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 25%, #000 35%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 25%, #000 35%, transparent 100%);
+    animation: sira-mesh-drift 44s linear infinite;
+  }
+
+  @keyframes sira-mesh-drift {
+    to {
+      background-position: 56px 56px;
+    }
+  }
+
+  /* ---- Apparition à l'entrée dans le champ ----------------------------- */
+  .sira-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sira-reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---- Tracé qui se dessine, pour l'illustration du chemin ------------- */
+  .sira-draw path,
+  .sira-draw line,
+  .sira-draw rect,
+  .sira-draw circle {
+    animation: sira-draw-in 1.5s cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+  .sira-draw > *:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .sira-draw > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes sira-draw-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@layer utilities {
+  .scrollbar-slim::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 999px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Neutralise toute ombre portée héritée : le parti pris est sans ombre. */
+  .sira-flat,
+  .sira-flat * {
+    box-shadow: none !important;
+  }
+}
+
+/* ==========================================================================
+   Site public : animations et motifs du gabarit
+   --------------------------------------------------------------------------
+   Paramètres relevés sur les interactions du modèle :
+   - entrées au défilement : 100 px de translation, 1 s, courbe outQuart ;
+   - rideau sur les images : 1 s après 0,3 s, courbe (1, .024, .807, 1.001) ;
+   - défilements infinis des logos et témoignages : 30 s, linéaire ;
+   - soulignement de lien : 0,5 s, courbe inOutQuart ;
+   - menu mobile : morphose du burger en 0,4 à 0,6 s, courbe inOutQuint.
+   Tout mouvement est neutralisé par le réglage « mouvement réduit ».
+   ========================================================================== */
+
+@layer components {
+  .site-root {
+    /* Palette figée : la vitrine ne suit pas le thème sombre du système. */
+    color-scheme: light;
+    --color-logo-mark: #19196f;
+    --color-logo-word: #c6a11d;
+    --color-logo-tagline: #19196f;
+    /* Les polices sont déclarées ici et non dans @theme : les variables de
+       next/font n existent que sur cet élément, pas sur :root. */
+    --font-site: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    --font-display: var(--font-instrument), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-site);
+    color: var(--color-site-ink);
+    background-color: var(--color-site-canvas);
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: clip;
+  }
+
+  .site-root :focus-visible {
+    outline: 2px solid var(--color-site-navy);
+    outline-offset: 3px;
+  }
+
+  .site-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---- Entrées au défilement ------------------------------------------
+     Le contenu n'est masqué que si JavaScript tourne (classe .js posée sur
+     <html> avant le premier rendu) : sans script, tout reste visible. */
+  .site-reveal {
+    transition:
+      opacity 1s cubic-bezier(0.25, 1, 0.5, 1),
+      transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+  }
+  .js .site-reveal:not([data-in="true"]) {
+    opacity: 0;
+  }
+  .js .site-reveal[data-dir="up"]:not([data-in="true"]) {
+    transform: translate3d(0, 100px, 0);
+  }
+  .js .site-reveal[data-dir="down"]:not([data-in="true"]) {
+    transform: translate3d(0, -100px, 0);
+  }
+  .js .site-reveal[data-dir="left"]:not([data-in="true"]) {
+    transform: translate3d(-100px, 0, 0);
+  }
+  .js .site-reveal[data-dir="right"]:not([data-in="true"]) {
+    transform: translate3d(100px, 0, 0);
+  }
+  /* Sur petit écran, les entrées latérales deviennent verticales pour ne
+     jamais provoquer de débordement horizontal. */
+  @media (max-width: 767px) {
+    .js .site-reveal[data-dir="left"]:not([data-in="true"]),
+    .js .site-reveal[data-dir="right"]:not([data-in="true"]) {
+      transform: translate3d(0, 60px, 0);
+    }
+  }
+
+  /* ---- Rideau qui dévoile une image ------------------------------------ */
+  .site-curtain {
+    position: absolute;
+    inset: -1%;
+    z-index: 2;
+    background: var(--curtain, var(--color-site-canvas));
+    transition: transform 1s cubic-bezier(1, 0.024, 0.807, 1.001) 0.3s;
+    pointer-events: none;
+  }
+  .no-js .site-curtain,
+  [data-in="true"] > .site-curtain[data-to="left"] {
+    transform: translate3d(-101%, 0, 0);
+  }
+  [data-in="true"] > .site-curtain[data-to="right"] {
+    transform: translate3d(101%, 0, 0);
+  }
+  [data-in="true"] > .site-curtain[data-to="down"] {
+    transform: translate3d(0, 101%, 0);
+  }
+  html:not(.js) .site-curtain {
+    display: none;
+  }
+
+  /* ---- Défilement infini ----------------------------------------------- */
+  .site-marquee {
+    display: flex;
+    width: max-content;
+    animation: site-marquee var(--marquee-duration, 30s) linear infinite;
+    will-change: transform;
+  }
+  @keyframes site-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  /* ---- Soulignement glissant ------------------------------------------- */
+  .site-link {
+    position: relative;
+    text-decoration: none;
+  }
+  .site-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .site-link:hover::after,
+  .site-link[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ---- Angles coupés, écho au zigzag du logo --------------------------- */
+  .site-cut-tl {
+    clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%, 0 12%);
+  }
+  .site-cut-br {
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 84% 100%, 0 100%);
+  }
+  .site-cut-tl-br {
+    clip-path: polygon(14% 0, 100% 0, 100% 88%, 86% 100%, 0 100%, 0 12%);
+  }
+
+  /* ---- Accordéon : hauteur animée par grille --------------------------- */
+  .site-collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+  .site-collapse[data-open="true"] {
+    grid-template-rows: 1fr;
+    transition-duration: 0.5s;
+  }
+  .site-collapse > * {
+    overflow: hidden;
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-reveal,
+  .js .site-reveal:not([data-in="true"]) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .site-curtain {
+    display: none !important;
+  }
+  .site-marquee {
+    animation: none !important;
+  }
+  [data-parallax] {
+    transform: none !important;
+  }
+}
+
+/* ---- Site public : tonalités de bloc ------------------------------------
+   Un bloc déclare s'il est sombre ou clair ; les mots mis en valeur dans les
+   titres prennent alors la bonne nuance d'or. Sur marine, l'or de marque
+   (6,8:1). Sur fond clair, un or plus profond qui tient le contraste des
+   grands textes (3,3:1) et, pour le texte courant, une nuance à 5,6:1. */
+@layer components {
+  .site-on-dark {
+    color: #ffffff;
+  }
+  .site-on-dark .site-hl {
+    color: var(--color-site-gold);
+  }
+  .site-on-light {
+    color: var(--color-site-ink);
+  }
+  .site-on-light .site-hl {
+    color: #a8860f;
+  }
+}
+
+@keyframes site-menu-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
