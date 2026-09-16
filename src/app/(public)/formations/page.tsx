@@ -92,7 +92,7 @@ export default function FormationsPage() {
 
               <dl className="mt-12 grid max-w-[32rem] grid-cols-3 gap-4 border-t border-white/20 pt-8">
                 {facts.map((f) => (
-                  <div key={f.label} className="flex min-w-0 flex-col-reverse">
+                  <div key={f.label} className="flex min-w-0 flex-col-reverse justify-end">
                     <dt className="mt-2 text-[0.8125rem] leading-snug text-white/80 md:text-[0.875rem]">{f.label}</dt>
                     <dd className="site-display text-[2.25rem] leading-none text-site-gold md:text-[2.75rem]">
                       {f.value}
@@ -173,7 +173,7 @@ export default function FormationsPage() {
               {STEPS.map((s, i) => (
                 <Reveal key={s.title} as="li" dir="up" delay={i * 120}>
                   <div className="flex h-full flex-col rounded-[1rem] border border-b-4 border-site-border bg-white p-6 text-site-ink md:p-7">
-                    <span className="site-display text-[2.5rem] leading-none text-[#a8860f]" aria-hidden>
+                    <span className="site-display text-[2.5rem] leading-none text-site-gold-display" aria-hidden>
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="site-display mt-6 text-[1.5rem] leading-tight text-site-navy md:text-[1.625rem]">

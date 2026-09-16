@@ -59,7 +59,9 @@ export default function ConseilsPage() {
                 <Reveal dir="up">
                   <PostCard post={lead} size="lg" />
                 </Reveal>
-                <div className="grid gap-6 tab:grid-rows-2">
+                {/* Sur mobile, seul l'article vedette reste ici : les deux autres
+                    ouvrent déjà la grille « Tous les articles » juste en dessous. */}
+                <div className="hidden gap-6 md:grid tab:grid-rows-2">
                   {aside.map((post, i) => (
                     <Reveal key={post.slug} dir="up" delay={(i + 1) * 120}>
                       <PostRowCard post={post} />

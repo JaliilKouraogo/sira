@@ -4,14 +4,20 @@
  * Reprend l'animation signature du gabarit : sous le titre, une grande image
  * centrale s'agrandit pendant le défilement (de 36vw × 80vh environ jusqu'à
  * 95vw × 88vh) tandis que deux groupes d'images latéraux s'écartent vers
- * l'extérieur (±32vw). La progression est fournie par `ScrollProgress` sous
- * forme de variable CSS `--p`, entre 22 % et 55 % du parcours de l'en-tête ;
- * tout le reste est du `calc()` en CSS, sans aucun rendu React pendant le
- * défilement.
+ * l'extérieur (±32vw). Tout est du `calc()` en CSS piloté par la variable
+ * `--p`, sans aucun rendu React pendant le défilement.
+ *
+ * `ScrollProgress` enveloppe la seule scène, pas le texte : sa progression
+ * brute vaut 0 quand le haut de la scène atteint le haut de la fenêtre, donc
+ * au moment précis où la couche collante se fixe, et 1 quand l'épinglage
+ * prend fin. L'animation se joue ainsi entièrement pendant la phase épinglée,
+ * avec une courte pause au début (l'état de départ se pose) et une courte
+ * pause à la fin (l'image agrandie se laisse regarder) avant que la page ne
+ * reprenne son cours.
  *
  * L'animation n'existe qu'à partir de 768 px. En dessous, une simple grille
- * d'images. Avec le réglage « mouvement réduit », `--p` reste à 0 et les
- * images gardent leur taille de départ.
+ * d'images. Avec le réglage « mouvement réduit », `--p` reste à 0, la scène
+ * n'est plus épinglée et les images gardent leur taille de départ.
  *
  * Uniquement des scènes (`IMG`) : aucune personne identifiable n'est associée
  * à un nom ou à une fonction.
@@ -38,6 +44,15 @@ const RIGHT = {
 
 /** Hauteur utile de la scène, sous la barre de navigation flottante. */
 const AVAILABLE = "(100vh - 6.75rem)";
+
+/**
+ * Parcours de la scène épinglée. Avec une hauteur de 250vh, l'épinglage dure
+ * 150vh de défilement ; l'agrandissement en occupe la part comprise entre
+ * `STAGE_START` et `STAGE_END`, soit un peu plus d'une hauteur d'écran, comme
+ * dans le gabarit.
+ */
+const STAGE_START = 0.08;
+const STAGE_END = 0.85;
 
 /**
  * Image de la scène. `curtain` active le rideau de dévoilement ; il est réservé
@@ -85,101 +100,111 @@ function Shot({
 export function AproposHero() {
   // Largeur et hauteur de départ de l'image centrale. `--w0` est posée par
   // classe (44vw en tablette portrait, 36vw au-delà de 992 px) ; la hauteur
-  // de départ est bornée pour ne pas produire une image trop étroite.
+  // de départ vise 80vh, bornée par la hauteur utile et par la largeur pour ne
+  // pas produire une image trop étroite.
   const stageVars = {
-    "--h0": `min(calc(${AVAILABLE} * 0.84), calc(var(--w0) * 1.6))`,
+    "--h0": `min(80vh, calc(${AVAILABLE}), calc(var(--w0) * 1.6))`,
   } as CSSProperties;
 
   return (
     <Section className="pt-0">
       <div className="overflow-clip rounded-[1.5rem] border border-site-border bg-site-light site-on-light">
-        <ScrollProgress start={0.22} end={0.55}>
-          {/* Texte ---------------------------------------------------------- */}
-          <div className="px-8 pb-10 pt-16 md:px-16 md:pb-4 md:pt-20">
-            <Reveal dir="up" className="mx-auto flex max-w-[48rem] flex-col items-center text-center">
-              <p className="mb-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-site-muted">
-                À propos de SIRA
-              </p>
-              <Heading as="h1" size="h1" align="center">
-                Rendre lisible le chemin <Hl>vers l&apos;opportunité</Hl>
-              </Heading>
-              <Lead align="center" tone="muted" className="mt-6">
-                Partout en Afrique, les offres existent et les talents aussi. Ce qui manque, c&apos;est un chemin clair
-                entre les deux : savoir quelles opportunités correspondent vraiment, comprendre ce qui bloque et
-                présenter un dossier à la hauteur. C&apos;est ce que SIRA construit.
-              </Lead>
-              <div className="mt-9 flex flex-wrap justify-center gap-3">
-                <SiteButtonLink href="/inscription/candidat" variant="navy" size="md">
-                  Créer mon profil
-                </SiteButtonLink>
-                <SiteButtonLink href="/a-propos#ia" variant="outline-dark" size="md">
-                  Comprendre notre IA
-                </SiteButtonLink>
+        {/* Texte ------------------------------------------------------------ */}
+        <div className="px-8 pb-10 pt-16 md:px-16 md:pb-0 md:pt-20">
+          <Reveal dir="up" className="mx-auto flex max-w-[48rem] flex-col items-center text-center">
+            <p className="mb-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-site-muted">
+              À propos de SIRA
+            </p>
+            <Heading as="h1" size="h1" align="center">
+              Rendre lisible le chemin <Hl>vers l&apos;opportunité</Hl>
+            </Heading>
+            <Lead align="center" tone="muted" className="mt-6">
+              Partout en Afrique, les offres existent et les talents aussi. Ce qui manque, c&apos;est un chemin clair
+              entre les deux : savoir quelles opportunités correspondent vraiment, comprendre ce qui bloque et
+              présenter un dossier à la hauteur. C&apos;est ce que SIRA construit.
+            </Lead>
+            <div className="mt-9 flex flex-wrap justify-center gap-3">
+              <SiteButtonLink href="/inscription/candidat" variant="navy" size="md">
+                Créer mon profil
+              </SiteButtonLink>
+              <SiteButtonLink href="/a-propos#ia" variant="outline-dark" size="md">
+                Comprendre notre IA
+              </SiteButtonLink>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Petit écran : grille simple -------------------------------------- */}
+        <div className="grid grid-cols-2 gap-3 px-3 pb-3 xs:px-5 xs:pb-5 md:hidden">
+          <Shot image={CENTER} className="col-span-2 aspect-[4/3]" sizes="90vw" priority curtain rounded="rounded-[1.25rem]" />
+          <Shot image={LEFT.tall} className="row-span-2" to="right" sizes="50vw" curtain />
+          <Shot image={LEFT.square} className="aspect-square" sizes="50vw" curtain />
+          <Shot image={RIGHT.square} className="aspect-square" sizes="50vw" curtain />
+        </div>
+
+        {/*
+          À partir de 768 px : scène épinglée. La marge négative remonte la
+          scène sous la zone vide qui surmonte les images (réservée à la barre
+          de navigation une fois l'épinglage commencé), afin que les images
+          apparaissent plus haut au chargement. La scène, purement décorative,
+          laisse passer les clics vers les boutons qu'elle recouvre.
+        */}
+        <ScrollProgress
+          start={STAGE_START}
+          end={STAGE_END}
+          className="pointer-events-none relative hidden h-[250vh] [--w0:44vw] motion-reduce:h-auto md:-mt-16 md:block tab:[--w0:36vw]"
+          style={stageVars}
+        >
+          <div className="sticky top-0 h-screen overflow-hidden motion-reduce:static">
+            <div className="absolute inset-x-0 bottom-3 top-[6rem]">
+              {/* Groupe de gauche */}
+              <div
+                className="absolute top-1/2 flex items-center gap-4 will-change-transform"
+                style={{
+                  right: "calc(50% + var(--w0) / 2 + 1.25rem)",
+                  transform: "translate3d(calc(var(--p) * -1 * ((95vw - var(--w0)) / 2 + 2.5vw)), -50%, 0)",
+                }}
+              >
+                <Shot image={LEFT.tall} className="aspect-[2/3] w-[min(20vw,38vh)]" sizes="20vw" />
+                <div className="flex w-[min(18vw,34vh)] flex-col gap-4">
+                  <Shot image={LEFT.square} className="aspect-square w-full" sizes="18vw" />
+                  <Shot image={LEFT.portrait} className="aspect-[3/4] w-full" sizes="18vw" />
+                </div>
               </div>
-            </Reveal>
-          </div>
 
-          {/* Petit écran : grille simple ------------------------------------ */}
-          <div className="grid grid-cols-2 gap-3 px-3 pb-3 xs:px-5 xs:pb-5 md:hidden">
-            <Shot image={CENTER} className="col-span-2 aspect-[4/3]" sizes="90vw" priority curtain rounded="rounded-[1.25rem]" />
-            <Shot image={LEFT.tall} className="row-span-2" to="right" sizes="50vw" curtain />
-            <Shot image={LEFT.square} className="aspect-square" sizes="50vw" curtain />
-            <Shot image={RIGHT.square} className="aspect-square" sizes="50vw" curtain />
-          </div>
+              {/* Image centrale */}
+              <div
+                className="absolute left-1/2 top-1/2 z-10"
+                style={{
+                  width: "calc(var(--w0) + var(--p) * (95vw - var(--w0)))",
+                  height: `calc(var(--h0) + var(--p) * (${AVAILABLE} - var(--h0)))`,
+                  transform: "translate3d(-50%, -50%, 0)",
+                }}
+              >
+                <Shot
+                  image={CENTER}
+                  className="h-full w-full"
+                  to="down"
+                  sizes="95vw"
+                  priority
+                  curtain
+                  rounded="rounded-[1.5rem]"
+                />
+              </div>
 
-          {/* À partir de 768 px : scène épinglée ----------------------------- */}
-          <div className="relative hidden h-[150vh] [--w0:44vw] motion-reduce:h-auto md:block tab:[--w0:36vw]" style={stageVars}>
-            <div className="sticky top-0 h-screen overflow-hidden motion-reduce:static">
-              <div className="absolute inset-x-0 bottom-3 top-[6rem]">
-                {/* Groupe de gauche */}
-                <div
-                  className="absolute top-1/2 flex items-center gap-4 will-change-transform"
-                  style={{
-                    right: "calc(50% + var(--w0) / 2 + 1.25rem)",
-                    transform: "translate3d(calc(var(--p) * -1 * ((95vw - var(--w0)) / 2 + 2.5vw)), -50%, 0)",
-                  }}
-                >
-                  <Shot image={LEFT.tall} className="aspect-[2/3] w-[min(20vw,38vh)]" sizes="20vw" />
-                  <div className="flex w-[min(18vw,34vh)] flex-col gap-4">
-                    <Shot image={LEFT.square} className="aspect-square w-full" sizes="18vw" />
-                    <Shot image={LEFT.portrait} className="aspect-[3/4] w-full" sizes="18vw" />
-                  </div>
+              {/* Groupe de droite */}
+              <div
+                className="absolute top-1/2 flex items-center gap-4 will-change-transform"
+                style={{
+                  left: "calc(50% + var(--w0) / 2 + 1.25rem)",
+                  transform: "translate3d(calc(var(--p) * ((95vw - var(--w0)) / 2 + 2.5vw)), -50%, 0)",
+                }}
+              >
+                <div className="flex w-[min(18vw,34vh)] flex-col gap-4">
+                  <Shot image={RIGHT.portrait} className="aspect-[3/4] w-full" sizes="18vw" />
+                  <Shot image={RIGHT.square} className="aspect-square w-full" sizes="18vw" />
                 </div>
-
-                {/* Image centrale */}
-                <div
-                  className="absolute left-1/2 top-1/2 z-10"
-                  style={{
-                    width: "calc(var(--w0) + var(--p) * (95vw - var(--w0)))",
-                    height: `calc(var(--h0) + var(--p) * (${AVAILABLE} - var(--h0)))`,
-                    transform: "translate3d(-50%, -50%, 0)",
-                  }}
-                >
-                  <Shot
-                    image={CENTER}
-                    className="h-full w-full"
-                    to="down"
-                    sizes="95vw"
-                    priority
-                    curtain
-                    rounded="rounded-[1.5rem]"
-                  />
-                </div>
-
-                {/* Groupe de droite */}
-                <div
-                  className="absolute top-1/2 flex items-center gap-4 will-change-transform"
-                  style={{
-                    left: "calc(50% + var(--w0) / 2 + 1.25rem)",
-                    transform: "translate3d(calc(var(--p) * ((95vw - var(--w0)) / 2 + 2.5vw)), -50%, 0)",
-                  }}
-                >
-                  <div className="flex w-[min(18vw,34vh)] flex-col gap-4">
-                    <Shot image={RIGHT.portrait} className="aspect-[3/4] w-full" sizes="18vw" />
-                    <Shot image={RIGHT.square} className="aspect-square w-full" sizes="18vw" />
-                  </div>
-                  <Shot image={RIGHT.tall} className="aspect-[2/3] w-[min(20vw,38vh)]" sizes="20vw" />
-                </div>
+                <Shot image={RIGHT.tall} className="aspect-[2/3] w-[min(20vw,38vh)]" sizes="20vw" />
               </div>
             </div>
           </div>

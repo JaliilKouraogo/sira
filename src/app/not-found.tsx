@@ -106,14 +106,15 @@ export default function NotFound() {
               curtain="var(--color-site-canvas)"
               className="hidden min-h-[24rem] rounded-[1.5rem] border border-site-border md:block tab:min-h-0"
             >
+              {/* Image décorative : cadrée sur la savane, le camion reste hors champ. */}
               <Parallax strength={18}>
                 <Image
                   src={IMG.transport.src}
-                  alt={IMG.transport.alt}
+                  alt=""
                   fill
                   priority
                   sizes="(min-width: 992px) 50vw, 100vw"
-                  className="object-cover object-left"
+                  className="object-cover object-right"
                 />
               </Parallax>
             </ImageFrame>

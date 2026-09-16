@@ -221,16 +221,19 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
           <Inner className="px-5 text-center md:px-8">
             <Reveal dir="up">
               <nav aria-label="Fil d'Ariane">
-                <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.8125rem] text-site-muted">
+                <ol className="flex flex-wrap items-center justify-center gap-x-2 text-[0.8125rem] text-site-muted">
                   <li>
-                    <Link href="/" className="site-link hover:text-site-navy">
-                      Accueil
+                    <Link href="/" className="inline-flex min-h-11 items-center hover:text-site-navy">
+                      <span className="site-link">Accueil</span>
                     </Link>
                   </li>
                   <li aria-hidden>/</li>
                   <li>
-                    <Link href={isInternship ? "/stages" : "/emplois"} className="site-link hover:text-site-navy">
-                      {isInternship ? "Stages" : "Offres d'emploi"}
+                    <Link
+                      href={isInternship ? "/stages" : "/emplois"}
+                      className="inline-flex min-h-11 items-center hover:text-site-navy"
+                    >
+                      <span className="site-link">{isInternship ? "Stages" : "Offres d'emploi"}</span>
                     </Link>
                   </li>
                   <li aria-hidden>/</li>
@@ -240,7 +243,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                 </ol>
               </nav>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
                 {anonymised || !organization ? (
                   <span
                     aria-hidden
@@ -644,7 +647,9 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
             <div className="contents tab:col-start-2 tab:row-start-1 tab:flex tab:flex-col tab:gap-4">
               {/* Encadré « Postuler » : premier sur mobile, collant sur grand écran.
                   L'enveloppe occupe toute la hauteur libre de la colonne pour que
-                  l'encadré puisse l'accompagner pendant la lecture. */}
+                  l'encadré puisse l'accompagner pendant la lecture. Sur grand
+                  écran, la carte du recruteur passe au-dessus : sinon elle serait
+                  repoussée tout en bas de la colonne, loin de l'encadré. */}
               <div className="order-1 tab:order-none tab:grid tab:flex-1">
                 <Reveal dir="right">
                   <aside
@@ -699,11 +704,14 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                       </div>
                       <p className="mt-3 text-[0.8125rem] leading-relaxed text-site-muted">
                         SIRA adapte votre CV et rédige une première lettre, sans rien inventer. Rien n&apos;est envoyé
-                        sans votre validation.{" "}
-                        <Link href="/inscription/candidat" className="font-semibold text-site-navy underline underline-offset-2">
-                          Créer mon profil
-                        </Link>
+                        sans votre validation.
                       </p>
+                      <Link
+                        href="/inscription/candidat"
+                        className="mt-1 inline-flex min-h-11 items-center text-[0.875rem] font-semibold text-site-navy"
+                      >
+                        <span className="site-link">Créer mon profil</span>
+                      </Link>
 
                       <div className="mt-4 border-t border-site-line pt-4">
                         <OffreActions jobTitle={job.title} />
@@ -714,7 +722,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
               </div>
 
               {/* Carte du recruteur. */}
-              <div className="order-3 tab:order-none">
+              <div className="order-3 tab:-order-1">
                 <Reveal dir="right">
                   <section aria-labelledby="offre-recruteur">
                     <Card>
@@ -813,7 +821,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
               <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
                 <Reveal dir="left">
                   <Heading size="h2" className="max-w-[36rem]">
-                    Des offres <Hl>qui pourraient vous plaire</Hl>
+                    Découvrir des offres <Hl>similaires</Hl>
                   </Heading>
                 </Reveal>
                 <Reveal dir="right">

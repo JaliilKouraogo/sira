@@ -126,7 +126,7 @@ export default function RecruteursPage() {
       </Section>
 
       {/* 2. Onglets de fonctionnalités -------------------------------------- */}
-      <Section>
+      <Section id="outils" className="scroll-mt-24 md:scroll-mt-28">
         <Panel tone="light">
           <Inner>
             <FeatureTabs

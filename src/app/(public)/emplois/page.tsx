@@ -47,7 +47,7 @@ export default function EmploisPage() {
           </>
         }
         text="Emplois, stages, alternances, missions et volontariats : toutes les opportunités publiées sur SIRA, des postes en CDI aux missions courtes. Affinez la recherche, puis ouvrez une offre pour comprendre ce qui est attendu."
-        image={IMG.entretien}
+        image={IMG.villeSoir}
         search={
           <Suspense fallback={<JobSearchHeroView variant="emplois" />}>
             <JobSearchHero variant="emplois" />

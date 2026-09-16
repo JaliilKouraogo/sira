@@ -28,6 +28,7 @@ import {
   categorySlug,
   readingLabel,
   relatedPosts,
+  splitPostTitle,
 } from "@/data/site-conseils";
 
 export const dynamicParams = false;
@@ -94,6 +95,7 @@ export default async function ConseilPage({ params }: { params: Promise<{ slug: 
   if (!post) notFound();
 
   const related = relatedPosts(post, 3);
+  const title = splitPostTitle(post);
   const note = CATEGORY_NOTE[post.category];
 
   const jsonLd = {
@@ -151,7 +153,8 @@ export default async function ConseilPage({ params }: { params: Promise<{ slug: 
               </div>
 
               <Heading as="h1" size="h1" align="center" className="mx-auto mt-6 max-w-[52rem]">
-                {post.title}
+                {title.head}
+                <Hl>{title.highlight}</Hl>
               </Heading>
 
               <p className="mx-auto mt-6 max-w-[40rem] text-center text-[1.0625rem] leading-relaxed text-site-muted md:text-[1.125rem]">

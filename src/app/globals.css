@@ -128,6 +128,8 @@
   --color-site-gold: #c6a11d;
   --color-site-gold-hover: #d8b43a;
   --color-site-gold-deep: #7a6310;
+  /* Or des grands titres sur fond clair : plus foncé que l'or de marque pour rester lisible. */
+  --color-site-gold-display: #a8860f;
   --color-site-ink: #0e0e1f;
   --color-site-muted: #6c6c89;
   --color-site-soft: #eeeef6;
@@ -634,7 +636,7 @@
     color: var(--color-site-ink);
   }
   .site-on-light .site-hl {
-    color: #a8860f;
+    color: var(--color-site-gold-display);
   }
 }
 

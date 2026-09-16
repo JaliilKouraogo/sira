@@ -61,6 +61,30 @@ export function relatedPosts(post: Post, limit = 3): Post[] {
   return [...sameTheme, ...rest].slice(0, limit);
 }
 
+/**
+ * Fin du titre de chaque article à mettre en valeur en or, comme sur les
+ * autres grands titres du site. Sans entrée, les deux derniers mots.
+ */
+const TITLE_HIGHLIGHT: Record<string, string> = {
+  "rediger-un-cv-qui-passe-le-premier-tri": "le premier tri",
+  "preparer-un-entretien-en-cinq-etapes": "en cinq étapes",
+  "comprendre-votre-score-de-compatibilite": "score de compatibilité",
+  "trouver-un-stage": "quand on débute",
+  "rediger-une-offre-qui-attire-les-bons-profils": "les bons profils",
+  "se-former-sans-quitter-son-emploi": "sans quitter son emploi",
+};
+
+/** Découpe un titre d'article en partie simple et partie mise en valeur. */
+export function splitPostTitle(post: Pick<Post, "slug" | "title">): { head: string; highlight: string } {
+  const wanted = TITLE_HIGHLIGHT[post.slug];
+  if (wanted && post.title.endsWith(wanted)) {
+    return { head: post.title.slice(0, -wanted.length), highlight: wanted };
+  }
+  const words = post.title.split(" ");
+  const cut = Math.max(words.length - 2, 0);
+  return { head: words.slice(0, cut).join(" ") + (cut > 0 ? " " : ""), highlight: words.slice(cut).join(" ") };
+}
+
 /** Temps de lecture lisible, par exemple « 6 min de lecture ». */
 export function readingLabel(minutes: number): string {
   return `${minutes} min de lecture`;

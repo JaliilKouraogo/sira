@@ -47,7 +47,12 @@ const NETWORKS: Network[] = [
     label: "X",
     build: (url, title) =>
       `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-    icon: <path d="M4 4l16 16M20 4 4 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />,
+    icon: (
+      <>
+        <path d="M3 3h5.5L21 21h-5.5Z" fill="currentColor" />
+        <path d="M20.5 3 3.5 21" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </>
+    ),
   },
 ];
 

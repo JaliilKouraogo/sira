@@ -265,11 +265,20 @@ function FilterPill({
       )}
     >
       <span className="sr-only">{def.label}</span>
+      {/* Filtre actif : le nom du filtre reste visible devant la valeur choisie. */}
+      {active ? (
+        <span aria-hidden className="shrink-0 whitespace-nowrap pl-4 text-[0.875rem] font-normal text-site-muted">
+          {def.label}&nbsp;:
+        </span>
+      ) : null}
       <select
         name={def.key}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-11 w-full min-w-0 cursor-pointer appearance-none truncate rounded-full bg-transparent pl-4 pr-10 text-[0.9375rem] outline-none field-sizing-content md:max-w-[16rem]"
+        className={cn(
+          "h-11 w-full min-w-0 cursor-pointer appearance-none truncate rounded-full bg-transparent pr-10 text-[0.9375rem] outline-none field-sizing-content md:max-w-[16rem]",
+          active ? "pl-1.5" : "pl-4",
+        )}
       >
         <option value="">{def.allLabel}</option>
         {def.options.map((o) => (

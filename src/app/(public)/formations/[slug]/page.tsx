@@ -344,7 +344,7 @@ export default async function FormationDetailPage({ params }: { params: Promise<
                 <ol className="border-t border-site-line">
                   {training.objectives.map((o, i) => (
                     <li key={o} className="flex items-baseline gap-5 border-b border-site-line py-4">
-                      <span className="site-display w-9 shrink-0 text-[1.375rem] leading-none text-[#a8860f]">
+                      <span className="site-display w-9 shrink-0 text-[1.375rem] leading-none text-site-gold-display">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span className="min-w-0 text-[1rem] leading-relaxed text-site-ink">

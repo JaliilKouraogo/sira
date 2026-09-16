@@ -170,7 +170,7 @@ export default function ContactPage() {
             <div id="formulaire" className="scroll-mt-28 px-3 py-10 xs:px-5 md:px-8 md:py-16">
               <Reveal dir="right">
                 <h2 className="site-display text-[1.75rem] leading-tight text-site-ink md:text-[2.25rem]">
-                  Écrivez-nous
+                  Écrivez-<Hl>nous</Hl>
                 </h2>
                 <p className="mb-8 mt-3 max-w-[32rem] text-[1rem] leading-relaxed text-site-muted">
                   Précisez votre profil et le sujet de votre demande : votre message arrive directement à la bonne

@@ -5,6 +5,12 @@
  *
  * Grammaire du site public : bloc clair centré, titre avec mot-clé en or,
  * cartes d'offre, puis appel à l'action avant le pied de page.
+ *
+ * Portée : avec `dynamicParams = false`, un lien inconnu n'atteint jamais la
+ * page d'offre. En export statique (GitHub Pages), c'est donc la 404 globale
+ * qui s'affiche. Cette page sert quand l'application tourne sur un serveur
+ * Node et qu'une offre existante cesse d'être publiée entre deux
+ * régénérations : `notFound()` est alors appelé depuis la page.
  */
 
 import { SiteJobCard } from "@/components/site/cards";

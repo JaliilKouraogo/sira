@@ -393,7 +393,12 @@ export function SocialLinks({ className }: { className?: string }) {
     {
       label: "X",
       href: "https://x.com",
-      path: <path d="M4 4l16 16M20 4 4 20" {...stroke} strokeWidth={2} />,
+      path: (
+        <>
+          <path d="M3 3h5.5L21 21h-5.5Z" fill="currentColor" />
+          <path d="M20.5 3 3.5 21" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </>
+      ),
     },
     {
       label: "LinkedIn",

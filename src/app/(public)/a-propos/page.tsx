@@ -821,9 +821,12 @@ export default function AProposPage() {
                   <h3 className="site-display mt-5 text-[1.375rem] leading-tight text-site-navy">
                     Support candidats et recruteurs
                   </h3>
-                  <p className="mt-3 inline-flex min-h-11 items-center text-[1rem] font-semibold text-site-navy">
-                    +226 00 00 00 00
-                  </p>
+                  <a
+                    href="tel:+22625000000"
+                    className="site-link mt-3 inline-flex min-h-11 w-fit items-center text-[1rem] font-semibold text-site-navy"
+                  >
+                    +226 25 00 00 00
+                  </a>
                   <p className="mt-1 text-[0.9375rem] leading-relaxed text-site-muted">
                     Assistance par WhatsApp et par e-mail, du lundi au vendredi, de 8 h à 17 h (heure de Ouagadougou).
                   </p>

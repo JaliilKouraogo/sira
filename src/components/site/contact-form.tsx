@@ -289,7 +289,7 @@ export function ContactForm() {
         </div>
       ) : null}
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 tab:grid-cols-1 xl:grid-cols-2">
         <div>
           <label htmlFor={FIELD_ID.name} className={LABEL}>
             Nom complet
@@ -341,7 +341,7 @@ export function ContactForm() {
           Vous êtes
           <Required />
         </legend>
-        <div className="grid grid-cols-2 gap-2 xs:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-4 tab:grid-cols-2">
           {PROFILES.map((p) => {
             const checked = values.profile === p.value;
             return (
@@ -364,6 +364,8 @@ export function ContactForm() {
                   value={p.value}
                   required
                   checked={checked}
+                  aria-invalid={Boolean(shown("profile"))}
+                  aria-describedby={shown("profile") ? "contact-profil-erreur" : undefined}
                   onChange={() => {
                     set("profile", p.value);
                     blur("profile");

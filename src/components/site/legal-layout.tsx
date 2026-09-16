@@ -14,6 +14,7 @@ import type { ReactNode } from "react";
 import { IMG } from "@/data/site-content";
 import { CtaBlock } from "./cta";
 import { Eyebrow, Heading, Hl, Inner, Lead, Panel, Section, SiteIcon, cn } from "./kit";
+import { LegalScrollRegion } from "./legal-scroll-region";
 import { LegalToc } from "./legal-toc";
 import { Reveal } from "./motion";
 
@@ -209,18 +210,17 @@ export function LegalLayout({
 
 /**
  * Tableau des pages légales, dans un conteneur qui défile horizontalement
- * sur petit écran. Le conteneur est focalisable pour défiler au clavier.
+ * sur petit écran. Le conteneur devient focalisable pour défiler au clavier
+ * seulement quand le tableau déborde.
  */
 export function LegalTable({ caption, head, rows }: { caption: string; head: string[]; rows: string[][] }) {
   return (
     <div>
-      <div
-        role="region"
-        aria-label={caption}
-        tabIndex={0}
+      <LegalScrollRegion
+        label={caption}
         className="overflow-x-auto rounded-[1rem] border border-site-border bg-white"
       >
-        <table className="w-full min-w-[34rem] border-collapse text-left text-[0.9375rem] leading-snug">
+        <table className="w-full min-w-[33rem] border-collapse text-left text-[0.9375rem] leading-snug">
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr className="bg-site-navy text-white">
@@ -253,8 +253,8 @@ export function LegalTable({ caption, head, rows }: { caption: string; head: str
             ))}
           </tbody>
         </table>
-      </div>
-      <p className="mt-2 flex items-center gap-2 text-[0.8125rem] text-site-muted xl:hidden">
+      </LegalScrollRegion>
+      <p className="mt-2 flex items-center gap-2 text-[0.8125rem] text-site-muted tab:hidden">
         <SiteIcon.Arrow size={14} className="shrink-0 text-site-navy" />
         Faites défiler le tableau vers la droite pour voir toutes les colonnes.
       </p>

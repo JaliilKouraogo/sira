@@ -177,7 +177,7 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
                 rows={[
                   { label: "Titre du profil", value: talent.headline },
                   { label: "Domaine", value: talent.domain },
-                  { label: "Ville", value: `${talent.city} (Burkina Faso)` },
+                  { label: "Ville", value: talent.city },
                   { label: "Zones de mobilité", value: talent.mobility.join(", ") },
                   { label: "Expérience", value: `${talent.experienceYears} an(s)` },
                   { label: "Niveau de formation", value: talent.educationLevel },

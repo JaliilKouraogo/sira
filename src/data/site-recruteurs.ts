@@ -71,7 +71,7 @@ export const RECRUITER_STEPS: {
     title: "Recevez et traitez les candidatures",
     text: "Chaque dossier arrive complet dans votre tableau de suivi. Vous décidez ; SIRA se contente de vous proposer un ordre de lecture et un résumé de chaque profil.",
     image: IMG.entretien,
-    href: "#tarifs",
+    href: "#outils",
   },
 ];
 
