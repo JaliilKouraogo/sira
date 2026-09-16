@@ -6,8 +6,9 @@
  * Validation accessible :
  * - chaque champ en erreur porte `aria-invalid` et est relié à son message
  *   par `aria-describedby` ;
- * - à l'envoi, un récapitulatif des erreurs reçoit le focus et renvoie vers
- *   chaque champ concerné ;
+ * - à l'envoi, un récapitulatif des erreurs reçoit le focus (son titre est
+ *   alors lu) et renvoie vers chaque champ concerné ; il se vide au fil des
+ *   corrections sans être réannoncé à chaque frappe ;
  * - un champ quitté est vérifié aussitôt, puis revérifié à chaque frappe.
  *
  * L'envoi est simulé : le site est une démonstration statique, aucun message
@@ -81,8 +82,7 @@ function validate(v: Values): Errors {
   if (v.name.trim().length < 2) e.name = "Indiquez votre nom complet.";
   const email = v.email.trim();
   if (!email) e.email = "Indiquez votre adresse e-mail.";
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
-    e.email = "Cette adresse e-mail semble incomplète, par exemple : nom@domaine.com.";
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) e.email = "Adresse incomplète, par exemple : nom@domaine.com.";
   if (!v.profile) e.profile = "Choisissez le profil qui vous correspond.";
   if (!v.subject) e.subject = "Choisissez le sujet de votre message.";
   const len = v.message.trim().length;
@@ -97,7 +97,9 @@ const CONTROL =
   "block min-h-12 w-full rounded-[0.75rem] border bg-white px-4 py-2.5 text-[1rem] leading-relaxed text-site-ink transition-colors duration-200 placeholder:text-site-muted/80";
 
 function controlState(invalid: boolean): string {
-  return invalid ? "border-[#b42318] bg-[#fffafa]" : "border-site-navy/25 hover:border-site-navy/60 focus:border-site-navy";
+  return invalid
+    ? "border-[#b42318] bg-[#fffafa]"
+    : "border-site-navy/25 hover:border-site-navy/60 focus:border-site-navy";
 }
 
 function Required() {
@@ -111,7 +113,16 @@ function Required() {
 function ErrorText({ id, children }: { id: string; children: ReactNode }) {
   return (
     <p id={id} className="mt-2 flex items-start gap-1.5 text-[0.875rem] font-medium text-[#b42318]">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 shrink-0" aria-hidden>
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="mt-0.5 shrink-0"
+        aria-hidden
+      >
         <circle cx="12" cy="12" r="9" />
         <path d="M12 7.5v5M12 16v.01" strokeLinecap="round" />
       </svg>
@@ -195,10 +206,17 @@ export function ContactForm() {
     const subject = SUBJECTS.find((s) => s.value === values.subject)?.label;
     return (
       <div role="status" className="rounded-[1rem] border border-b-4 border-site-border bg-white p-6 md:p-8">
-        <span aria-hidden className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-site-navy text-site-gold">
+        <span
+          aria-hidden
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-site-navy text-site-gold"
+        >
           <SiteIcon.Check size={24} />
         </span>
-        <h3 ref={successRef} tabIndex={-1} className="site-display mt-5 text-[1.75rem] leading-tight text-site-ink focus:outline-none">
+        <h3
+          ref={successRef}
+          tabIndex={-1}
+          className="site-display mt-5 text-[1.75rem] leading-tight text-site-ink focus:outline-none"
+        >
           Merci {firstName}, message bien reçu
         </h3>
         <p className="mt-3 text-[1rem] leading-relaxed text-site-ink/80">
@@ -228,7 +246,13 @@ export function ContactForm() {
   const messageLength = values.message.trim().length;
 
   return (
-    <form action={route("/contact")} noValidate onSubmit={onSubmit} aria-describedby="contact-obligatoire" className="flex flex-col gap-6">
+    <form
+      action={route("/contact")}
+      noValidate
+      onSubmit={onSubmit}
+      aria-describedby="contact-obligatoire"
+      className="flex flex-col gap-6"
+    >
       <p id="contact-obligatoire" className="text-[0.875rem] text-site-muted">
         Les champs marqués d&apos;un astérisque <span className="text-site-gold-deep">*</span> sont obligatoires.
       </p>
@@ -237,7 +261,7 @@ export function ContactForm() {
         <div
           ref={summaryRef}
           tabIndex={-1}
-          role="alert"
+          role="region"
           aria-labelledby="contact-erreurs-titre"
           className="rounded-[0.75rem] border border-[#b42318]/40 border-l-4 border-l-[#b42318] bg-[#fffafa] p-4"
         >
@@ -441,10 +465,7 @@ export function ContactForm() {
           onChange={(e) => set("message", e.target.value)}
           onBlur={() => blur("message")}
           aria-invalid={Boolean(shown("message"))}
-          aria-describedby={cn(
-            "contact-message-aide",
-            shown("message") && `${FIELD_ID.message}-erreur`,
-          )}
+          aria-describedby={cn("contact-message-aide", shown("message") && `${FIELD_ID.message}-erreur`)}
           className={cn(CONTROL, "min-h-[11.25rem] resize-y py-3", controlState(Boolean(shown("message"))))}
         />
         <p id="contact-message-aide" className="mt-2 text-[0.8125rem] text-site-muted">
@@ -518,7 +539,13 @@ export function ContactForm() {
             <>
               <svg width="18" height="18" viewBox="0 0 24 24" className="animate-spin" aria-hidden>
                 <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeOpacity="0.3" strokeWidth="3" />
-                <path d="M21 12a9 9 0 0 0-9-9" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                <path
+                  d="M21 12a9 9 0 0 0-9-9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
               </svg>
               Envoi en cours…
             </>

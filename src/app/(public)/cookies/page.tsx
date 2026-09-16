@@ -107,8 +107,7 @@ const SECTIONS: LegalSection[] = [
         </p>
         <p>
           Les notifications WhatsApp reposent sur un service tiers de messagerie. Elles ne déposent pas de cookie sur
-          votre navigateur et dépendent d&apos;un consentement distinct, révocable dans vos préférences de
-          notification.
+          votre navigateur et dépendent d&apos;un consentement distinct, révocable dans vos préférences de notification.
         </p>
       </>
     ),
@@ -143,8 +142,8 @@ export default function CookiesPage() {
         body: (
           <>
             Le détail des données traitées figure dans la{" "}
-            <Link href="/confidentialite">politique de confidentialité</Link>, et les règles d&apos;usage du service dans
-            les <Link href="/conditions">conditions d&apos;utilisation</Link>.
+            <Link href="/confidentialite">politique de confidentialité</Link>, et les règles d&apos;usage du service
+            dans les <Link href="/conditions">conditions d&apos;utilisation</Link>.
           </>
         ),
       }}

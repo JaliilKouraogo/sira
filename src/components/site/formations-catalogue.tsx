@@ -285,8 +285,21 @@ function CatalogueView({ query, live }: { query: string; live: boolean }) {
         <p className="site-display text-[1.375rem] text-site-ink" aria-live="polite" aria-atomic="true">
           {resultLabel(results.length)}
         </p>
-        {active.length > 0 ? (
+        {hasCriteria ? (
           <ul className="flex flex-wrap gap-2" aria-label="Filtres actifs">
+            {state.q.trim() ? (
+              <li>
+                <button
+                  type="button"
+                  onClick={() => update({ ...state, q: "" })}
+                  aria-label={`Effacer la recherche : ${state.q.trim()}`}
+                  className="inline-flex min-h-11 max-w-[16rem] items-center gap-2 rounded-full border border-site-border bg-white py-1.5 pl-4 pr-3 text-[0.875rem] font-medium text-site-navy transition-colors hover:bg-site-soft"
+                >
+                  <span className="truncate">« {state.q.trim()} »</span>
+                  <SiteIcon.Plus size={16} className="shrink-0 rotate-45" />
+                </button>
+              </li>
+            ) : null}
             {active.map((a) => (
               <li key={a.key}>
                 <button
@@ -345,8 +358,8 @@ function FilterRow({
   const labelId = `${idBase}-${group.key}`;
   const choices = [{ value: "", label: group.allLabel }, ...group.options];
   return (
-    <div className="grid gap-3 py-4 md:grid-cols-[7.5rem_1fr] md:items-center md:gap-6">
-      <p id={labelId} className="text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-site-muted">
+    <div className="grid gap-3 py-4 md:grid-cols-[7.5rem_1fr] md:items-start md:gap-6">
+      <p id={labelId} className="text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-site-muted md:pt-3.5">
         {group.label}
       </p>
       <div role="group" aria-labelledby={labelId} className="flex flex-wrap gap-2">

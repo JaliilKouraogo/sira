@@ -84,10 +84,10 @@ export function LegalLayout({
               <Heading as="h1" size="h1" align="center" className="mx-auto max-w-[46rem]">
                 {title}
               </Heading>
-              <p className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] text-site-muted">
-                <SiteIcon.Clock size={16} className="text-site-navy" />
+              <p className="mt-5 text-[0.9375rem] text-site-muted">
+                <SiteIcon.Clock size={16} className="mr-2 inline-block align-[-0.15em] text-site-navy" />
                 Dernière mise à jour le{" "}
-                <time dateTime={updatedAt} className="font-semibold text-site-ink">
+                <time dateTime={updatedAt} className="whitespace-nowrap font-semibold text-site-ink">
                   {formatLegalDate(updatedAt)}
                 </time>
               </p>
@@ -126,13 +126,19 @@ export function LegalLayout({
 
       {/* 2. Corps --------------------------------------------------------- */}
       <Section>
-        <Panel tone="light" pad={false} className="px-3 py-10 xs:px-6 md:px-12 md:py-20 tab:px-16">
-          <Inner className="grid items-start gap-6 tab:grid-cols-[17rem_minmax(0,1fr)] tab:gap-12">
+        {/* overflow-visible : un bloc qui masque son débordement empêcherait le
+            sommaire de rester collé pendant le défilement. */}
+        <Panel
+          tone="light"
+          pad={false}
+          className="overflow-visible! px-3 py-10 xs:px-6 md:px-12 md:py-20 tab:px-10 xl:px-16"
+        >
+          <Inner className="grid items-start gap-6 tab:grid-cols-[15rem_minmax(0,1fr)] tab:gap-8 xl:grid-cols-[17rem_minmax(0,1fr)] xl:gap-12">
             <div className="min-w-0 tab:sticky tab:top-28">
               <LegalToc items={sections.map(({ id, title: t }) => ({ id, title: t }))} />
             </div>
 
-            <div className="min-w-0 rounded-[1.5rem] border border-b-4 border-site-border bg-white px-5 py-8 xs:px-7 md:px-12 md:py-14">
+            <div className="min-w-0 rounded-[1.5rem] border border-b-4 border-site-border bg-white px-5 py-8 xs:px-7 md:px-12 md:py-14 tab:px-9 xl:px-12">
               {sections.map((s, i) => (
                 <section
                   key={s.id}
@@ -157,7 +163,7 @@ export function LegalLayout({
                   </div>
                   <div
                     className={cn(
-                      "mt-5 space-y-4 text-[1rem] leading-[1.75] text-site-ink/80 md:pl-[3.75rem]",
+                      "mt-5 space-y-4 text-[1rem] leading-[1.75] text-site-ink/80 md:pl-[3.75rem] tab:pl-0 xl:pl-[3.75rem]",
                       "[&_strong]:font-semibold [&_strong]:text-site-ink",
                       "[&_a]:font-semibold [&_a]:text-site-navy [&_a]:underline [&_a]:decoration-site-border [&_a]:decoration-2 [&_a]:underline-offset-4 [&_a:hover]:decoration-site-navy",
                       "[&_ul]:list-disc [&_ul]:space-y-2.5 [&_ul]:pl-5 [&_li]:pl-1 [&_li]:marker:text-site-gold",
@@ -171,7 +177,7 @@ export function LegalLayout({
               {footer ? (
                 <aside
                   aria-labelledby="legal-footer-titre"
-                  className="site-on-dark mt-12 rounded-[1rem] border border-site-border bg-site-navy p-6 md:ml-[3.75rem] md:p-8"
+                  className="site-on-dark mt-4 rounded-[1rem] border border-site-border bg-site-navy p-6 md:ml-[3.75rem] md:p-8 tab:ml-0 xl:ml-[3.75rem]"
                 >
                   <h2 id="legal-footer-titre" className="site-display text-[1.375rem] leading-tight">
                     {footer.title}
@@ -190,10 +196,10 @@ export function LegalLayout({
       <CtaBlock
         title={
           <>
-            Une question sur <Hl>vos droits</Hl> ?
+            Un doute, une demande&nbsp;? <Hl>Parlons-en</Hl>
           </>
         }
-        text="Données personnelles, compte, publication d'offres : notre équipe répond à chaque demande, où que vous soyez en Afrique."
+        text="Données personnelles, compte, publication d'offres ou partenariat : notre équipe répond à chaque demande, où que vous soyez en Afrique."
         action={{ href: "/contact", label: "Nous contacter" }}
         image={IMG.accompagnement}
       />
@@ -205,51 +211,53 @@ export function LegalLayout({
  * Tableau des pages légales, dans un conteneur qui défile horizontalement
  * sur petit écran. Le conteneur est focalisable pour défiler au clavier.
  */
-export function LegalTable({
-  caption,
-  head,
-  rows,
-}: {
-  caption: string;
-  head: string[];
-  rows: string[][];
-}) {
+export function LegalTable({ caption, head, rows }: { caption: string; head: string[]; rows: string[][] }) {
   return (
-    <div
-      role="region"
-      aria-label={caption}
-      tabIndex={0}
-      className="overflow-x-auto rounded-[1rem] border border-site-border bg-white"
-    >
-      <table className="w-full min-w-[34rem] border-collapse text-left text-[0.9375rem] leading-snug">
-        <caption className="sr-only">{caption}</caption>
-        <thead>
-          <tr className="bg-site-navy text-white">
-            {head.map((h) => (
-              <th key={h} scope="col" className="px-4 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em]">
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row.join("|")} className="border-t border-site-line even:bg-site-light">
-              {row.map((cell, i) =>
-                i === 0 ? (
-                  <th key={`${row[0]}-${i}`} scope="row" className="px-4 py-3 font-semibold text-site-ink">
-                    {cell}
-                  </th>
-                ) : (
-                  <td key={`${row[0]}-${i}`} className="px-4 py-3 text-site-ink/80">
-                    {cell}
-                  </td>
-                ),
-              )}
+    <div>
+      <div
+        role="region"
+        aria-label={caption}
+        tabIndex={0}
+        className="overflow-x-auto rounded-[1rem] border border-site-border bg-white"
+      >
+        <table className="w-full min-w-[34rem] border-collapse text-left text-[0.9375rem] leading-snug">
+          <caption className="sr-only">{caption}</caption>
+          <thead>
+            <tr className="bg-site-navy text-white">
+              {head.map((h) => (
+                <th
+                  key={h}
+                  scope="col"
+                  className="px-4 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em]"
+                >
+                  {h}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.join("|")} className="border-t border-site-line even:bg-site-light">
+                {row.map((cell, i) =>
+                  i === 0 ? (
+                    <th key={`${row[0]}-${i}`} scope="row" className="px-4 py-3 font-semibold text-site-ink">
+                      {cell}
+                    </th>
+                  ) : (
+                    <td key={`${row[0]}-${i}`} className="px-4 py-3 text-site-ink/80">
+                      {cell}
+                    </td>
+                  ),
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-2 flex items-center gap-2 text-[0.8125rem] text-site-muted xl:hidden">
+        <SiteIcon.Arrow size={14} className="shrink-0 text-site-navy" />
+        Faites défiler le tableau vers la droite pour voir toutes les colonnes.
+      </p>
     </div>
   );
 }

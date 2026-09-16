@@ -235,7 +235,7 @@ export default async function ConseilPage({ params }: { params: Promise<{ slug: 
                   </Lead>
                 </Reveal>
                 <Reveal dir="right">
-                  <SiteButtonLink href="/conseils" variant="outline-dark">
+                  <SiteButtonLink href="/conseils" variant="outline-dark" className="whitespace-nowrap">
                     Tous les conseils
                   </SiteButtonLink>
                 </Reveal>

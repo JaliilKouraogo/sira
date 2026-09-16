@@ -106,10 +106,10 @@ export const TrainingIcon = {
       <path d="m9.5 9 1.8 1.8L14.8 7.5M8.5 13.5 7 21l5-2.5 5 2.5-1.5-7.5" />
     </svg>
   ),
-  Calendar: ({ size = 16, className }: { size?: number; className?: string }) => (
+  Info: ({ size = 16, className }: { size?: number; className?: string }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" className={className} aria-hidden {...stroke}>
-      <rect x="3" y="5" width="18" height="16" rx="2" />
-      <path d="M3 10h18M8 3v4M16 3v4" />
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5.5M12 7.5v.01" strokeWidth={2} />
     </svg>
   ),
 };

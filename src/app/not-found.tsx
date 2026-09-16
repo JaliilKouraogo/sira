@@ -108,12 +108,12 @@ export default function NotFound() {
             >
               <Parallax strength={18}>
                 <Image
-                  src={IMG.villeSoir.src}
-                  alt={IMG.villeSoir.alt}
+                  src={IMG.transport.src}
+                  alt={IMG.transport.alt}
                   fill
                   priority
                   sizes="(min-width: 992px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-cover object-left"
                 />
               </Parallax>
             </ImageFrame>

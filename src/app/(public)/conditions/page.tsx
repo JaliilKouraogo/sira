@@ -23,9 +23,9 @@ const SECTIONS: LegalSection[] = [
       <>
         <p>
           SIRA est une plateforme panafricaine de mise en relation entre des candidats à la recherche d&apos;une
-          opportunité professionnelle, des organisations qui recrutent, et des organismes qui dispensent des
-          formations. Les présentes conditions régissent l&apos;accès au site et l&apos;usage de ses fonctionnalités,
-          quel que soit le pays depuis lequel vous y accédez.
+          opportunité professionnelle, des organisations qui recrutent, et des organismes qui dispensent des formations.
+          Les présentes conditions régissent l&apos;accès au site et l&apos;usage de ses fonctionnalités, quel que soit
+          le pays depuis lequel vous y accédez.
         </p>
         <p>
           Créer un compte ou utiliser le service vaut acceptation de ces conditions. Si vous les refusez, vous devez
@@ -43,7 +43,9 @@ const SECTIONS: LegalSection[] = [
           Vous devez avoir au moins 16 ans pour créer un compte candidat, ou l&apos;âge supérieur exigé par la loi de
           votre pays de résidence.
         </li>
-        <li>Les informations que vous déclarez doivent être exactes. Un profil délibérément faux peut être suspendu.</li>
+        <li>
+          Les informations que vous déclarez doivent être exactes. Un profil délibérément faux peut être suspendu.
+        </li>
         <li>
           Vous êtes responsable de la confidentialité de votre mot de passe et des actions réalisées depuis votre
           compte. L&apos;authentification à deux facteurs est disponible et recommandée.
@@ -165,9 +167,9 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          La plateforme, sa marque, son interface et son code restent la propriété de SIRA. Vous conservez la
-          propriété des contenus que vous déposez, notamment vos CV, et nous accordez la licence strictement nécessaire
-          pour les héberger, les afficher dans votre espace et les transmettre aux recruteurs auxquels vous candidatez.
+          La plateforme, sa marque, son interface et son code restent la propriété de SIRA. Vous conservez la propriété
+          des contenus que vous déposez, notamment vos CV, et nous accordez la licence strictement nécessaire pour les
+          héberger, les afficher dans votre espace et les transmettre aux recruteurs auxquels vous candidatez.
         </p>
         <p>
           Les offres publiées restent la propriété de l&apos;organisation qui les publie. L&apos;extraction automatisée

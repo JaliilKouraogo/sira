@@ -11,7 +11,7 @@
  * affiche des tirets à leur place, puis le navigateur prend le relais.
  */
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { IconBookmark, IconCheck, IconFlag, IconShare } from "@/components/icons";
 import { SiteButton, cn } from "./kit";
 
@@ -124,6 +124,15 @@ export function OffreActions({ jobTitle }: { jobTitle: string }) {
   const [reportSent, setReportSent] = useState(false);
   const base = useId();
   const formId = `${base}-signalement`;
+  const reasonRef = useRef<HTMLSelectElement | null>(null);
+
+  // À l'ouverture, le focus passe au premier champ une fois le volet déplié :
+  // le navigateur fait alors défiler l'encadré jusqu'au formulaire.
+  useEffect(() => {
+    if (!reportOpen) return;
+    const t = window.setTimeout(() => reasonRef.current?.focus(), 450);
+    return () => window.clearTimeout(t);
+  }, [reportOpen]);
 
   async function share() {
     const url = `${window.location.origin}${window.location.pathname}`;
@@ -229,7 +238,14 @@ export function OffreActions({ jobTitle }: { jobTitle: string }) {
                   <label htmlFor={`${base}-motif`} className="block text-[0.8125rem] font-semibold text-site-navy">
                     Motif du signalement <span aria-hidden>*</span>
                   </label>
-                  <select id={`${base}-motif`} name="motif" required defaultValue="" className={cn(FIELD, "mt-1.5 min-h-11")}>
+                  <select
+                    ref={reasonRef}
+                    id={`${base}-motif`}
+                    name="motif"
+                    required
+                    defaultValue=""
+                    className={cn(FIELD, "mt-1.5 min-h-11")}
+                  >
                     <option value="" disabled>
                       Choisir un motif
                     </option>

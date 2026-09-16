@@ -17,8 +17,11 @@ export interface LegalTocItem {
   title: string;
 }
 
-/** Hauteur réservée à la barre de navigation fixe, en pixels. */
-const OFFSET = 140;
+/**
+ * Une section devient « en cours » quand son début passe au-dessus de cette
+ * fraction de la hauteur de la fenêtre.
+ */
+const READING_LINE = 0.35;
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");
@@ -32,14 +35,13 @@ export function LegalToc({ items }: { items: LegalTocItem[] }) {
     let raf = 0;
     const update = () => {
       raf = 0;
-      const nodes = items
-        .map((it) => document.getElementById(it.id))
-        .filter((n): n is HTMLElement => Boolean(n));
+      const nodes = items.map((it) => document.getElementById(it.id)).filter((n): n is HTMLElement => Boolean(n));
       if (!nodes.length) return;
       const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      const line = window.innerHeight * READING_LINE;
       let current = nodes[0].id;
       for (const node of nodes) {
-        if (node.getBoundingClientRect().top - OFFSET <= 0) current = node.id;
+        if (node.getBoundingClientRect().top <= line) current = node.id;
       }
       // Arrivé en bas de page, la dernière section courte doit pouvoir
       // s'allumer même si son titre n'a pas atteint le haut de la fenêtre.
@@ -115,9 +117,7 @@ export function LegalToc({ items }: { items: LegalTocItem[] }) {
         <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 text-[1rem] font-semibold text-site-navy [&::-webkit-details-marker]:hidden">
           <span>
             Sommaire
-            <span className="ml-2 font-normal text-site-muted">
-              {items.length} sections
-            </span>
+            <span className="ml-2 font-normal text-site-muted">{items.length} sections</span>
           </span>
           <span
             aria-hidden

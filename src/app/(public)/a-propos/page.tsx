@@ -735,13 +735,12 @@ export default function AProposPage() {
                               ) : null}
                             </div>
                           </div>
-                          <p className="mt-4 flex flex-wrap gap-x-2 text-[0.875rem] font-medium text-site-navy">
-                            <span>{ORGANIZATION_TYPE_LABEL[p.type]}</span>
-                            <span aria-hidden>·</span>
-                            <span className="inline-flex items-center gap-1">
-                              <SiteIcon.Pin size={14} />
-                              {p.city}, {p.country}
-                            </span>
+                          <p className="mt-4 text-[0.875rem] font-medium text-site-navy">
+                            {ORGANIZATION_TYPE_LABEL[p.type]}
+                          </p>
+                          <p className="mt-1 flex items-center gap-1.5 text-[0.875rem] text-site-muted">
+                            <SiteIcon.Pin size={14} className="shrink-0" />
+                            {p.city}, {p.country}
                           </p>
                           <p className="mt-3 text-[0.9375rem] leading-relaxed text-site-ink/75">{p.description}</p>
                         </article>

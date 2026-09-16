@@ -23,9 +23,18 @@ import { IMG, type SiteImage } from "@/data/site-content";
 import { Heading, Hl, Lead, Section, SiteButtonLink, cn } from "./kit";
 import { ImageFrame, Reveal, ScrollProgress } from "./motion";
 
+/** Les cadrages étroits recentrent chaque photo sur ses personnages. */
 const CENTER = IMG.salleFormation;
-const LEFT = { tall: IMG.accompagnement, square: IMG.poigneeMain, portrait: IMG.entretien };
-const RIGHT = { portrait: IMG.villeSoir, square: IMG.diplomes, tall: IMG.equipeOrdinateurs };
+const LEFT = {
+  tall: { ...IMG.accompagnement, position: "30% 50%" },
+  square: IMG.poigneeMain,
+  portrait: { ...IMG.entretien, position: "22% 50%" },
+};
+const RIGHT = {
+  portrait: { ...IMG.villeSoir, position: "68% 50%" },
+  square: IMG.diplomes,
+  tall: { ...IMG.equipeOrdinateurs, position: "68% 50%" },
+};
 
 /** Hauteur utile de la scène, sous la barre de navigation flottante. */
 const AVAILABLE = "(100vh - 6.75rem)";
@@ -44,7 +53,7 @@ function Shot({
   curtain = false,
   rounded = "rounded-[1rem]",
 }: {
-  image: SiteImage;
+  image: SiteImage & { position?: string };
   className?: string;
   to?: "left" | "right" | "down";
   sizes: string;
@@ -52,7 +61,17 @@ function Shot({
   curtain?: boolean;
   rounded?: string;
 }) {
-  const img = <Image src={image.src} alt={image.alt} fill sizes={sizes} priority={priority} className="object-cover" />;
+  const img = (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      fill
+      sizes={sizes}
+      priority={priority}
+      className="object-cover"
+      style={image.position ? { objectPosition: image.position } : undefined}
+    />
+  );
   const frame = cn("border border-site-border", rounded, className);
   return curtain ? (
     <ImageFrame to={to} curtain="var(--color-site-light)" className={frame}>
@@ -76,7 +95,7 @@ export function AproposHero() {
       <div className="overflow-clip rounded-[1.5rem] border border-site-border bg-site-light site-on-light">
         <ScrollProgress start={0.22} end={0.55}>
           {/* Texte ---------------------------------------------------------- */}
-          <div className="px-8 pb-12 pt-20 md:px-16 md:pb-14 md:pt-24">
+          <div className="px-8 pb-10 pt-16 md:px-16 md:pb-4 md:pt-20">
             <Reveal dir="up" className="mx-auto flex max-w-[48rem] flex-col items-center text-center">
               <p className="mb-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-site-muted">
                 À propos de SIRA
@@ -109,8 +128,8 @@ export function AproposHero() {
           </div>
 
           {/* À partir de 768 px : scène épinglée ----------------------------- */}
-          <div className="relative hidden h-[170vh] [--w0:44vw] md:block tab:[--w0:36vw]" style={stageVars}>
-            <div className="sticky top-0 h-screen overflow-hidden">
+          <div className="relative hidden h-[150vh] [--w0:44vw] motion-reduce:h-auto md:block tab:[--w0:36vw]" style={stageVars}>
+            <div className="sticky top-0 h-screen overflow-hidden motion-reduce:static">
               <div className="absolute inset-x-0 bottom-3 top-[6rem]">
                 {/* Groupe de gauche */}
                 <div

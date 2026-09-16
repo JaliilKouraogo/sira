@@ -72,7 +72,15 @@ function OfficeCard({ office }: { office: Office }) {
           preserveAspectRatio="none"
           className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
         >
-          <line x1="16" y1="0" x2="0" y2="12" stroke="var(--color-site-border)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+          <line
+            x1="16"
+            y1="0"
+            x2="0"
+            y2="12"
+            stroke="var(--color-site-border)"
+            strokeWidth="1"
+            vectorEffect="non-scaling-stroke"
+          />
         </svg>
       </div>
       <div className="rounded-b-[1rem] border-x border-b-4 border-site-border bg-white p-5 text-site-ink md:p-6">
@@ -141,11 +149,17 @@ export default function ContactPage() {
 
                 <p className="mt-10 border-t border-white/20 pt-6 text-[0.9375rem] leading-relaxed text-white/80">
                   Une question sur vos données personnelles ? Écrivez à{" "}
-                  <a href="mailto:donnees@sira.bf" className="font-semibold text-site-gold underline underline-offset-4 hover:text-white">
+                  <a
+                    href="mailto:donnees@sira.bf"
+                    className="font-semibold text-site-gold underline underline-offset-4 hover:text-white"
+                  >
                     donnees@sira.bf
                   </a>{" "}
                   ou consultez la{" "}
-                  <Link href="/confidentialite" className="font-semibold text-white underline underline-offset-4 hover:text-site-gold">
+                  <Link
+                    href="/confidentialite"
+                    className="font-semibold text-white underline underline-offset-4 hover:text-site-gold"
+                  >
                     politique de confidentialité
                   </Link>
                   .
@@ -206,7 +220,12 @@ export default function ContactPage() {
               </Lead>
             </Reveal>
             <Reveal dir="up" delay={120} className="mt-12">
-              <Faq groups={FAQ} icons={FAQ.map((g) => <ServiceGlyph key={g.category} name={g.icon} />)} />
+              <Faq
+                groups={FAQ}
+                icons={FAQ.map((g) => (
+                  <ServiceGlyph key={g.category} name={g.icon} />
+                ))}
+              />
             </Reveal>
             <Reveal dir="up" className="mt-10">
               <p className="text-[1rem] text-site-ink/80">

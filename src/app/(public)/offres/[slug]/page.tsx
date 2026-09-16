@@ -180,6 +180,8 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
   const remaining = daysUntil(job.deadline);
   const verified = organization?.verificationStatus === "verifie" && !anonymised;
   const image = jobImage(job);
+  // L'appel à l'action ne répète pas la photo de l'en-tête.
+  const ctaImage = image.src === IMG.entretien.src ? IMG.reunionEquipe : IMG.entretien;
   const { head, tail } = splitTitle(job.title);
   const isInternship = job.opportunityType === "stage";
 
@@ -250,7 +252,11 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                   <InitialsAvatar initials={organization.logoInitials} size={44} />
                 )}
                 <span className="text-[1rem] font-semibold text-site-navy">{name}</span>
-                {verified ? (
+                {anonymised ? (
+                  <span className="inline-flex items-center rounded-full border border-site-line bg-white px-3 py-1 text-[0.8125rem] font-medium text-site-muted">
+                    Offre anonyme
+                  </span>
+                ) : verified ? (
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-site-border bg-white px-3 py-1 text-[0.8125rem] font-semibold text-site-navy">
                     <SiteIcon.Check size={14} className="text-site-gold" />
                     Recruteur vérifié
@@ -357,8 +363,8 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                       </p>
                       <ul className="mt-4 space-y-2">
                         {job.blockingCriteria.map((c) => (
-                          <li key={c} className="flex items-start gap-2.5 text-[0.9375rem] font-medium text-site-ink">
-                            <SiteIcon.Check size={16} className="mt-0.5 shrink-0 text-site-gold" />
+                          <li key={c} className="flex items-start gap-3 text-[0.9375rem] font-medium text-site-ink">
+                            <span aria-hidden className="mt-[0.45rem] h-2 w-2 shrink-0 rotate-45 bg-site-gold" />
                             {c}
                           </li>
                         ))}
@@ -837,7 +843,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
         }
         text="Créez votre profil à partir de votre CV : SIRA estime votre compatibilité avec chaque offre, adapte votre dossier sans rien inventer et n'envoie rien sans votre validation."
         action={{ href: "/inscription/candidat", label: "Créer mon profil" }}
-        image={IMG.accompagnement}
+        image={ctaImage}
       />
     </>
   );

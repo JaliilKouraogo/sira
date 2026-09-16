@@ -1,71 +1,78 @@
 /**
- * 404 dédiée aux offres : une offre retirée, expirée ou dont le lien a changé
- * ne doit pas laisser le visiteur dans une impasse.
+ * 404 dédiée aux offres : une offre retirée, expirée, en attente de
+ * validation ou dont le lien a changé ne doit pas laisser le visiteur dans
+ * une impasse. On lui propose les offres publiées le plus récemment.
  *
- * Direction épurée : fond blanc, aucune ombre, une liste filetée plutôt
- * qu'une carte, et un titre de page sobre.
+ * Grammaire du site public : bloc clair centré, titre avec mot-clé en or,
+ * cartes d'offre, puis appel à l'action avant le pied de page.
  */
 
-import { IconArrowRight, IconBriefcase } from "@/components/icons";
-import { ButtonLink } from "@/components/ui";
-import { getRecentJobs } from "@/data/queries";
-import Link from "next/link";
+import { SiteJobCard } from "@/components/site/cards";
+import { CtaBlock } from "@/components/site/cta";
+import { Eyebrow, Heading, Hl, Inner, Lead, Panel, Section, SiteButtonLink } from "@/components/site/kit";
+import { Reveal } from "@/components/site/motion";
+import { getJobOrganization, getRecentJobs } from "@/data/queries";
+import { IMG } from "@/data/site-content";
 
 export default function OffreNotFound() {
   const suggestions = getRecentJobs(4);
 
   return (
-    <div className="sira-container py-16 md:py-20">
-      <div className="mx-auto max-w-2xl text-center">
-        <span
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary-soft)] text-[var(--color-primary)]"
-          aria-hidden
-        >
-          <IconBriefcase size={18} />
-        </span>
-        <p className="mt-5 text-[12.5px] font-medium uppercase tracking-[0.14em] text-[var(--color-text-subtle)]">
-          Erreur 404
-        </p>
-        <h1 className="mt-3 text-[22px] font-semibold tracking-tight text-[var(--color-text)]">
-          Cette offre n&apos;est plus disponible
-        </h1>
-        <p className="mx-auto mt-3 max-w-xl text-[13.5px] leading-relaxed text-[var(--color-text-muted)]">
-          Le lien est peut-être erroné, ou l&apos;offre a été clôturée, suspendue ou retirée par le recruteur. Les
-          offres qui ne sont plus publiées quittent automatiquement le site.
-        </p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <ButtonLink href="/emplois">Voir toutes les offres d&apos;emploi</ButtonLink>
-          <ButtonLink href="/stages" variant="outline">
-            Voir les stages
-          </ButtonLink>
-        </div>
-      </div>
+    <>
+      <Section className="pt-0">
+        <Panel tone="light">
+          <Inner>
+            <Reveal dir="up" className="text-center">
+              <Eyebrow className="text-site-muted">Erreur 404</Eyebrow>
+              <Heading as="h1" size="h1" align="center" className="mx-auto max-w-[44rem]">
+                Cette offre n&apos;est <Hl>plus disponible</Hl>
+              </Heading>
+              <Lead align="center" tone="muted" className="mt-6">
+                Le lien est peut-être erroné, ou l&apos;offre a été clôturée, suspendue ou retirée par le recruteur. Les
+                offres qui ne sont plus publiées quittent automatiquement le site.
+              </Lead>
+              <div className="mt-9 flex flex-wrap justify-center gap-3">
+                <SiteButtonLink href="/emplois" size="lg">
+                  Voir toutes les offres d&apos;emploi
+                </SiteButtonLink>
+                <SiteButtonLink href="/stages" variant="outline-dark" size="lg">
+                  Voir les stages
+                </SiteButtonLink>
+              </div>
+            </Reveal>
 
-      {suggestions.length > 0 ? (
-        <div className="mx-auto mt-14 max-w-3xl border-t border-[var(--color-border)] pt-8">
-          <h2 className="mb-2 text-[14px] font-semibold text-[var(--color-text)]">
-            Des opportunités publiées récemment
-          </h2>
-          <ul className="divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
-            {suggestions.map((job) => (
-              <li key={job.id}>
-                <Link
-                  href={`/offres/${job.slug}`}
-                  className="flex items-center justify-between gap-4 py-3 transition-colors hover:bg-[var(--color-surface-2)]"
-                >
-                  <span className="min-w-0">
-                    <span className="block truncate text-[13.5px] font-medium text-[var(--color-text)]">
-                      {job.title}
-                    </span>
-                    <span className="block truncate text-[12.5px] text-[var(--color-text-muted)]">{job.city}</span>
-                  </span>
-                  <IconArrowRight size={15} className="shrink-0 text-[var(--color-text-subtle)]" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-    </div>
+            {suggestions.length > 0 ? (
+              <div className="mt-20 md:mt-24">
+                <Reveal dir="up">
+                  <Heading size="h3" align="center" className="text-site-navy">
+                    Des opportunités <Hl>publiées récemment</Hl>
+                  </Heading>
+                </Reveal>
+                <ul className="mt-10 grid gap-6 tab:grid-cols-2">
+                  {suggestions.map((job, i) => (
+                    <li key={job.id}>
+                      <Reveal dir="up" delay={(i % 2) * 120}>
+                        <SiteJobCard job={job} organization={getJobOrganization(job)} />
+                      </Reveal>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </Inner>
+        </Panel>
+      </Section>
+
+      <CtaBlock
+        title={
+          <>
+            Ne manquez plus <Hl>la bonne offre</Hl>
+          </>
+        }
+        text="Créez votre profil : SIRA vous signale les offres compatibles dès leur publication, avec un score expliqué qui reste une estimation et ne garantit pas le recrutement."
+        action={{ href: "/inscription/candidat", label: "Créer mon profil" }}
+        image={IMG.reunionEquipe}
+      />
+    </>
   );
 }

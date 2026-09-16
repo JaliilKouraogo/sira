@@ -39,7 +39,6 @@ import {
   Inner,
   Lead,
   Panel,
-  Pill,
   Section,
   SiteButtonLink,
   SiteIcon,
@@ -107,11 +106,25 @@ function BodySection({
   );
 }
 
+/** Étiquette blanche à filet, lisible sur le fond clair des blocs. */
+function Chip({ children, large }: { children: ReactNode; large?: boolean }) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-[0.5rem] border border-site-border/60 bg-white font-medium text-site-navy",
+        large ? "px-3 py-1.5 text-[0.9375rem]" : "px-2.5 py-1 text-[0.8125rem]",
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+
 function InfoRow({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 py-3">
-      <dt className="text-[0.875rem] text-site-muted">{label}</dt>
-      <dd className="text-right text-[0.9375rem] font-medium text-site-ink">{children}</dd>
+    <div className="min-w-0">
+      <dt className="text-[0.8125rem] text-site-muted">{label}</dt>
+      <dd className="mt-0.5 text-[0.9375rem] font-medium leading-snug text-site-ink">{children}</dd>
     </div>
   );
 }
@@ -158,12 +171,13 @@ export default async function FormationDetailPage({ params }: { params: Promise<
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
                 <AccessBadge training={training} />
-                <Pill className="bg-white">{training.category}</Pill>
-                <Pill className="bg-white">{training.level}</Pill>
+                <Chip>{training.category}</Chip>
+                <Chip>{training.level}</Chip>
                 {training.certificate ? (
-                  <Pill className="bg-white" icon={<TrainingIcon.Certificate size={15} />}>
+                  <Chip>
+                    <TrainingIcon.Certificate size={15} />
                     Certificat délivré
-                  </Pill>
+                  </Chip>
                 ) : null}
               </div>
 
@@ -217,7 +231,92 @@ export default async function FormationDetailPage({ params }: { params: Promise<
             d'inscription de rester collé pendant le défilement. */}
         <div className="relative rounded-[1.5rem] border border-site-border bg-site-light px-5 py-16 site-on-light md:px-16 md:py-28">
           <Inner className="grid gap-12 tab:grid-cols-[minmax(0,1fr)_23rem] tab:gap-16">
-            <div className="min-w-0">
+            {/* ---- Encadré d'inscription : en premier sur mobile, à droite sur grand écran ---- */}
+            <aside aria-labelledby="inscription-titre" className="relative tab:col-start-2 tab:row-start-1">
+              <div className="tab:top-24 tab:[@media(min-height:52rem)]:sticky">
+                <Reveal dir="right">
+                  <div className="rounded-[1rem] border border-b-4 border-site-border bg-white p-6 md:p-7">
+                    <h2 id="inscription-titre" className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-site-muted">
+                      Tarif
+                    </h2>
+                    <p className="site-display mt-2 text-[2rem] leading-none text-site-navy">
+                      {trainingPriceLabel(training)}
+                    </p>
+                    {training.access === "inclus_premium" ? (
+                      <p className="mt-2 text-[0.875rem] leading-relaxed text-site-muted">
+                        L&apos;inscription est sans frais pour les abonnés Premium.
+                      </p>
+                    ) : training.access === "payant" ? (
+                      <p className="mt-2 text-[0.875rem] leading-relaxed text-site-muted">
+                        {TRAINING_ACCESS_LABEL.payant}, réglée auprès de l&apos;organisme.
+                      </p>
+                    ) : null}
+
+                    <dl className="mt-5 grid grid-cols-2 gap-x-5 gap-y-4 border-y border-site-line py-5">
+                      <InfoRow label="Prochaine session">
+                        {training.startDate ? formatTrainingDate(training.startDate) : "À la demande"}
+                      </InfoRow>
+                      <InfoRow label="Durée">{training.durationHours} heures</InfoRow>
+                      <InfoRow label="Format">{TRAINING_FORMAT_LABEL[training.format]}</InfoRow>
+                      <InfoRow label="Niveau">{training.level}</InfoRow>
+                      <InfoRow label="Catégorie">{training.category}</InfoRow>
+                      <InfoRow label="Places">
+                        {training.seats == null ? "Non limitées" : `${training.seatsTaken ?? 0} inscrits sur ${training.seats}`}
+                      </InfoRow>
+                      <InfoRow label="Certificat">{training.certificate ? "Oui, à l'issue" : "Non"}</InfoRow>
+                      <InfoRow label="Organisme">{orgName}</InfoRow>
+                    </dl>
+
+                    {training.seats != null ? (
+                      <div className="mt-5">
+                        <div className="flex items-baseline justify-between gap-3">
+                          <p className="text-[0.875rem] font-semibold text-site-ink" id="remplissage">
+                            Remplissage
+                          </p>
+                          <p className="text-[0.875rem] tabular-nums text-site-muted">{Math.round(filled)} %</p>
+                        </div>
+                        <div
+                          role="progressbar"
+                          aria-labelledby="remplissage"
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                          aria-valuenow={Math.round(filled)}
+                          className="mt-2 h-2 overflow-hidden rounded-full bg-site-soft"
+                        >
+                          <div
+                            className={cn("h-full rounded-full", filled >= 85 ? "bg-site-gold" : "bg-site-navy")}
+                            style={{ width: `${Math.min(100, filled)}%` }}
+                          />
+                        </div>
+                        <p className="mt-2 text-[0.875rem] leading-relaxed text-site-muted">
+                          {full
+                            ? "La session affiche complet. Inscrivez-vous pour être prévenu de la prochaine ouverture."
+                            : `${remaining} place${remaining && remaining > 1 ? "s" : ""} encore disponible${remaining && remaining > 1 ? "s" : ""}.`}
+                        </p>
+                      </div>
+                    ) : null}
+
+                    <SiteButtonLink
+                      href={`/mon-espace/formations?inscription=${training.id}`}
+                      variant={full ? "outline-dark" : "navy"}
+                      className="mt-6 w-full text-center"
+                    >
+                      {full ? "Être prévenu de la prochaine session" : "S'inscrire à cette formation"}
+                    </SiteButtonLink>
+
+                    <p className="mt-4 flex gap-2.5 text-[0.8125rem] leading-relaxed text-site-muted">
+                      <TrainingIcon.Info size={16} className="mt-0.5 shrink-0 text-site-navy" />
+                      <span>
+                        SIRA est un annuaire de formations : l&apos;inscription définitive et le paiement se font
+                        directement auprès de l&apos;organisme, qui vous confirme la place.
+                      </span>
+                    </p>
+                  </div>
+                </Reveal>
+              </div>
+            </aside>
+
+            <div className="min-w-0 tab:col-start-1 tab:row-start-1">
               <BodySection title="Présentation" first>
                 <p className="max-w-[44rem] text-[1rem] leading-relaxed text-site-ink/80">{training.description}</p>
               </BodySection>
@@ -282,13 +381,13 @@ export default async function FormationDetailPage({ params }: { params: Promise<
                 <ul className="flex flex-wrap gap-2">
                   {training.skillsCovered.map((s) => (
                     <li key={s}>
-                      <Pill className="border border-site-border/60 bg-white px-3 py-1.5 text-[0.9375rem]">{s}</Pill>
+                      <Chip large>{s}</Chip>
                     </li>
                   ))}
                 </ul>
                 <div className="mt-6 flex gap-3 rounded-[0.75rem] border border-site-border bg-white p-4 md:p-5">
-                  <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-site-soft text-[0.9375rem] font-semibold text-site-navy" aria-hidden>
-                    i
+                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-site-soft text-site-navy">
+                    <TrainingIcon.Info size={18} />
                   </span>
                   <p className="text-[0.9375rem] leading-relaxed text-site-ink/85">
                     Suivre cette formation ne modifie pas automatiquement votre score de compatibilité : ajoutez la
@@ -334,91 +433,6 @@ export default async function FormationDetailPage({ params }: { params: Promise<
                 </BodySection>
               ) : null}
             </div>
-
-            {/* ---- Encadré d'inscription ---- */}
-            <aside aria-labelledby="inscription-titre" className="relative">
-              <div className="tab:sticky tab:top-28">
-                <Reveal dir="right">
-                  <div className="rounded-[1rem] border border-b-4 border-site-border bg-white p-6 md:p-7">
-                    <h2 id="inscription-titre" className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-site-muted">
-                      Tarif
-                    </h2>
-                    <p className="site-display mt-2 text-[2rem] leading-none text-site-navy">
-                      {trainingPriceLabel(training)}
-                    </p>
-                    {training.access === "inclus_premium" ? (
-                      <p className="mt-2 text-[0.875rem] leading-relaxed text-site-muted">
-                        L&apos;inscription est sans frais pour les abonnés Premium.
-                      </p>
-                    ) : training.access === "payant" ? (
-                      <p className="mt-2 text-[0.875rem] leading-relaxed text-site-muted">
-                        {TRAINING_ACCESS_LABEL.payant}, réglée auprès de l&apos;organisme.
-                      </p>
-                    ) : null}
-
-                    <dl className="mt-5 divide-y divide-site-line border-y border-site-line">
-                      <InfoRow label="Prochaine session">
-                        {training.startDate ? formatTrainingDate(training.startDate) : "À la demande"}
-                      </InfoRow>
-                      <InfoRow label="Durée">{training.durationHours} heures</InfoRow>
-                      <InfoRow label="Format">{TRAINING_FORMAT_LABEL[training.format]}</InfoRow>
-                      <InfoRow label="Niveau">{training.level}</InfoRow>
-                      <InfoRow label="Catégorie">{training.category}</InfoRow>
-                      <InfoRow label="Places">
-                        {training.seats == null ? "Non limitées" : `${training.seatsTaken ?? 0} inscrits sur ${training.seats}`}
-                      </InfoRow>
-                      <InfoRow label="Certificat">{training.certificate ? "Oui, en fin de formation" : "Non"}</InfoRow>
-                      <InfoRow label="Organisme">{orgName}</InfoRow>
-                    </dl>
-
-                    {training.seats != null ? (
-                      <div className="mt-5">
-                        <div className="flex items-baseline justify-between gap-3">
-                          <p className="text-[0.875rem] font-semibold text-site-ink" id="remplissage">
-                            Remplissage
-                          </p>
-                          <p className="text-[0.875rem] tabular-nums text-site-muted">{Math.round(filled)} %</p>
-                        </div>
-                        <div
-                          role="progressbar"
-                          aria-labelledby="remplissage"
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          aria-valuenow={Math.round(filled)}
-                          className="mt-2 h-2 overflow-hidden rounded-full bg-site-soft"
-                        >
-                          <div
-                            className={cn("h-full rounded-full", filled >= 85 ? "bg-site-gold" : "bg-site-navy")}
-                            style={{ width: `${Math.min(100, filled)}%` }}
-                          />
-                        </div>
-                        <p className="mt-2 text-[0.875rem] leading-relaxed text-site-muted">
-                          {full
-                            ? "La session affiche complet. Inscrivez-vous pour être prévenu de la prochaine ouverture."
-                            : `${remaining} place${remaining && remaining > 1 ? "s" : ""} encore disponible${remaining && remaining > 1 ? "s" : ""}.`}
-                        </p>
-                      </div>
-                    ) : null}
-
-                    <SiteButtonLink
-                      href={`/mon-espace/formations?inscription=${training.id}`}
-                      variant={full ? "outline-dark" : "navy"}
-                      className="mt-6 w-full text-center"
-                    >
-                      {full ? "Être prévenu de la prochaine session" : "S'inscrire à cette formation"}
-                    </SiteButtonLink>
-
-                    <p className="mt-4 flex gap-2.5 text-[0.8125rem] leading-relaxed text-site-muted">
-                      <SiteIcon.Pin size={16} className="mt-0.5 shrink-0 text-site-navy" />
-                      <span>
-                        SIRA est un annuaire de formations : l&apos;inscription définitive et le paiement se font
-                        directement auprès de l&apos;organisme, qui vous confirme la place.
-                      </span>
-                    </p>
-                  </div>
-                </Reveal>
-              </div>
-            </aside>
           </Inner>
         </div>
       </Section>

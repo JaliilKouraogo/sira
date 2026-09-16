@@ -153,7 +153,7 @@ export default function FormationsPage() {
 
       {/* 3. Du score à la formation --------------------------------------- */}
       <Section>
-        <Panel tone="dark">
+        <Panel tone="dark" className="max-md:px-5">
           <Inner>
             <div className="grid gap-8 tab:grid-cols-[1.15fr_1fr] tab:items-end">
               <Reveal dir="left">
@@ -192,7 +192,10 @@ export default function FormationsPage() {
       <CtaBlock
         title={
           <>
-            Vous formez des talents&nbsp;? <Hl>Faites-le savoir</Hl>
+            Vous formez des talents&nbsp;?{" "}
+            <Hl>
+              <span className="whitespace-nowrap">Faites-le</span> savoir
+            </Hl>
           </>
         }
         text="Présentez vos formations aux candidats qui en ont réellement besoin, partout en Afrique : SIRA les recommande à partir des compétences qui manquent dans leurs profils."

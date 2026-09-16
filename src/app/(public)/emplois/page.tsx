@@ -60,7 +60,7 @@ export default function EmploisPage() {
           <Inner>
             <div className="mb-10 grid gap-5 tab:grid-cols-[1.1fr_0.9fr] tab:items-end tab:gap-12">
               <Reveal dir="left">
-                <Heading size="h2">
+                <Heading size="h2" className="text-balance">
                   Toutes les offres, <Hl>au bon filtre</Hl>
                 </Heading>
               </Reveal>

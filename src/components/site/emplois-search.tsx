@@ -338,7 +338,7 @@ export function JobSearchHeroView({ variant, values }: { variant: JobSearchVaria
       method="get"
       action={route(cfg.basePath)}
       onSubmit={onSubmit}
-      className="@container mt-9 rounded-[1rem] border border-site-border bg-white p-2 text-site-ink"
+      className="@container mt-9 max-w-[40rem] rounded-[1rem] border border-site-border bg-white p-2 text-site-ink"
     >
       <div className="grid gap-2 @md:grid-cols-[1fr_auto] @2xl:grid-cols-[1fr_12rem_auto]">
         <label
@@ -538,7 +538,7 @@ export function JobSearchResultsView({ variant, values }: { variant: JobSearchVa
             <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-site-navy text-site-gold">
               <SiteIcon.Search size={28} />
             </span>
-            <h3 className="site-display mx-auto mt-6 max-w-[30rem] text-[1.5rem] leading-tight text-site-ink md:text-[1.75rem]">
+            <h3 className="site-display mx-auto mt-6 max-w-[30rem] text-balance text-[1.5rem] leading-tight text-site-ink md:text-[1.75rem]">
               {cfg.emptyTitle}
             </h3>
             <p className="mx-auto mt-4 max-w-[34rem] text-[0.9375rem] leading-relaxed text-site-muted md:text-[1rem]">

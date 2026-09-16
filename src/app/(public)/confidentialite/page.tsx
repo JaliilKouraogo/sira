@@ -82,8 +82,8 @@ const SECTIONS: LegalSection[] = [
     body: (
       <ul>
         <li>
-          <strong>Fournir le service</strong> : créer et tenir votre compte, publier et consulter des offres, déposer
-          et suivre des candidatures. Base : exécution du contrat de service.
+          <strong>Fournir le service</strong> : créer et tenir votre compte, publier et consulter des offres, déposer et
+          suivre des candidatures. Base : exécution du contrat de service.
         </li>
         <li>
           <strong>Calculer le score de compatibilité</strong> et expliquer ce qui correspond ou manque, à partir de
@@ -179,23 +179,22 @@ const SECTIONS: LegalSection[] = [
       <>
         <p>
           SIRA respecte les lois de protection des données à caractère personnel de chaque pays où elle opère : au
-          Burkina Faso, pays de son siège, la loi n° 010-2004/AN portant protection des données à caractère personnel
-          et les décisions de la Commission de l&apos;informatique et des libertés (CIL) ; ailleurs, la loi nationale
+          Burkina Faso, pays de son siège, la loi n° 010-2004/AN portant protection des données à caractère personnel et
+          les décisions de la Commission de l&apos;informatique et des libertés (CIL) ; ailleurs, la loi nationale
           applicable et les décisions de l&apos;autorité de protection des données compétente. Où que vous résidiez,
           vous disposez au minimum des droits suivants.
         </p>
         <ul>
           <li>
-            <strong>Accès</strong> : obtenir la liste des données que nous détenons sur vous et connaître leur
-            origine.
+            <strong>Accès</strong> : obtenir la liste des données que nous détenons sur vous et connaître leur origine.
           </li>
           <li>
-            <strong>Rectification</strong> : corriger une information inexacte, directement depuis votre profil dans
-            la plupart des cas.
+            <strong>Rectification</strong> : corriger une information inexacte, directement depuis votre profil dans la
+            plupart des cas.
           </li>
           <li>
-            <strong>Export</strong> : récupérer votre profil, vos documents et vos candidatures dans un format
-            lisible, depuis les paramètres de votre compte.
+            <strong>Export</strong> : récupérer votre profil, vos documents et vos candidatures dans un format lisible,
+            depuis les paramètres de votre compte.
           </li>
           <li>
             <strong>Suppression</strong> : demander l&apos;effacement de votre compte et des données associées. La
@@ -284,7 +283,7 @@ export default function ConfidentialitePage() {
       lead="Cette page décrit les données que SIRA collecte, pourquoi elle les traite, combien de temps elle les conserve, et comment exercer vos droits. Elle est écrite pour être lue, pas pour être subie."
       sections={SECTIONS}
       footer={{
-        title: "Une question sur vos données ?",
+        title: "Une question sur vos données ?",
         body: (
           <>
             Écrivez à <a href="mailto:donnees@sira.bf">donnees@sira.bf</a>. Vous pouvez aussi consulter les{" "}
