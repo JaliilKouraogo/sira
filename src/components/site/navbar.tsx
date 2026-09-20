@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SiraLogo } from "@/components/icons";
 import { cn } from "./kit";
+import { lockBodyScroll } from "./scroll-lock";
 
 export const SITE_NAV = [
   { href: "/emplois", label: "Emplois" },
@@ -46,14 +47,13 @@ export function SiteNavbar() {
   // Bloquer le défilement de la page derrière le menu, et fermer sur Échap.
   useEffect(() => {
     if (!open) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const unlock = lockBodyScroll();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = previous;
+      unlock();
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);

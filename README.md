@@ -62,6 +62,16 @@ src/
 └── lib/               Référentiel des énumérations, types, chemin de base
 ```
 
+## Assistant SIRA
+
+Une bulle de discussion est présente sur toutes les pages du site public. Elle fonctionne **sans intelligence artificielle** : les réponses sont écrites à l'avance et choisies par mots-clés, et les seules données citées sont les offres et les formations réellement publiées. Quand la question sort de ce cadre, l'assistant le dit et renvoie vers l'équipe.
+
+- Moteur de réponses : `src/components/site/chat/chat-answers.ts`
+- Interface : `src/components/site/chat/sira-chat.tsx`
+- Données transmises par le serveur : `src/data/site-chat.ts`
+
+Le branchement à une vraie IA passera par le remplacement de `answerFor()` par un appel à l'API, en conservant les garde-fous affichés.
+
 ## Design
 
 Le site vitrine reprend la **grammaire de mise en page** du modèle Webflow « HireEdge » (blocs arrondis, navigation flottante, cartes à bordure basse épaissie, animations d'entrée, rideaux sur les images, défilements infinis). Aucun code, aucune image et aucun texte de ce modèle n'est réutilisé : l'implémentation, les contenus et l'identité visuelle sont propres à SIRA.
@@ -89,6 +99,7 @@ L'export statique impose quelques règles, documentées dans `src/lib/base-path.
 - **Chiffres** : ce sont des objectifs, présentés comme tels.
 - **Articles de conseils, organisations et offres** : contenus de démonstration.
 - **Coordonnées** du pied de page et de la page contact.
+- **Assistant SIRA** : réponses préparées à l'avance, à remplacer par un vrai service de dialogue.
 
 ## Crédits
 

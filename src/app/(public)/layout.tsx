@@ -4,11 +4,16 @@
  * Polices du modèle de référence : Inter pour le texte, Instrument Sans pour
  * les titres. `next/font` les télécharge au moment du build et les sert
  * depuis le site : aucun appel à Google Fonts depuis le navigateur.
+ *
+ * Le gabarit pose aussi l'assistant SIRA en bulle, commun à toutes les pages
+ * du site public.
  */
 
 import { Inter, Instrument_Sans } from "next/font/google";
+import { SiraChat } from "@/components/site/chat/sira-chat";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteNavbar } from "@/components/site/navbar";
+import { buildChatData } from "@/data/site-chat";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,6 +35,10 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         {children}
       </main>
       <SiteFooter />
+      {/* Assistant en bulle, présent sur toutes les pages du site. Les données
+          sont réduites côté serveur : le navigateur ne reçoit que le
+          nécessaire. */}
+      <SiraChat data={buildChatData()} />
     </div>
   );
 }

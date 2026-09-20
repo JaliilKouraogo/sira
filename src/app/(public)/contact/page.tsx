@@ -208,7 +208,7 @@ export default function ContactPage() {
       </Section>
 
       {/* 3. Questions fréquentes ------------------------------------------ */}
-      <Section>
+      <Section id="faq" className="scroll-mt-24 md:scroll-mt-28">
         <Panel tone="light">
           <Inner>
             <Reveal dir="up">
