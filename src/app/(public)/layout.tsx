@@ -30,11 +30,15 @@ const instrument = Instrument_Sans({
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`${inter.variable} ${instrument.variable} site-root min-h-screen`}>
-      <SiteNavbar />
-      <main id="contenu" className="pt-[5.75rem] md:pt-[6.25rem]">
-        {children}
-      </main>
-      <SiteFooter />
+      {/* L'assistant rend ce bloc inerte quand il occupe l'écran d'un
+          téléphone : le contenu derrière sort alors du parcours au clavier. */}
+      <div id="site-contenu">
+        <SiteNavbar />
+        <main id="contenu" className="pt-[5.75rem] md:pt-[6.25rem]">
+          {children}
+        </main>
+        <SiteFooter />
+      </div>
       {/* Assistant en bulle, présent sur toutes les pages du site. Les données
           sont réduites côté serveur : le navigateur ne reçoit que le
           nécessaire. */}

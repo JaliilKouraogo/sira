@@ -28,9 +28,34 @@ interface ChatMessage extends ChatAnswer {
   role: "user" | "bot";
 }
 
-const STORAGE_KEY = "sira-chat";
+/** La version fait partie de la clé : un ancien format n'est jamais relu. */
+const STORAGE_KEY = "sira-chat-v1";
+/**
+ * Enveloppe du contenu de page posée par le gabarit public. Quand la bulle
+ * occupe l'écran d'un téléphone, ce contenu est rendu inerte : il sort du
+ * parcours au clavier et des lecteurs d'écran.
+ */
+const PAGE_CONTENT_ID = "site-contenu";
 /** Messages conservés d'une page à l'autre, pour ne pas gonfler le stockage. */
 const STORED_MESSAGES = 30;
+
+/**
+ * Message relu depuis le stockage. Tout ce qui ne correspond pas exactement
+ * est écarté : un contenu abîmé ou écrit par un ancien format ne doit pas
+ * faire tomber la page entière au rendu.
+ */
+function isStoredMessage(value: unknown): value is ChatMessage {
+  if (typeof value !== "object" || value === null) return false;
+  const m = value as Partial<ChatMessage>;
+  const textOk = Array.isArray(m.text) && m.text.every((t) => typeof t === "string");
+  const linksOk =
+    m.links === undefined ||
+    (Array.isArray(m.links) && m.links.every((l) => l && typeof l.label === "string" && typeof l.href === "string"));
+  const chipsOk = m.chips === undefined || (Array.isArray(m.chips) && m.chips.every((c) => typeof c === "string"));
+  return (
+    typeof m.id === "number" && Number.isFinite(m.id) && (m.role === "user" || m.role === "bot") && textOk && linksOk && chipsOk
+  );
+}
 
 function prefersReducedMotion(): boolean {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -42,9 +67,13 @@ export function SiraChat({ data }: { data: ChatData }) {
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
   const [restored, setRestored] = useState(false);
+  /** Vrai quand la bulle occupe l'écran : elle devient alors une vraie modale. */
+  const [modal, setModal] = useState(false);
 
   const nextId = useRef(1);
+  const returnFocus = useRef(false);
   const launcherRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -56,15 +85,29 @@ export function SiraChat({ data }: { data: ChatData }) {
     try {
       const raw = window.sessionStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const saved = JSON.parse(raw) as { open?: boolean; messages?: ChatMessage[] };
-        if (Array.isArray(saved.messages) && saved.messages.length > 0) {
-          setMessages(saved.messages);
-          nextId.current = Math.max(...saved.messages.map((m) => m.id)) + 1;
+        const saved: unknown = JSON.parse(raw);
+        const bag = (typeof saved === "object" && saved !== null ? saved : {}) as Record<string, unknown>;
+        const list = Array.isArray(bag.messages) ? bag.messages.filter(isStoredMessage) : [];
+        // Une seule entrée abîmée suffit à jeter la conversation entière :
+        // mieux vaut repartir à zéro qu'afficher une conversation trouée.
+        const intact = Array.isArray(bag.messages) && list.length === bag.messages.length;
+        if (intact && list.length > 0) {
+          setMessages(list);
+          nextId.current = Math.max(...list.map((m) => m.id)) + 1;
+          if (bag.open === true) setOpen(true);
+        } else if (!intact) {
+          window.sessionStorage.removeItem(STORAGE_KEY);
+        } else if (bag.open === true) {
+          setOpen(true);
         }
-        if (saved.open) setOpen(true);
       }
     } catch {
-      // Stockage indisponible : la conversation repart de zéro.
+      // Stockage indisponible ou illisible : la conversation repart de zéro.
+      try {
+        window.sessionStorage.removeItem(STORAGE_KEY);
+      } catch {
+        // Rien à faire de plus.
+      }
     }
     setRestored(true);
   }, []);
@@ -83,8 +126,11 @@ export function SiraChat({ data }: { data: ChatData }) {
 
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
 
+  // L'identifiant est calculé avant l'appel : la fonction de mise à jour de
+  // l'état doit rester pure, sous peine de doublons en rendu concurrent.
   const push = useCallback((message: Omit<ChatMessage, "id">) => {
-    setMessages((current) => [...current, { ...message, id: nextId.current++ }]);
+    const id = nextId.current++;
+    setMessages((current) => [...current, { ...message, id }]);
   }, []);
 
   // Premier message, posé à la première ouverture seulement.
@@ -101,31 +147,66 @@ export function SiraChat({ data }: { data: ChatData }) {
     log.scrollTo({ top: log.scrollHeight, behavior: prefersReducedMotion() ? "auto" : "smooth" });
   }, [messages, pending, open]);
 
-  // Ouverture : focus dans le champ. Fermeture : retour au bouton.
+  // Ouverture : focus dans le champ. Fermeture demandée depuis la bulle :
+  // retour au bouton, mais seulement une fois qu'il est de nouveau affiché
+  // (sur téléphone, il est masqué tant que la bulle est ouverte).
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    if (open) {
+      inputRef.current?.focus();
+    } else if (returnFocus.current) {
+      returnFocus.current = false;
+      launcherRef.current?.focus();
+    }
   }, [open]);
 
-  // Échap ferme la bulle.
+  const close = useCallback(() => {
+    returnFocus.current = true;
+    setOpen(false);
+  }, []);
+
+  // Échap ferme la bulle, à condition que le focus s'y trouve : sinon, un
+  // visiteur qui appuie sur Échap en remplissant un formulaire perdrait sa
+  // place dans la page.
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
-        launcherRef.current?.focus();
-      }
+      if (event.key !== "Escape") return;
+      const target = event.target as Node | null;
+      const inside = target ? panelRef.current?.contains(target) || launcherRef.current?.contains(target) : false;
+      if (inside) close();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [open, close]);
 
-  // Sur téléphone, la bulle occupe l'écran : la page ne défile plus derrière.
-  // Le verrou est partagé avec le menu de navigation, qui peut être ouvert en
-  // même temps.
+  // Sur téléphone, la bulle occupe l'écran : la page ne défile plus derrière,
+  // et son contenu sort du parcours au clavier. Le verrou est partagé avec le
+  // menu de navigation, qui peut être ouvert en même temps. Le tout suit les
+  // changements de largeur, rotation de l'écran comprise.
   useEffect(() => {
     if (!open) return;
-    if (!window.matchMedia("(max-width: 47.99rem)").matches) return;
-    return lockBodyScroll();
+    const narrow = window.matchMedia("(max-width: 47.99rem)");
+    let unlock: (() => void) | null = null;
+    const apply = () => {
+      const page = document.getElementById(PAGE_CONTENT_ID);
+      if (narrow.matches && !unlock) {
+        unlock = lockBodyScroll();
+        page?.setAttribute("inert", "");
+      } else if (!narrow.matches && unlock) {
+        unlock();
+        unlock = null;
+        page?.removeAttribute("inert");
+      }
+      setModal(narrow.matches);
+    };
+    apply();
+    narrow.addEventListener("change", apply);
+    return () => {
+      narrow.removeEventListener("change", apply);
+      unlock?.();
+      document.getElementById(PAGE_CONTENT_ID)?.removeAttribute("inert");
+      setModal(false);
+    };
   }, [open]);
 
   const ask = useCallback(
@@ -135,6 +216,9 @@ export function SiraChat({ data }: { data: ChatData }) {
       push({ role: "user", text: [question] });
       setDraft("");
       setPending(true);
+      // Les suggestions disparaissent pendant l'attente : sans cela, le focus
+      // retomberait sur la page quand on a cliqué sur l'une d'elles.
+      inputRef.current?.focus();
       if (timer.current) clearTimeout(timer.current);
       timer.current = setTimeout(
         () => {
@@ -148,12 +232,13 @@ export function SiraChat({ data }: { data: ChatData }) {
     [data, pending, push],
   );
 
+  // Vider la liste suffit : l'effet d'ouverture repose le message d'accueil.
   const reset = useCallback(() => {
     if (timer.current) clearTimeout(timer.current);
     setPending(false);
-    setMessages([{ role: "bot", ...openingAnswer(data), id: nextId.current++ }]);
+    setMessages([]);
     inputRef.current?.focus();
-  }, [data]);
+  }, []);
 
   const last = messages[messages.length - 1];
   const chips = !pending && last?.role === "bot" ? (last.chips ?? []) : [];
@@ -164,7 +249,7 @@ export function SiraChat({ data }: { data: ChatData }) {
       <button
         ref={launcherRef}
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => (open ? close() : setOpen(true))}
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={open ? "Fermer l'assistant SIRA" : "Ouvrir l'assistant SIRA"}
@@ -173,7 +258,7 @@ export function SiraChat({ data }: { data: ChatData }) {
           open && "max-md:hidden",
         )}
       >
-        <SiraMark height={22} color="#c6a11d" />
+        <SiraMark height={22} color="var(--color-site-gold)" />
         <span className="hidden text-[0.9375rem] font-semibold md:inline">
           {open ? "Fermer" : "Assistant SIRA"}
         </span>
@@ -182,8 +267,10 @@ export function SiraChat({ data }: { data: ChatData }) {
       {/* Bulle ------------------------------------------------------------- */}
       <div
         id={panelId}
+        ref={panelRef}
         role="dialog"
         aria-labelledby={titleId}
+        aria-modal={modal || undefined}
         className={cn(
           "fixed inset-x-3 bottom-3 top-[5.5rem] z-40 flex flex-col overflow-hidden rounded-[1.25rem] border border-site-border bg-site-canvas shadow-[0_24px_60px_rgba(17,17,73,0.22)] motion-safe:animate-[site-menu-in_0.25s_ease-out] md:inset-x-auto md:bottom-24 md:right-6 md:top-auto md:h-[min(34rem,calc(100vh-11rem))] md:w-[23.5rem]",
           !open && "hidden",
@@ -195,7 +282,7 @@ export function SiraChat({ data }: { data: ChatData }) {
             aria-hidden
             className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-site-gold/50 bg-white/10"
           >
-            <SiraMark height={18} color="#c6a11d" />
+            <SiraMark height={18} color="var(--color-site-gold)" />
           </span>
           <div className="min-w-0 flex-1">
             <p id={titleId} className="site-display text-[1.0625rem] leading-tight">
@@ -216,10 +303,7 @@ export function SiraChat({ data }: { data: ChatData }) {
           ) : null}
           <button
             type="button"
-            onClick={() => {
-              setOpen(false);
-              launcherRef.current?.focus();
-            }}
+            onClick={close}
             aria-label="Fermer l'assistant"
             className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-gold"
           >
@@ -258,7 +342,7 @@ export function SiraChat({ data }: { data: ChatData }) {
                 key={chip}
                 type="button"
                 onClick={() => ask(chip)}
-                className="inline-flex min-h-9 items-center rounded-full border border-site-border bg-white px-3 text-[0.8125rem] font-medium text-site-navy transition-colors hover:bg-site-gold/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-navy"
+                className="inline-flex min-h-11 items-center rounded-full border border-site-border bg-white px-3.5 text-[0.8125rem] font-medium text-site-navy transition-colors hover:bg-site-gold/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-navy"
               >
                 {chip}
               </button>
@@ -345,7 +429,7 @@ function Bubble({ message, onNavigate }: { message: ChatMessage; onNavigate: () 
                 <Link
                   href={link.href}
                   onClick={onNavigate}
-                  className="inline-flex min-h-9 items-center gap-1.5 text-[0.875rem] font-semibold text-site-navy"
+                  className="inline-flex min-h-11 items-center gap-1.5 text-[0.875rem] font-semibold text-site-navy"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden className="shrink-0 text-site-gold">
                     <path

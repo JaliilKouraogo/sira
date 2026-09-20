@@ -49,6 +49,17 @@ const STOP_WORDS = new Set([
   "chercher", "voudrais", "veux", "peux", "peut", "faire", "fais", "svp", "merci", "bonjour", "salut",
 ]);
 
+/**
+ * Mots de la recherche d'emploi qui ne désignent aucun métier : ils décrivent
+ * la démarche, pas ce que l'on cherche. Le type d'opportunité est traité à
+ * part, par `askedType`.
+ */
+const GENERIC_JOB_WORDS = new Set([
+  "offre", "offres", "emploi", "emplois", "poste", "postes", "job", "jobs", "travail", "boulot",
+  "opportunite", "opportunites", "annonce", "annonces", "recrutement", "metier", "stage", "stages",
+  "alternance", "alternances", "cdi", "cdd", "contrat", "contrats", "salaire", "remuneration",
+]);
+
 function words(value: string): string[] {
   return normalize(value).split(" ").filter(Boolean);
 }
@@ -57,12 +68,24 @@ function contentWords(value: string): string[] {
   return words(value).filter((w) => w.length >= 3 && !STOP_WORDS.has(w));
 }
 
-/** Nombre de mots-clés d'une intention présents dans la demande. */
+/**
+ * Nombre de mots-clés d'une intention présents dans la demande.
+ *
+ * La comparaison porte sur des mots entiers : sans cela, « couture »
+ * déclencherait le mot-clé « cout » et la demande d'emploi recevrait une
+ * réponse sur les tarifs. Une expression de plusieurs mots compte double,
+ * parce qu'elle décrit une demande plus précise qu'un mot isolé.
+ */
 function keywordScore(input: string, keywords: string[]): number {
-  const text = ` ${normalize(input)} `;
+  const text = normalize(input);
+  const present = new Set(text.split(" ").filter(Boolean));
   let score = 0;
   for (const keyword of keywords) {
-    if (text.includes(` ${keyword} `) || text.includes(`${keyword} `) || text.includes(` ${keyword}`)) score += 1;
+    if (keyword.includes(" ")) {
+      if (` ${text} `.includes(` ${keyword} `)) score += 2;
+    } else if (present.has(keyword)) {
+      score += 1;
+    }
   }
   return score;
 }
@@ -76,19 +99,23 @@ function keywordScore(input: string, keywords: string[]): number {
  * qui pèse plus que le contrat : « développeur à Ouagadougou » doit d'abord
  * proposer un poste de développeur.
  */
-function jobMatches(job: ChatJob, tokens: string[]): number {
+function jobMatches(job: ChatJob, tokens: string[]): { precis: number; total: number } {
   const title = normalize(job.title);
   const skills = normalize(job.skills.join(" "));
-  const place = normalize(`${job.city} ${job.country}`);
+  const place = normalize(job.city);
   const kind = normalize(`${job.type} ${job.contract}`);
-  let score = 0;
+  let precis = 0;
+  let large = 0;
   for (const token of tokens) {
-    if (title.includes(token)) score += 3;
-    else if (skills.includes(token)) score += 2;
-    else if (place.includes(token)) score += 2;
-    else if (kind.includes(token)) score += 1;
+    if (title.includes(token)) precis += 3;
+    else if (skills.includes(token)) precis += 2;
+    else if (place.includes(token)) precis += 2;
+    else if (kind.includes(token)) large += 1;
   }
-  return score;
+  // `precis` ne retient que métier, compétence et ville. Le mot « emploi » ou
+  // « CDI » correspond à presque toutes les offres : seul, il ne doit pas
+  // faire passer une offre pour une réponse à la demande.
+  return { precis, total: precis + large };
 }
 
 /** Type d'opportunité explicitement demandé, le cas échéant. */
@@ -111,6 +138,11 @@ function jobLinks(jobs: ChatJob[]): ChatLink[] {
 
 function trainingLinks(trainings: ChatTraining[]): ChatLink[] {
   return trainings.map((t) => ({ label: `${t.title} — ${t.access}`, href: `/formations/${t.slug}` }));
+}
+
+/** « 1 stage », « 3 stages » : accord simple pour les décomptes cités. */
+function plural(count: number, word: string): string {
+  return `${count} ${word}${count > 1 ? "s" : ""}`;
 }
 
 /** Ville citée dans la demande, parmi celles où des offres sont publiées. */
@@ -142,30 +174,49 @@ export function openingAnswer(data: ChatData): ChatAnswer {
 }
 
 function offersAnswer(input: string, data: ChatData): ChatAnswer {
-  const tokens = contentWords(input);
+  // Les mots généraux de la recherche d'emploi ne décrivent aucun métier :
+  // sans eux, « un emploi dans la couture » ne retient que « couture », et
+  // l'assistant répond qu'il n'a rien trouvé au lieu d'offres sans rapport.
+  const tokens = contentWords(input).filter((t) => !GENERIC_JOB_WORDS.has(t));
   const city = citeeCity(input, data);
   const type = askedType(input);
   // Un type demandé restreint la recherche, sauf s'il ne reste plus rien.
   const pool = type ? data.jobs.filter((job) => job.type === type) : data.jobs;
   const searched = pool.length > 0 ? pool : data.jobs;
-  const ranked = searched
-    .map((job) => ({ job, score: jobMatches(job, tokens) }))
-    .filter((r) => r.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .map((r) => r.job);
 
-  if (ranked.length > 0) {
+  // Sans mot de métier, on ne classe pas : on montre simplement les offres du
+  // type ou de la ville demandés.
+  const listable = tokens.length === 0 && (type !== null || city !== null);
+  const scored = listable
+    ? searched.map((job) => ({ job, precis: 0 }))
+    : searched
+        .map((job) => ({ job, ...jobMatches(job, tokens) }))
+        .filter((r) => r.precis > 0)
+        .sort((a, b) => b.precis - a.precis);
+
+  // Ville citée : ses offres passent devant, et c'est sur la liste complète
+  // que l'on juge s'il y en a, jamais sur les trois retenues.
+  const inCity = city ? scored.filter((r) => r.job.city === city) : [];
+  const ordered = city ? [...inCity, ...scored.filter((r) => r.job.city !== city)] : scored;
+  const ranked = ordered.slice(0, 3).map((r) => r.job);
+
+  const villeVide = listable && city !== null && inCity.length === 0;
+  if (ranked.length > 0 && !villeVide) {
     // Ville citée sans aucune offre sur place : le dire plutôt que laisser
     // croire que les offres proposées s'y trouvent.
-    const elsewhere = city !== null && ranked.every((job) => job.city !== city);
+    const elsewhere = city !== null && inCity.length === 0;
+    const intro = listable
+      ? ranked.length === scored.length
+        ? `Voici ${scored.length === 1 ? "la seule offre" : `les ${scored.length} offres`} qui ${scored.length > 1 ? "correspondent" : "correspond"} à votre demande.`
+        : `Voici ${ranked.length} des ${plural(scored.length, "offre")} qui correspondent à votre demande.`
+      : ranked.length === 1
+        ? "Voici l'offre publiée qui correspond le mieux à votre demande."
+        : `Voici ${ranked.length} offres publiées qui correspondent à votre demande.`;
     return {
       text: [
         elsewhere
           ? `Aucune offre publiée ne se trouve à ${city} pour cette recherche. Voici ce qui s'en rapproche le plus, ailleurs.`
-          : ranked.length === 1
-            ? "Voici l'offre publiée qui correspond le mieux à votre demande."
-            : `Voici ${ranked.length} offres publiées qui correspondent à votre demande.`,
+          : intro,
         "Ouvrez une offre pour voir les compétences attendues, les pièces à fournir et la date limite.",
       ],
       links: [...jobLinks(ranked), { label: "Voir toutes les offres", href: "/emplois" }],
@@ -176,7 +227,11 @@ function offersAnswer(input: string, data: ChatData): ChatAnswer {
   if (city) {
     return {
       text: [
-        `Je n'ai pas trouvé d'offre correspondant à ces mots à ${city}.`,
+        type
+          ? `Aucune offre de type « ${type} » n'est publiée à ${city} pour le moment.`
+          : tokens.length === 0
+            ? `Aucune offre n'est publiée à ${city} pour le moment.`
+            : `Je n'ai pas trouvé d'offre correspondant à ces mots à ${city}.`,
         "La recherche complète permet de filtrer par ville, domaine, contrat, mode de travail et expérience.",
       ],
       links: [{ label: `Voir les offres à ${city}`, href: `/emplois?city=${encodeURIComponent(city)}` }],
@@ -186,7 +241,7 @@ function offersAnswer(input: string, data: ChatData): ChatAnswer {
 
   return {
     text: [
-      `${data.jobCount} offres sont publiées en ce moment, dont ${data.internshipCount} stages ou alternances.`,
+      `${data.jobCount} offres sont publiées en ce moment, dont ${plural(data.stageCount, "stage")} et ${plural(data.alternanceCount, "alternance")}.`,
       "Dites-moi un métier, une compétence ou une ville, et je vous propose les offres correspondantes.",
     ],
     links: [
@@ -198,6 +253,10 @@ function offersAnswer(input: string, data: ChatData): ChatAnswer {
 }
 
 function trainingsAnswer(input: string, data: ChatData): ChatAnswer {
+  // « gratuit » dans une demande de formation appelle la liste des gratuites.
+  // Hors contexte de formation, le mot part vers la réponse sur les tarifs.
+  if (words(input).some((w) => w.startsWith("gratuit"))) return freeTrainingsAnswer(data);
+
   const tokens = contentWords(input);
   const ranked = data.trainings
     .map((training) => ({ training, score: trainingMatches(training, tokens) }))
@@ -229,21 +288,24 @@ function trainingsAnswer(input: string, data: ChatData): ChatAnswer {
 
 function freeTrainingsAnswer(data: ChatData): ChatAnswer {
   const free = data.trainings.filter((t) => t.free).slice(0, 3);
+  const hasFree = data.freeTrainingCount > 0;
   return {
     text: [
-      free.length > 0
-        ? `${data.freeTrainingCount} formations du catalogue sont gratuites.`
+      hasFree
+        ? `${plural(data.freeTrainingCount, "formation")} du catalogue ${data.freeTrainingCount > 1 ? "sont gratuites" : "est gratuite"}.`
         : "Aucune formation gratuite n'est référencée pour le moment.",
       "Les formations incluses avec Premium sont accessibles sans frais supplémentaires aux abonnés ; les autres sont facturées par l'organisme.",
     ],
-    links: [...trainingLinks(free), { label: "Filtrer les formations gratuites", href: "/formations?access=public_gratuit" }],
-    chips: ["Voir tout le catalogue", "Comprendre mon score", "Parler à l'équipe"],
+    links: hasFree
+      ? [...trainingLinks(free), { label: "Filtrer les formations gratuites", href: "/formations?access=public_gratuit" }]
+      : [{ label: "Voir le catalogue", href: "/formations" }],
+    chips: ["Voir les formations", "Comprendre mon score", "Parler à l'équipe"],
   };
 }
 
 const SCORE_ANSWER: ChatAnswer = {
   text: [
-    "Le score de compatibilité mesure l'écart entre votre profil et une offre : compétences, expérience, formation, langues, localisation et critères indispensables.",
+    "Le score de compatibilité mesure l'écart entre votre profil et une offre. Il pèse six éléments : compétences, expérience, formation, localisation, langues et disponibilité.",
     "C'est une estimation algorithmique. Elle ne garantit pas le recrutement, et la décision appartient toujours au recruteur. S'il manque un critère indispensable, le score est plafonné à 40.",
     "Le détail vous indique ce qui correspond, ce qui manque et quelle formation comble l'écart.",
   ],
@@ -292,7 +354,7 @@ const VERIFICATION_ANSWER: ChatAnswer = {
 const ACCOUNT_ANSWER: ChatAnswer = {
   text: [
     "La création de compte se fait par e-mail ou par téléphone, avec une vérification en deux étapes possible.",
-    "Trois espaces existent : candidat, recruteur et organisme de formation.",
+    "Deux espaces sont ouverts à l'inscription : candidat et recruteur. L'espace pour les organismes de formation arrive plus tard.",
   ],
   links: [
     { label: "Créer un compte", href: "/inscription" },
@@ -362,6 +424,7 @@ const FRAUD_ANSWER: ChatAnswer = {
   text: [
     "SIRA ne demande jamais d'argent pour postuler à une offre, ni pour « réserver » un poste.",
     "Si une annonce ou un interlocuteur vous réclame des frais, ne payez pas et signalez l'offre : le bouton « Signaler » se trouve sur chaque page d'offre.",
+    "Seules les formations peuvent être payantes, et dans ce cas le paiement va à l'organisme qui les dispense, jamais à SIRA.",
   ],
   links: [{ label: "Prévenir l'équipe", href: "/contact" }],
   chips: ["Trouver une offre", "Parler à l'équipe"],
@@ -457,13 +520,11 @@ const INTENTS: { id: string; keywords: string[]; answer: (input: string, data: C
     answer: () => INTERVIEW_ANSWER,
   },
   {
-    id: "formation-gratuite",
-    keywords: ["gratuite", "gratuites", "gratuit"],
-    answer: (_input, data) => freeTrainingsAnswer(data),
-  },
-  {
     id: "formation",
-    keywords: ["formation", "formations", "cours", "certificat", "apprendre", "competence", "competences", "seformer"],
+    keywords: [
+      "formation", "formations", "cours", "certificat", "catalogue", "apprendre", "competence", "competences",
+      "se former", "me former",
+    ],
     answer: trainingsAnswer,
   },
   {
@@ -478,7 +539,10 @@ const INTENTS: { id: string; keywords: string[]; answer: (input: string, data: C
   },
   {
     id: "tarifs",
-    keywords: ["tarif", "tarifs", "prix", "premium", "abonnement", "payant", "cout", "mobile money", "paiement"],
+    keywords: [
+      "tarif", "tarifs", "prix", "premium", "abonnement", "payant", "payante", "cout", "couts", "gratuit",
+      "gratuite", "gratuits", "gratuites", "mobile money", "paiement",
+    ],
     answer: () => PRICING_ANSWER,
   },
   {
@@ -520,7 +584,7 @@ const INTENTS: { id: string; keywords: string[]; answer: (input: string, data: C
     id: "offres",
     keywords: [
       "offre", "offres", "emploi", "emplois", "travail", "job", "poste", "stage", "stages", "alternance",
-      "recherche", "mission", "cdi", "cdd", "salaire", "remuneration", "ouagadougou", "bobo", "abidjan", "dakar",
+      "recherche", "mission", "cdi", "cdd", "salaire", "remuneration", "metier", "recrutement",
     ],
     answer: offersAnswer,
   },
@@ -539,10 +603,12 @@ const INTENTS: { id: string; keywords: string[]; answer: (input: string, data: C
 function fallbackAnswer(input: string, data: ChatData): ChatAnswer {
   // Même sans intention reconnue, une offre peut correspondre aux mots employés.
   const tokens = contentWords(input);
+  // Dans le repli, seules les correspondances précises comptent : sans mot de
+  // métier reconnu, mieux vaut dire qu'on n'a pas compris.
   const ranked = data.jobs
-    .map((job) => ({ job, score: jobMatches(job, tokens) }))
-    .filter((r) => r.score > 0)
-    .sort((a, b) => b.score - a.score)
+    .map((job) => ({ job, ...jobMatches(job, tokens) }))
+    .filter((r) => r.precis > 0)
+    .sort((a, b) => b.precis - a.precis)
     .slice(0, 3)
     .map((r) => r.job);
 
@@ -577,6 +643,12 @@ export function answerFor(input: string, data: ChatData): ChatAnswer {
     const score = keywordScore(trimmed, intent.keywords);
     if (score > 0 && (!best || score > best.score)) best = { score, intent };
   }
+  if (best) return best.intent.answer(trimmed, data);
 
-  return best ? best.intent.answer(trimmed, data) : fallbackAnswer(trimmed, data);
+  // Aucune intention reconnue, mais une ville où des offres sont publiées est
+  // citée : c'est une recherche d'offre. La liste des villes vient des
+  // données, pour rester juste quand les offres changent.
+  if (citeeCity(trimmed, data)) return offersAnswer(trimmed, data);
+
+  return fallbackAnswer(trimmed, data);
 }

@@ -16,7 +16,6 @@ export interface ChatJob {
   title: string;
   slug: string;
   city: string;
-  country: string;
   /** « Emploi », « Stage », « Alternance »… */
   type: string;
   /** « CDI », « Convention de stage »… */
@@ -39,8 +38,10 @@ export interface ChatData {
   trainings: ChatTraining[];
   /** Nombre d'offres publiées, tous types confondus. */
   jobCount: number;
-  /** Nombre de stages et d'alternances publiés. */
-  internshipCount: number;
+  /** Nombre de stages publiés : c'est aussi ce qu'affiche la page /stages. */
+  stageCount: number;
+  /** Nombre d'alternances publiées. */
+  alternanceCount: number;
   /** Nombre de formations gratuites du catalogue. */
   freeTrainingCount: number;
   /** Villes distinctes des offres publiées, par ordre alphabétique. */
@@ -57,10 +58,9 @@ export function buildChatData(): ChatData {
       title: job.title,
       slug: job.slug,
       city: job.city,
-      country: job.country,
       type: OPPORTUNITY_TYPE_LABEL[job.opportunityType],
       contract: CONTRACT_TYPE_LABEL[job.contractType],
-      skills: job.requiredSkills.slice(0, 6),
+      skills: job.requiredSkills.slice(0, 4),
     })),
     trainings: trainings.map((training) => ({
       title: training.title,
@@ -68,11 +68,11 @@ export function buildChatData(): ChatData {
       category: training.category,
       access: TRAINING_ACCESS_LABEL[training.access],
       free: training.access === "public_gratuit",
-      skills: training.skillsCovered.slice(0, 6),
+      skills: training.skillsCovered.slice(0, 4),
     })),
     jobCount: jobs.length,
-    internshipCount: jobs.filter((job) => job.opportunityType === "stage" || job.opportunityType === "alternance")
-      .length,
+    stageCount: jobs.filter((job) => job.opportunityType === "stage").length,
+    alternanceCount: jobs.filter((job) => job.opportunityType === "alternance").length,
     freeTrainingCount: trainings.filter((training) => training.access === "public_gratuit").length,
     cities: [...new Set(jobs.map((job) => job.city))].sort((a, b) => a.localeCompare(b, "fr")),
   };
