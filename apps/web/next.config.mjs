@@ -14,6 +14,8 @@ const basePath = isPages ? "/sira" : "";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Référentiel partagé avec l'API, importé sous forme de code TypeScript.
+  transpilePackages: ["@sira/shared"],
   ...(isPages
     ? {
         output: "export",

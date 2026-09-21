@@ -1,0 +1,70 @@
+# Vérifie l'API à chaque envoi qui la touche : types, tests unitaires, tests
+# de bout en bout sur une vraie base PostgreSQL, puis construction.
+# L'IA y est coupée : aucun jeton Hugging Face n'est nécessaire.
+name: API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/api/**"
+      - "packages/shared/**"
+      - "package.json"
+      - ".github/workflows/api.yml"
+  pull_request:
+    paths:
+      - "apps/api/**"
+      - "packages/shared/**"
+      - "package.json"
+      - ".github/workflows/api.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: sira
+          POSTGRES_PASSWORD: sira
+          POSTGRES_DB: sira_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sira -d sira_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 20
+    env:
+      DATABASE_URL: postgresql://sira:sira@localhost:5432/sira_test?schema=public
+      DATABASE_URL_TEST: postgresql://sira:sira@localhost:5432/sira_test?schema=public
+      JWT_ACCESS_SECRET: secret-d-integration-continue-assez-long-pour-hs256
+      AI_PROVIDER: offline
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # npm install plutôt que npm ci : le verrou produit sous Windows omet des
+      # dépendances optionnelles propres à Linux.
+      - name: Installer les dépendances de l'API
+        run: npm install --no-audit --no-fund --workspace @sira/api --workspace @sira/shared --include-workspace-root
+
+      - name: Vérifier les types
+        run: npm run typecheck --workspace @sira/api
+
+      - name: Tests unitaires
+        run: npm test --workspace @sira/api
+
+      - name: Tests de bout en bout
+        run: npm run test:e2e --workspace @sira/api
+
+      - name: Construire
+        run: npm run build --workspace @sira/api

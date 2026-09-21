@@ -1,0 +1,564 @@
+// Schéma de données SIRA — section 7.3 du plan de conception.
+//
+// Les valeurs des énumérations reprennent exactement celles du référentiel
+// partagé (packages/shared) ; un test de l'API vérifie qu'elles restent
+// alignées. Tables et colonnes sont en snake_case, comme dans le plan.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Énumérations
+// ---------------------------------------------------------------------------
+
+enum UserRole {
+  candidate
+  recruiter
+  trainer
+  admin
+  moderator
+}
+
+enum UserStatus {
+  active
+  suspended
+  deleted
+}
+
+enum OrganizationType {
+  entreprise
+  ong_association
+  cabinet_recrutement
+  institution_publique
+  etablissement_enseignement
+  centre_formation
+  particulier
+}
+
+enum VerificationStatus {
+  non_verifie
+  en_verification
+  verifie
+  refuse
+  suspendu
+}
+
+enum MembershipRole {
+  proprietaire
+  recruteur
+  lecteur
+}
+
+enum JobStatus {
+  brouillon
+  en_validation
+  publiee
+  suspendue
+  expiree
+  cloturee
+  rejetee
+}
+
+enum JobOrigin {
+  native
+  partenaire
+  importee
+}
+
+enum OpportunityType {
+  emploi
+  stage
+  alternance
+  mission_freelance
+  volontariat
+}
+
+enum ContractType {
+  cdi
+  cdd
+  convention_stage
+  contrat_apprentissage
+  prestation
+  benevolat
+  autre
+}
+
+enum WorkMode {
+  presentiel
+  hybride
+  teletravail
+}
+
+enum JobVisibility {
+  publique
+  non_listee
+  anonymisee
+}
+
+enum ApplicationChannel {
+  sira
+  email
+  externe
+}
+
+enum PreparationStatus {
+  brouillon
+  generee
+  a_verifier
+  validee
+  envoyee
+}
+
+enum ReviewStatus {
+  recue
+  a_examiner
+  shortlist
+  entretien
+  retenue
+  refusee
+}
+
+enum ApplicationEventKind {
+  creation
+  preparation
+  soumission
+  revue
+}
+
+enum ProfileVisibility {
+  invisible
+  anonyme
+  complet
+}
+
+enum ConsentType {
+  service
+  opportunites
+  candidature
+  marketing
+}
+
+enum ConsentBasis {
+  service
+  preference
+  consentement
+}
+
+enum NotificationChannel {
+  in_app
+  email
+  whatsapp
+}
+
+enum AiJobType {
+  cv_parsing
+  classification
+  match_score
+  cv_adaptation
+  lettre
+  email
+  message_whatsapp
+  resume_candidat
+  recommandation_formation
+  chat
+  preparation_entretien
+}
+
+enum AiJobStatus {
+  queued
+  running
+  succeeded
+  failed
+  cancelled
+}
+
+// ---------------------------------------------------------------------------
+// Comptes
+// ---------------------------------------------------------------------------
+
+model User {
+  id              String     @id @default(cuid())
+  email           String?    @unique
+  phone           String?    @unique
+  passwordHash    String     @map("password_hash")
+  role            UserRole
+  status          UserStatus @default(active)
+  firstName       String     @map("first_name")
+  lastName        String     @map("last_name")
+  locale          String     @default("fr")
+  emailVerifiedAt DateTime?  @map("email_verified_at")
+  phoneVerifiedAt DateTime?  @map("phone_verified_at")
+  twoFactorSecret String?    @map("two_factor_secret")
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+  deletedAt       DateTime?  @map("deleted_at")
+
+  candidateProfile CandidateProfile?
+  memberships      Membership[]
+  refreshTokens    RefreshToken[]
+  consents         Consent[]
+  aiJobs           AiJob[]
+  auditLogs        AuditLog[]
+  createdJobs      Job[]             @relation("JobCreatedBy")
+  applicationNotes ApplicationNote[]
+
+  @@map("users")
+}
+
+/// Jeton de rafraîchissement, conservé haché. Une « famille » regroupe les
+/// jetons issus d'une même connexion : la réutilisation d'un jeton déjà
+/// remplacé révoque toute la famille.
+model RefreshToken {
+  id         String    @id @default(cuid())
+  userId     String    @map("user_id")
+  tokenHash  String    @unique @map("token_hash")
+  family     String
+  expiresAt  DateTime  @map("expires_at")
+  revokedAt  DateTime? @map("revoked_at")
+  replacedBy String?   @map("replaced_by")
+  userAgent  String?   @map("user_agent")
+  ip         String?
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([family])
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+/// Chaque changement crée une ligne, jamais une mise à jour : la preuve
+/// horodatée est conservée (section 10.2 du plan).
+model Consent {
+  id          String              @id @default(cuid())
+  userId      String              @map("user_id")
+  consentType ConsentType         @map("consent_type")
+  channel     NotificationChannel
+  granted     Boolean
+  basis       ConsentBasis
+  source      String
+  ip          String?
+  userAgent   String?             @map("user_agent")
+  createdAt   DateTime            @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, consentType, channel, createdAt])
+  @@map("consents")
+}
+
+// ---------------------------------------------------------------------------
+// Organisations
+// ---------------------------------------------------------------------------
+
+model Organization {
+  id                    String             @id @default(cuid())
+  legalName             String             @map("legal_name")
+  tradeName             String?            @map("trade_name")
+  type                  OrganizationType
+  sector                String?
+  size                  String?
+  country               String             @default("Burkina Faso")
+  city                  String
+  address               String?
+  website               String?
+  description           String?
+  logoUrl               String?            @map("logo_url")
+  verificationStatus    VerificationStatus @default(non_verifie) @map("verification_status")
+  verificationDocuments Json               @default("[]") @map("verification_documents")
+  verifiedAt            DateTime?          @map("verified_at")
+  isPartner             Boolean            @default(false) @map("is_partner")
+  createdAt             DateTime           @default(now()) @map("created_at")
+  updatedAt             DateTime           @updatedAt @map("updated_at")
+
+  memberships Membership[]
+  jobs        Job[]
+
+  @@map("organizations")
+}
+
+model Membership {
+  id             String         @id @default(cuid())
+  userId         String         @map("user_id")
+  organizationId String         @map("organization_id")
+  role           MembershipRole
+  jobTitle       String?        @map("job_title")
+  createdAt      DateTime       @default(now()) @map("created_at")
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+  @@map("memberships")
+}
+
+// ---------------------------------------------------------------------------
+// Candidats
+// ---------------------------------------------------------------------------
+
+model CandidateProfile {
+  id                    String            @id @default(cuid())
+  userId                String            @unique @map("user_id")
+  headline              String?
+  country               String            @default("Burkina Faso")
+  city                  String?
+  searchZones           String[]          @map("search_zones")
+  professionalSituation String?           @map("professional_situation")
+  educationLevel        String?           @map("education_level")
+  educations            Json              @default("[]")
+  domain                String?
+  targetJobs            String[]          @map("target_jobs")
+  experienceYears       Int               @default(0) @map("experience_years")
+  experiences           Json              @default("[]")
+  /// [{ name, level? }]
+  hardSkills            Json              @default("[]") @map("hard_skills")
+  softSkills            Json              @default("[]") @map("soft_skills")
+  /// [{ name, level }], niveaux du référentiel LANGUAGE_LEVELS
+  languages             Json              @default("[]")
+  opportunityTypes      OpportunityType[] @map("opportunity_types")
+  contractTypes         ContractType[]    @map("contract_types")
+  availability          String?
+  salaryExpectation     Int?              @map("salary_expectation")
+  geographicMobility    Boolean           @default(false) @map("geographic_mobility")
+  workModes             WorkMode[]        @map("work_modes")
+  profileVisibility     ProfileVisibility @default(anonyme) @map("profile_visibility")
+  completionScore       Int               @default(0) @map("completion_score")
+  /// Incrémentée à chaque modification : un score calculé sur une version
+  /// antérieure est signalé comme à recalculer (RM-05).
+  version               Int               @default(1)
+  createdAt             DateTime          @default(now()) @map("created_at")
+  updatedAt             DateTime          @updatedAt @map("updated_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  applications Application[]
+  matchScores  MatchScore[]
+  savedJobs    SavedJob[]
+
+  @@map("candidate_profiles")
+}
+
+// ---------------------------------------------------------------------------
+// Offres
+// ---------------------------------------------------------------------------
+
+model Job {
+  id                 String             @id @default(cuid())
+  slug               String             @unique
+  organizationId     String             @map("organization_id")
+  createdById        String             @map("created_by")
+  title              String
+  opportunityType    OpportunityType    @map("opportunity_type")
+  contractType       ContractType       @map("contract_type")
+  department         String?
+  domain             String?
+  country            String             @default("Burkina Faso")
+  city               String
+  workMode           WorkMode           @default(presentiel) @map("work_mode")
+  summary            String
+  description        String
+  missions           String[]
+  responsibilities   String[]
+  requiredSkills     String[]           @map("required_skills")
+  niceToHaveSkills   String[]           @map("nice_to_have_skills")
+  /// Critères indispensables : un critère non satisfait plafonne le score.
+  blockingCriteria   String[]           @map("blocking_criteria")
+  educationLevel     String?            @map("education_level")
+  experienceYears    Int                @default(0) @map("experience_years")
+  /// [{ name, level }]
+  languages          Json               @default("[]")
+  salaryMin          Int?               @map("salary_min")
+  salaryMax          Int?               @map("salary_max")
+  salaryCurrency     String             @default("XOF") @map("salary_currency")
+  deadline           DateTime?
+  requiredDocuments  String[]           @map("required_documents")
+  applicationChannel ApplicationChannel @default(sira) @map("application_channel")
+  applicationTarget  String?            @map("application_target")
+  contact            String?
+  visibility         JobVisibility      @default(publique)
+  origin             JobOrigin          @default(native)
+  sourceUrl          String?            @map("source_url")
+  status             JobStatus          @default(brouillon)
+  publishedAt        DateTime?          @map("published_at")
+  closedAt           DateTime?          @map("closed_at")
+  viewCount          Int                @default(0) @map("view_count")
+  /// Incrémentée à chaque modification du contenu (RM-05).
+  version            Int                @default(1)
+  createdAt          DateTime           @default(now()) @map("created_at")
+  updatedAt          DateTime           @updatedAt @map("updated_at")
+
+  organization Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  createdBy    User          @relation("JobCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  applications Application[]
+  matchScores  MatchScore[]
+  savedBy      SavedJob[]
+
+  @@index([status, publishedAt])
+  @@index([organizationId])
+  @@map("jobs")
+}
+
+model SavedJob {
+  id          String   @id @default(cuid())
+  candidateId String   @map("candidate_id")
+  jobId       String   @map("job_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  candidate CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  job       Job              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([candidateId, jobId])
+  @@map("saved_jobs")
+}
+
+// ---------------------------------------------------------------------------
+// Candidatures — arbitrage C1 : deux axes d'états
+// ---------------------------------------------------------------------------
+
+model Application {
+  id                String             @id @default(cuid())
+  candidateId       String             @map("candidate_id")
+  jobId             String             @map("job_id")
+  /// Score figé au moment de la candidature (RM-05).
+  matchScoreId      String?            @map("match_score_id")
+  preparationStatus PreparationStatus  @default(brouillon) @map("preparation_status")
+  /// Vide tant que la candidature n'est pas envoyée au recruteur.
+  reviewStatus      ReviewStatus?      @map("review_status")
+  isArchived        Boolean            @default(false) @map("is_archived")
+  channelUsed       ApplicationChannel @map("channel_used")
+  idempotencyKey    String?            @map("idempotency_key")
+  submittedAt       DateTime?          @map("submitted_at")
+  externalMarkedAt  DateTime?          @map("external_marked_at")
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+
+  candidate  CandidateProfile   @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  job        Job                @relation(fields: [jobId], references: [id], onDelete: Restrict)
+  matchScore MatchScore?        @relation(fields: [matchScoreId], references: [id], onDelete: SetNull)
+  events     ApplicationEvent[]
+  notes      ApplicationNote[]
+
+  @@unique([candidateId, jobId])
+  @@unique([candidateId, idempotencyKey])
+  @@index([jobId, reviewStatus])
+  @@map("applications")
+}
+
+/// Historique des candidatures, en table dédiée comme le prévoit le plan.
+model ApplicationEvent {
+  id            String               @id @default(cuid())
+  applicationId String               @map("application_id")
+  actorId       String?              @map("actor_id")
+  /// candidat, recruteur ou systeme
+  actorRole     String               @map("actor_role")
+  kind          ApplicationEventKind
+  fromStatus    String?              @map("from_status")
+  toStatus      String?              @map("to_status")
+  label         String
+  createdAt     DateTime             @default(now()) @map("created_at")
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId, createdAt])
+  @@map("application_events")
+}
+
+/// Notes internes du recruteur, jamais montrées au candidat.
+model ApplicationNote {
+  id            String   @id @default(cuid())
+  applicationId String   @map("application_id")
+  authorId      String   @map("author_id")
+  text          String
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId, createdAt])
+  @@map("application_notes")
+}
+
+// ---------------------------------------------------------------------------
+// IA
+// ---------------------------------------------------------------------------
+
+/// Chaque calcul crée une ligne : un score n'est jamais modifié (RM-05).
+model MatchScore {
+  id                 String   @id @default(cuid())
+  candidateId        String   @map("candidate_id")
+  jobId              String   @map("job_id")
+  score              Int
+  breakdown          Json
+  blockingCriteria   String[] @map("blocking_criteria")
+  gaps               String[]
+  recommendedActions Json     @default("[]") @map("recommended_actions")
+  explanation        String?
+  profileVersion     Int      @map("profile_version")
+  jobVersion         Int      @map("job_version")
+  weightsVersion     String   @map("weights_version")
+  /// Règle de calcul du score, par exemple « regles-v1 ».
+  model              String
+  aiJobId            String?  @map("ai_job_id")
+  computedAt         DateTime @default(now()) @map("computed_at")
+
+  candidate    CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  job          Job              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  applications Application[]
+
+  @@index([candidateId, jobId, computedAt])
+  @@map("match_scores")
+}
+
+/// Journal systématique des appels IA : modèle, jetons, coût, latence.
+model AiJob {
+  id           String      @id @default(cuid())
+  userId       String?     @map("user_id")
+  type         AiJobType
+  status       AiJobStatus @default(queued)
+  provider     String
+  model        String
+  inputRef     String?     @map("input_ref")
+  outputRef    String?     @map("output_ref")
+  inputTokens  Int         @default(0) @map("input_tokens")
+  outputTokens Int         @default(0) @map("output_tokens")
+  cachedTokens Int         @default(0) @map("cached_tokens")
+  costUsd      Decimal     @default(0) @map("cost_usd") @db.Decimal(12, 6)
+  latencyMs    Int?        @map("latency_ms")
+  error        String?
+  createdAt    DateTime    @default(now()) @map("created_at")
+  completedAt  DateTime?   @map("completed_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([type, createdAt])
+  @@map("ai_jobs")
+}
+
+// ---------------------------------------------------------------------------
+// Audit
+// ---------------------------------------------------------------------------
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?  @map("actor_id")
+  action     String
+  objectType String   @map("object_type")
+  objectId   String   @map("object_id")
+  before     Json?
+  after      Json?
+  ip         String?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  actor User? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([objectType, objectId])
+  @@index([actorId, createdAt])
+  @@map("audit_logs")
+}

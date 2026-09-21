@@ -1,0 +1,25 @@
+# Services locaux de développement.
+#   docker compose up -d      démarre PostgreSQL sur le port 5440
+#   docker compose down       l'arrête (les données sont conservées)
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sira-postgres
+    environment:
+      POSTGRES_USER: sira
+      POSTGRES_PASSWORD: sira
+      POSTGRES_DB: sira
+    ports:
+      - "5440:5432"
+    volumes:
+      - sira-pgdata:/var/lib/postgresql/data
+      # Crée la base des tests e2e au premier démarrage.
+      - ./apps/api/docker/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sira -d sira"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  sira-pgdata:

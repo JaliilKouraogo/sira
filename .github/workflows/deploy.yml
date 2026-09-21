@@ -37,7 +37,7 @@ jobs:
       # dépendances optionnelles propres à Linux. Les versions restent figées
       # dans les package.json.
       - name: Installer les dépendances
-        run: npm install --no-audit --no-fund --workspaces --include-workspace-root
+        run: npm install --no-audit --no-fund --workspace @sira/web --workspace @sira/shared --include-workspace-root
 
       - name: Construire l'export statique
         run: npm run build --workspace @sira/web

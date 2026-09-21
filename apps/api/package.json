@@ -1,0 +1,60 @@
+{
+  "name": "@sira/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SIRA — API REST (NestJS, PostgreSQL, Prisma) et couche IA.",
+  "scripts": {
+    "prepare:local": "npm run build --prefix ../../packages/shared && prisma generate",
+    "prebuild": "npm run prepare:local",
+    "build": "nest build",
+    "predev": "npm run prepare:local",
+    "dev": "nest start --watch",
+    "start": "node dist/main.js",
+    "pretypecheck": "npm run prepare:local",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "pretest": "npm run prepare:local",
+    "test": "jest",
+    "pretest:e2e": "npm run prepare:local",
+    "test:e2e": "node test/run-e2e.cjs"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.2.5",
+    "@nestjs/core": "11.2.5",
+    "@nestjs/jwt": "11.0.2",
+    "@nestjs/platform-express": "11.2.5",
+    "@nestjs/swagger": "11.4.7",
+    "@nestjs/throttler": "6.7.0",
+    "@node-rs/argon2": "2.2.1",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
+    "@sira/shared": "*",
+    "cookie-parser": "1.4.7",
+    "helmet": "8.3.0",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "11.0.24",
+    "@nestjs/testing": "11.2.5",
+    "@types/cookie-parser": "1.4.10",
+    "@types/express": "5.0.6",
+    "@types/jest": "30.0.0",
+    "@types/node": "22.20.2",
+    "@types/pg": "8.23.1",
+    "@types/supertest": "7.2.1",
+    "jest": "30.5.2",
+    "pg": "8.23.0",
+    "prisma": "7.10.0",
+    "supertest": "7.2.2",
+    "ts-jest": "29.4.12",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=20.12.0"
+  }
+}

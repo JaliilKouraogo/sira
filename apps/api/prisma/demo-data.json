@@ -1,0 +1,1353 @@
+{
+  "source": "apps/web/src/data/fixtures.ts",
+  "referenceDate": "2026-09-12",
+  "users": [
+    {
+      "id": "usr_cand_01",
+      "email": "awa.sawadogo@example.bf",
+      "phone": "+226 70 11 22 33",
+      "role": "candidate",
+      "firstName": "Awa",
+      "lastName": "Sawadogo",
+      "emailVerifiedAt": "2026-05-15",
+      "createdAt": "2026-05-15"
+    },
+    {
+      "id": "usr_rec_01",
+      "email": "recrutement@sahelagro.bf",
+      "phone": "+226 25 30 40 50",
+      "role": "recruiter",
+      "firstName": "Idrissa",
+      "lastName": "Compaoré",
+      "emailVerifiedAt": "2026-02-24",
+      "createdAt": "2026-02-24"
+    },
+    {
+      "id": "usr_trn_01",
+      "email": "contact@numerika.bf",
+      "phone": null,
+      "role": "trainer",
+      "firstName": "Fatoumata",
+      "lastName": "Ouédraogo",
+      "emailVerifiedAt": "2026-06-14",
+      "createdAt": "2026-06-14"
+    },
+    {
+      "id": "usr_adm_01",
+      "email": "admin@sira.bf",
+      "phone": null,
+      "role": "admin",
+      "firstName": "Boureima",
+      "lastName": "Traoré",
+      "emailVerifiedAt": "2025-11-16",
+      "createdAt": "2025-11-16"
+    }
+  ],
+  "memberships": [
+    {
+      "userId": "usr_rec_01",
+      "organizationId": "org_01",
+      "role": "proprietaire",
+      "jobTitle": "Responsable du recrutement"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org_01",
+      "legalName": "Sahel Agro Industries SA",
+      "tradeName": "Sahel Agro",
+      "type": "entreprise",
+      "sector": "Agriculture & Agroalimentaire",
+      "size": "250 à 500 salariés",
+      "country": "Burkina Faso",
+      "city": "Bobo-Dioulasso",
+      "address": "Zone industrielle, Bobo-Dioulasso",
+      "website": "https://sahelagro.bf",
+      "description": "Transformation et distribution de produits agricoles, première unité de conditionnement de mangues séchées de la région des Hauts-Bassins.",
+      "verificationStatus": "verifie",
+      "isPartner": false,
+      "createdAt": "2025-08-08"
+    },
+    {
+      "id": "org_02",
+      "legalName": "Banque Régionale du Faso",
+      "tradeName": "BRF",
+      "type": "entreprise",
+      "sector": "Banque, Finance & Assurance",
+      "size": "500 à 1000 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "address": "Avenue Kwame N'Krumah, Ouagadougou",
+      "website": "https://brf.bf",
+      "description": "Banque commerciale présente dans huit villes du pays, spécialisée dans le financement des PME et l'inclusion financière.",
+      "verificationStatus": "verifie",
+      "isPartner": true,
+      "createdAt": "2025-04-30"
+    },
+    {
+      "id": "org_03",
+      "legalName": "Association Solidarité Sahel",
+      "tradeName": "ASS",
+      "type": "ong_association",
+      "sector": "Santé & Social",
+      "size": "50 à 250 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouahigouya",
+      "address": null,
+      "website": "https://solidarite-sahel.org",
+      "description": "ONG d'appui aux populations déplacées internes, active dans la santé communautaire et la sécurité alimentaire au Nord du pays.",
+      "verificationStatus": "verifie",
+      "isPartner": true,
+      "createdAt": "2025-09-27"
+    },
+    {
+      "id": "org_04",
+      "legalName": "Faso Digital SARL",
+      "tradeName": "Faso Digital",
+      "type": "entreprise",
+      "sector": "Informatique & Numérique",
+      "size": "10 à 50 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "address": null,
+      "website": "https://fasodigital.bf",
+      "description": "Agence de développement logiciel et de transformation numérique pour les administrations et les PME d'Afrique de l'Ouest.",
+      "verificationStatus": "verifie",
+      "isPartner": false,
+      "createdAt": "2025-12-06"
+    },
+    {
+      "id": "org_05",
+      "legalName": "Cabinet Yenkoara Conseil",
+      "tradeName": "Yenkoara",
+      "type": "cabinet_recrutement",
+      "sector": "Ressources humaines",
+      "size": "10 à 50 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "address": null,
+      "website": null,
+      "description": "Cabinet de recrutement et de conseil en organisation, spécialiste des profils cadres.",
+      "verificationStatus": "en_verification",
+      "isPartner": false,
+      "createdAt": "2026-07-14"
+    },
+    {
+      "id": "org_06",
+      "legalName": "Université Joseph Ki-Zerbo",
+      "tradeName": null,
+      "type": "etablissement_enseignement",
+      "sector": "Éducation & Formation",
+      "size": "Plus de 1000 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "address": null,
+      "website": null,
+      "description": "Première université publique du Burkina Faso, partenaire institutionnel de SIRA.",
+      "verificationStatus": "verifie",
+      "isPartner": true,
+      "createdAt": "2025-01-20"
+    },
+    {
+      "id": "org_07",
+      "legalName": "Numerika Formation",
+      "tradeName": null,
+      "type": "centre_formation",
+      "sector": "Éducation & Formation",
+      "size": "10 à 50 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "address": null,
+      "website": null,
+      "description": "Centre de formation aux métiers du numérique, certifié par le ministère en charge de la formation professionnelle.",
+      "verificationStatus": "verifie",
+      "isPartner": true,
+      "createdAt": "2026-02-04"
+    },
+    {
+      "id": "org_08",
+      "legalName": "Translog Burkina",
+      "tradeName": null,
+      "type": "entreprise",
+      "sector": "Logistique & Transport",
+      "size": "50 à 250 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "address": null,
+      "website": null,
+      "description": "Transport routier de marchandises et gestion d'entrepôts sur le corridor Abidjan-Ouagadougou.",
+      "verificationStatus": "verifie",
+      "isPartner": false,
+      "createdAt": "2025-11-06"
+    },
+    {
+      "id": "org_09",
+      "legalName": "Clinique Les Palmiers",
+      "tradeName": null,
+      "type": "entreprise",
+      "sector": "Santé & Social",
+      "size": "50 à 250 salariés",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "address": null,
+      "website": null,
+      "description": "Clinique privée pluridisciplinaire, 80 lits, plateau technique complet.",
+      "verificationStatus": "non_verifie",
+      "isPartner": false,
+      "createdAt": "2026-08-23"
+    },
+    {
+      "id": "org_10",
+      "legalName": "Énergie Solaire du Faso",
+      "tradeName": "ESF",
+      "type": "entreprise",
+      "sector": "Énergie & Environnement",
+      "size": "50 à 250 salariés",
+      "country": "Burkina Faso",
+      "city": "Koudougou",
+      "address": null,
+      "website": null,
+      "description": "Installation et maintenance de centrales solaires photovoltaïques en milieu rural.",
+      "verificationStatus": "verifie",
+      "isPartner": false,
+      "createdAt": "2026-03-06"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job_01",
+      "slug": "responsable-logistique-sahel-agro",
+      "organizationId": "org_01",
+      "title": "Responsable logistique",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": "Supply chain",
+      "country": "Burkina Faso",
+      "city": "Bobo-Dioulasso",
+      "workMode": "presentiel",
+      "summary": "Piloter les flux entrants et sortants de l'unité de conditionnement et encadrer une équipe de 12 personnes.",
+      "description": "Rattaché au directeur des opérations, vous êtes garant de la disponibilité des matières premières et de la livraison des commandes clients dans les délais. Vous intervenez sur un site de 4 000 m² traitant 300 tonnes de mangue par campagne.",
+      "missions": [
+        "Planifier les approvisionnements et les expéditions",
+        "Encadrer une équipe de 12 magasiniers et caristes",
+        "Piloter les indicateurs de stock et réduire les ruptures",
+        "Négocier avec les transporteurs du corridor Abidjan-Ouagadougou",
+        "Garantir la traçabilité des lots export"
+      ],
+      "responsibilities": [
+        "Budget logistique annuel de 180 millions FCFA",
+        "Respect des normes d'hygiène et de sécurité alimentaire"
+      ],
+      "requiredSkills": [
+        "Gestion de stock",
+        "Excel avancé",
+        "Management d'équipe",
+        "Planification"
+      ],
+      "niceToHaveSkills": [
+        "SAP MM",
+        "Anglais professionnel",
+        "Certification HACCP"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "Licence (Bac+3)",
+      "experienceYears": 4,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        },
+        {
+          "name": "Anglais",
+          "level": "Professionnel"
+        }
+      ],
+      "salaryMin": 450000,
+      "salaryMax": 650000,
+      "deadline": "2026-09-30",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation",
+        "Copie des diplômes"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-08",
+      "viewCount": 342
+    },
+    {
+      "id": "job_02",
+      "slug": "developpeur-fullstack-faso-digital",
+      "organizationId": "org_04",
+      "title": "Développeur fullstack JavaScript",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": "Ingénierie",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "hybride",
+      "summary": "Concevoir et développer des applications web pour des clients institutionnels et des PME de la sous-région.",
+      "description": "Vous rejoignez une équipe de 8 développeurs sur des projets de digitalisation de services publics et de plateformes métier. Stack React, Node.js, PostgreSQL.",
+      "missions": [
+        "Développer des interfaces React et des API Node.js",
+        "Participer aux ateliers de conception avec les clients",
+        "Écrire les tests et documenter les livrables",
+        "Assurer la revue de code des développeurs juniors"
+      ],
+      "responsibilities": [
+        "Qualité et délais sur 2 à 3 projets simultanés"
+      ],
+      "requiredSkills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Git"
+      ],
+      "niceToHaveSkills": [
+        "TypeScript",
+        "Docker",
+        "CI/CD"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "Licence (Bac+3)",
+      "experienceYears": 3,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 500000,
+      "salaryMax": 800000,
+      "deadline": "2026-10-07",
+      "requiredDocuments": [
+        "CV",
+        "Portfolio ou dépôt de code"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-10",
+      "viewCount": 611
+    },
+    {
+      "id": "job_03",
+      "slug": "stage-charge-communication-solidarite-sahel",
+      "organizationId": "org_03",
+      "title": "Stagiaire chargé de communication",
+      "opportunityType": "stage",
+      "contractType": "convention_stage",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouahigouya",
+      "workMode": "presentiel",
+      "summary": "Appuyer l'équipe communication dans la valorisation des projets humanitaires du Nord.",
+      "description": "Stage de 6 mois conventionné, avec indemnité. Vous produisez des contenus pour les bailleurs et les réseaux sociaux de l'association.",
+      "missions": [
+        "Rédiger des articles et des fiches projet",
+        "Réaliser des reportages photo sur le terrain",
+        "Animer les réseaux sociaux de l'association",
+        "Appuyer la production des rapports bailleurs"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Rédaction",
+        "Réseaux sociaux",
+        "Photographie"
+      ],
+      "niceToHaveSkills": [
+        "Canva",
+        "Montage vidéo",
+        "Anglais"
+      ],
+      "blockingCriteria": [
+        "Être inscrit en formation et pouvoir fournir une convention de stage"
+      ],
+      "educationLevel": "Licence (Bac+3)",
+      "experienceYears": 0,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 75000,
+      "salaryMax": 100000,
+      "deadline": "2026-09-21",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation",
+        "Convention de stage"
+      ],
+      "applicationChannel": "email",
+      "applicationTarget": "recrutement@solidarite-sahel.org",
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-06",
+      "viewCount": 289
+    },
+    {
+      "id": "job_04",
+      "slug": "charge-clientele-brf",
+      "organizationId": "org_02",
+      "title": "Chargé de clientèle PME",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": "Réseau commercial",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "presentiel",
+      "summary": "Développer et fidéliser un portefeuille de PME sur la zone de Ouagadougou.",
+      "description": "Vous êtes l'interlocuteur privilégié d'un portefeuille de 120 entreprises clientes, de la prospection au suivi des engagements.",
+      "missions": [
+        "Prospecter et développer un portefeuille PME",
+        "Analyser les dossiers de crédit et monter les demandes",
+        "Assurer le suivi des engagements et du recouvrement",
+        "Promouvoir les produits d'inclusion financière"
+      ],
+      "responsibilities": [
+        "Objectif annuel de collecte et de crédit"
+      ],
+      "requiredSkills": [
+        "Analyse financière",
+        "Négociation commerciale",
+        "Gestion de portefeuille"
+      ],
+      "niceToHaveSkills": [
+        "Anglais professionnel",
+        "Connaissance du tissu PME burkinabè"
+      ],
+      "blockingCriteria": [
+        "Diplôme Bac+4 minimum en finance, banque ou gestion"
+      ],
+      "educationLevel": "Master (Bac+5)",
+      "experienceYears": 3,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 400000,
+      "salaryMax": 550000,
+      "deadline": "2026-09-24",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation",
+        "Copie des diplômes",
+        "Casier judiciaire"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-04",
+      "viewCount": 508
+    },
+    {
+      "id": "job_05",
+      "slug": "technicien-solaire-esf",
+      "organizationId": "org_10",
+      "title": "Technicien de maintenance solaire",
+      "opportunityType": "emploi",
+      "contractType": "cdd",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Koudougou",
+      "workMode": "presentiel",
+      "summary": "Assurer la maintenance préventive et curative des centrales photovoltaïques en milieu rural.",
+      "description": "CDD de 24 mois renouvelable. Déplacements fréquents sur les sites du Centre-Ouest, véhicule de service fourni.",
+      "missions": [
+        "Réaliser les visites de maintenance préventive",
+        "Diagnostiquer et réparer les pannes onduleurs et batteries",
+        "Former les comités villageois de gestion",
+        "Rédiger les rapports d'intervention"
+      ],
+      "responsibilities": [
+        "Disponibilité de 15 centrales villageoises"
+      ],
+      "requiredSkills": [
+        "Électricité",
+        "Photovoltaïque",
+        "Maintenance industrielle"
+      ],
+      "niceToHaveSkills": [
+        "Permis B",
+        "Mooré ou Dioula"
+      ],
+      "blockingCriteria": [
+        "Permis de conduire B en cours de validité"
+      ],
+      "educationLevel": "BTS / DUT (Bac+2)",
+      "experienceYears": 2,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Professionnel"
+        }
+      ],
+      "salaryMin": 250000,
+      "salaryMax": 350000,
+      "deadline": "2026-10-12",
+      "requiredDocuments": [
+        "CV",
+        "Copie du permis",
+        "Copie des diplômes"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-11",
+      "viewCount": 156
+    },
+    {
+      "id": "job_06",
+      "slug": "assistant-rh-transog",
+      "organizationId": "org_08",
+      "title": "Assistant ressources humaines",
+      "opportunityType": "emploi",
+      "contractType": "cdd",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "presentiel",
+      "summary": "Appuyer la gestion administrative du personnel d'une flotte de 140 conducteurs.",
+      "description": "Poste polyvalent couvrant la paie, les contrats et le suivi des visites médicales.",
+      "missions": [
+        "Préparer les éléments variables de paie",
+        "Gérer les contrats et les dossiers du personnel",
+        "Organiser les visites médicales et les formations obligatoires",
+        "Tenir les registres réglementaires"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Administration du personnel",
+        "Excel",
+        "Droit du travail"
+      ],
+      "niceToHaveSkills": [
+        "Logiciel de paie",
+        "Discrétion"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "BTS / DUT (Bac+2)",
+      "experienceYears": 2,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 200000,
+      "salaryMax": 280000,
+      "deadline": "2026-09-27",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-07",
+      "viewCount": 402
+    },
+    {
+      "id": "job_07",
+      "slug": "stage-developpeur-mobile-faso-digital",
+      "organizationId": "org_04",
+      "title": "Stagiaire développeur mobile",
+      "opportunityType": "stage",
+      "contractType": "convention_stage",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "hybride",
+      "summary": "Participer au développement d'une application mobile de services agricoles.",
+      "description": "Stage de fin d'études de 6 mois, encadré par un développeur senior. Indemnité mensuelle.",
+      "missions": [
+        "Développer des écrans React Native",
+        "Écrire les tests unitaires",
+        "Participer aux rituels agiles de l'équipe"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "JavaScript",
+        "React Native",
+        "Git"
+      ],
+      "niceToHaveSkills": [
+        "TypeScript",
+        "Figma"
+      ],
+      "blockingCriteria": [
+        "Convention de stage obligatoire"
+      ],
+      "educationLevel": "Licence (Bac+3)",
+      "experienceYears": 0,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 100000,
+      "salaryMax": 150000,
+      "deadline": "2026-10-03",
+      "requiredDocuments": [
+        "CV",
+        "Convention de stage"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-09",
+      "viewCount": 377
+    },
+    {
+      "id": "job_08",
+      "slug": "infirmier-clinique-palmiers",
+      "organizationId": "org_09",
+      "title": "Infirmier diplômé d'État",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "presentiel",
+      "summary": "Assurer les soins en service d'hospitalisation, travail en roulement.",
+      "description": "Poste en roulement 3x8, prime de nuit et de dimanche.",
+      "missions": [
+        "Dispenser les soins prescrits",
+        "Surveiller les constantes",
+        "Tenir le dossier de soins"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Soins infirmiers",
+        "Urgences",
+        "Dossier patient"
+      ],
+      "niceToHaveSkills": [
+        "Expérience en réanimation"
+      ],
+      "blockingCriteria": [
+        "Diplôme d'État d'infirmier et inscription à l'ordre"
+      ],
+      "educationLevel": "Licence (Bac+3)",
+      "experienceYears": 2,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 220000,
+      "salaryMax": 300000,
+      "deadline": "2026-10-02",
+      "requiredDocuments": [
+        "CV",
+        "Diplôme d'État",
+        "Attestation d'inscription à l'ordre"
+      ],
+      "applicationChannel": "externe",
+      "applicationTarget": "Dépôt physique à l'accueil de la clinique",
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "en_validation",
+      "publishedAt": "2026-09-11",
+      "viewCount": 0
+    },
+    {
+      "id": "job_09",
+      "slug": "consultant-suivi-evaluation-ong",
+      "organizationId": "org_03",
+      "title": "Consultant suivi-évaluation",
+      "opportunityType": "mission_freelance",
+      "contractType": "prestation",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouahigouya",
+      "workMode": "hybride",
+      "summary": "Mission de 3 mois pour la conception du dispositif de suivi-évaluation d'un projet nutrition.",
+      "description": "Prestation forfaitaire, livrables définis en trois jalons.",
+      "missions": [
+        "Concevoir le cadre logique et les indicateurs",
+        "Former les équipes terrain à la collecte",
+        "Produire le rapport de référence"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Suivi-évaluation",
+        "Cadre logique",
+        "Analyse de données"
+      ],
+      "niceToHaveSkills": [
+        "Kobo Toolbox",
+        "Anglais professionnel",
+        "Statistiques"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "Master (Bac+5)",
+      "experienceYears": 5,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        },
+        {
+          "name": "Anglais",
+          "level": "Professionnel"
+        }
+      ],
+      "salaryMin": 2500000,
+      "salaryMax": 3500000,
+      "deadline": "2026-09-22",
+      "requiredDocuments": [
+        "CV",
+        "Offre technique",
+        "Offre financière",
+        "Références"
+      ],
+      "applicationChannel": "email",
+      "applicationTarget": "consultance@solidarite-sahel.org",
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-05",
+      "viewCount": 198
+    },
+    {
+      "id": "job_10",
+      "slug": "comptable-senior-cabinet-yenkoara",
+      "organizationId": "org_05",
+      "title": "Comptable senior",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "presentiel",
+      "summary": "Pour le compte d'un client industriel, tenue complète de la comptabilité et production des états.",
+      "description": "Recrutement confié au cabinet Yenkoara. Identité du client communiquée en entretien.",
+      "missions": [
+        "Tenir la comptabilité générale et analytique",
+        "Produire les états financiers SYSCOHADA",
+        "Préparer les déclarations fiscales"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "SYSCOHADA",
+        "Comptabilité générale",
+        "Fiscalité"
+      ],
+      "niceToHaveSkills": [
+        "Sage",
+        "Contrôle de gestion"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "Licence (Bac+3)",
+      "experienceYears": 5,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 350000,
+      "salaryMax": 500000,
+      "deadline": "2026-09-26",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "anonymisee",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-03",
+      "viewCount": 267
+    },
+    {
+      "id": "job_11",
+      "slug": "volontaire-alphabetisation-universite",
+      "organizationId": "org_06",
+      "title": "Volontaire en alphabétisation",
+      "opportunityType": "volontariat",
+      "contractType": "benevolat",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "presentiel",
+      "summary": "Animer des séances d'alphabétisation auprès d'adultes, 10 heures par semaine.",
+      "description": "Programme universitaire d'engagement citoyen, attestation délivrée en fin de mission.",
+      "missions": [
+        "Animer les séances",
+        "Suivre la progression des apprenants"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Pédagogie",
+        "Patience"
+      ],
+      "niceToHaveSkills": [
+        "Mooré",
+        "Dioula"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "Baccalauréat",
+      "experienceYears": 0,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": null,
+      "salaryMax": null,
+      "deadline": "2026-10-22",
+      "requiredDocuments": [
+        "CV"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "partenaire",
+      "sourceUrl": "https://univ-ouaga.bf/engagement",
+      "status": "publiee",
+      "publishedAt": "2026-09-01",
+      "viewCount": 143
+    },
+    {
+      "id": "job_12",
+      "slug": "chef-de-projet-digital-brf",
+      "organizationId": "org_02",
+      "title": "Chef de projet digital",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": "Transformation",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "hybride",
+      "summary": "Piloter les projets de digitalisation du parcours client de la banque.",
+      "description": "Vous coordonnez les équipes métier, IT et prestataires sur un portefeuille de 4 projets.",
+      "missions": [
+        "Cadrer les besoins avec les directions métier",
+        "Piloter le planning, le budget et les risques",
+        "Animer les comités de pilotage"
+      ],
+      "responsibilities": [
+        "Portefeuille de 4 projets, budget de 400 millions FCFA"
+      ],
+      "requiredSkills": [
+        "Gestion de projet",
+        "Agilité",
+        "Conduite du changement"
+      ],
+      "niceToHaveSkills": [
+        "Certification PMP ou Prince2",
+        "Anglais professionnel"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "Master (Bac+5)",
+      "experienceYears": 5,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        },
+        {
+          "name": "Anglais",
+          "level": "Professionnel"
+        }
+      ],
+      "salaryMin": 700000,
+      "salaryMax": 1000000,
+      "deadline": "2026-10-04",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-09-02",
+      "viewCount": 445
+    },
+    {
+      "id": "job_13",
+      "slug": "magasinier-sahel-agro",
+      "organizationId": "org_01",
+      "title": "Magasinier",
+      "opportunityType": "emploi",
+      "contractType": "cdd",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Bobo-Dioulasso",
+      "workMode": "presentiel",
+      "summary": "Réceptionner, stocker et préparer les commandes sur le site de conditionnement.",
+      "description": "CDD saisonnier de 8 mois, renouvelable selon la campagne.",
+      "missions": [
+        "Réceptionner les livraisons",
+        "Tenir les fiches de stock",
+        "Préparer les expéditions"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Gestion de stock",
+        "Rigueur"
+      ],
+      "niceToHaveSkills": [
+        "CACES",
+        "Excel"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "CAP / BEP",
+      "experienceYears": 1,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Scolaire"
+        }
+      ],
+      "salaryMin": 120000,
+      "salaryMax": 160000,
+      "deadline": "2026-09-28",
+      "requiredDocuments": [
+        "CV"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-08-30",
+      "viewCount": 521
+    },
+    {
+      "id": "job_14",
+      "slug": "formateur-bureautique-numerika",
+      "organizationId": "org_07",
+      "title": "Formateur bureautique",
+      "opportunityType": "emploi",
+      "contractType": "cdd",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "presentiel",
+      "summary": "Animer des sessions de formation bureautique pour adultes en reconversion.",
+      "description": "Vacations régulières, 20 heures par semaine.",
+      "missions": [
+        "Animer les sessions",
+        "Évaluer les acquis",
+        "Mettre à jour les supports"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Excel",
+        "Word",
+        "Pédagogie"
+      ],
+      "niceToHaveSkills": [
+        "Certification TOSA"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "BTS / DUT (Bac+2)",
+      "experienceYears": 2,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 180000,
+      "salaryMax": 250000,
+      "deadline": "2026-10-10",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-08-29",
+      "viewCount": 312
+    },
+    {
+      "id": "job_15",
+      "slug": "alternance-marketing-digital-faso",
+      "organizationId": "org_04",
+      "title": "Alternant marketing digital",
+      "opportunityType": "alternance",
+      "contractType": "contrat_apprentissage",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "hybride",
+      "summary": "Alternance de 12 mois sur la communication digitale de l'agence et de ses clients.",
+      "description": "Rythme de 3 jours en entreprise et 2 jours en formation.",
+      "missions": [
+        "Animer les réseaux sociaux",
+        "Produire des contenus",
+        "Suivre les indicateurs de campagne"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Réseaux sociaux",
+        "Rédaction web"
+      ],
+      "niceToHaveSkills": [
+        "Canva",
+        "Google Analytics"
+      ],
+      "blockingCriteria": [
+        "Être inscrit dans un cursus en alternance"
+      ],
+      "educationLevel": "BTS / DUT (Bac+2)",
+      "experienceYears": 0,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 90000,
+      "salaryMax": 130000,
+      "deadline": "2026-10-17",
+      "requiredDocuments": [
+        "CV",
+        "Contrat d'apprentissage"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-08-28",
+      "viewCount": 234
+    },
+    {
+      "id": "job_16",
+      "slug": "chauffeur-poids-lourd-translog",
+      "organizationId": "org_08",
+      "title": "Chauffeur poids lourd international",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "presentiel",
+      "summary": "Conduite sur le corridor Abidjan-Ouagadougou, rotations de 10 jours.",
+      "description": "Prime de mission, couverture santé familiale.",
+      "missions": [
+        "Conduire en sécurité",
+        "Veiller au chargement",
+        "Tenir les documents de transport"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Permis CE",
+        "Conduite longue distance"
+      ],
+      "niceToHaveSkills": [
+        "Mécanique de base",
+        "Anglais de base"
+      ],
+      "blockingCriteria": [
+        "Permis CE valide et carte de conducteur à jour"
+      ],
+      "educationLevel": "Sans diplôme",
+      "experienceYears": 3,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Scolaire"
+        }
+      ],
+      "salaryMin": 180000,
+      "salaryMax": 260000,
+      "deadline": "2026-10-08",
+      "requiredDocuments": [
+        "CV",
+        "Copie du permis CE",
+        "Casier judiciaire"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-08-26",
+      "viewCount": 689
+    },
+    {
+      "id": "job_17",
+      "slug": "data-analyst-brf",
+      "organizationId": "org_02",
+      "title": "Data analyst",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": "Pilotage",
+      "country": "Burkina Faso",
+      "city": "Ouagadougou",
+      "workMode": "hybride",
+      "summary": "Produire les analyses et tableaux de bord au service des directions métier.",
+      "description": "Environnement SQL, Power BI, Python.",
+      "missions": [
+        "Construire les tableaux de bord",
+        "Automatiser les extractions",
+        "Fiabiliser les données"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "SQL",
+        "Power BI",
+        "Analyse de données"
+      ],
+      "niceToHaveSkills": [
+        "Python",
+        "Statistiques",
+        "Anglais professionnel"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "Master (Bac+5)",
+      "experienceYears": 3,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 550000,
+      "salaryMax": 750000,
+      "deadline": "2026-10-01",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "publiee",
+      "publishedAt": "2026-08-31",
+      "viewCount": 398
+    },
+    {
+      "id": "job_18",
+      "slug": "secretaire-direction-sahel-agro",
+      "organizationId": "org_01",
+      "title": "Secrétaire de direction",
+      "opportunityType": "emploi",
+      "contractType": "cdi",
+      "department": null,
+      "country": "Burkina Faso",
+      "city": "Bobo-Dioulasso",
+      "workMode": "presentiel",
+      "summary": "Assister la direction générale dans l'organisation et le suivi administratif.",
+      "description": "Poste de confiance, discrétion exigée.",
+      "missions": [
+        "Gérer l'agenda et les déplacements",
+        "Rédiger les comptes rendus",
+        "Organiser les réunions"
+      ],
+      "responsibilities": [],
+      "requiredSkills": [
+        "Secrétariat",
+        "Word",
+        "Excel",
+        "Rédaction"
+      ],
+      "niceToHaveSkills": [
+        "Anglais de base"
+      ],
+      "blockingCriteria": [],
+      "educationLevel": "BTS / DUT (Bac+2)",
+      "experienceYears": 3,
+      "languages": [
+        {
+          "name": "Français",
+          "level": "Courant"
+        }
+      ],
+      "salaryMin": 200000,
+      "salaryMax": 275000,
+      "deadline": "2026-09-09",
+      "requiredDocuments": [
+        "CV",
+        "Lettre de motivation"
+      ],
+      "applicationChannel": "sira",
+      "applicationTarget": null,
+      "contact": null,
+      "visibility": "publique",
+      "origin": "native",
+      "sourceUrl": null,
+      "status": "expiree",
+      "publishedAt": "2026-08-03",
+      "viewCount": 731
+    }
+  ],
+  "candidateProfile": {
+    "id": "cnd_01",
+    "userId": "usr_cand_01",
+    "headline": "Gestionnaire logistique, 5 ans d'expérience en agro-industrie",
+    "country": "Burkina Faso",
+    "city": "Ouagadougou",
+    "searchZones": [
+      "Ouagadougou",
+      "Bobo-Dioulasso",
+      "Koudougou"
+    ],
+    "professionalSituation": "En poste, en recherche active",
+    "educationLevel": "Licence (Bac+3)",
+    "educations": [
+      {
+        "degree": "Licence professionnelle en logistique et transport",
+        "school": "Université Joseph Ki-Zerbo",
+        "year": "2020"
+      },
+      {
+        "degree": "BTS en gestion commerciale",
+        "school": "ISIG Ouagadougou",
+        "year": "2018"
+      }
+    ],
+    "domain": "Logistique & Transport",
+    "targetJobs": [
+      "Responsable logistique",
+      "Coordinateur supply chain",
+      "Gestionnaire de stock"
+    ],
+    "experienceYears": 5,
+    "experiences": [
+      {
+        "title": "Gestionnaire de stock",
+        "company": "Faso Distribution",
+        "startDate": "2021-03",
+        "endDate": "2026-08",
+        "description": "Gestion d'un entrepôt de 1 800 m², suivi des inventaires tournants, réduction de 22 % des ruptures sur deux ans."
+      },
+      {
+        "title": "Assistante logistique",
+        "company": "Coopérative agricole du Kadiogo",
+        "startDate": "2019-06",
+        "endDate": "2021-02",
+        "description": "Préparation des expéditions, saisie des mouvements de stock, appui aux inventaires."
+      }
+    ],
+    "hardSkills": [
+      {
+        "name": "Gestion de stock",
+        "level": "avance"
+      },
+      {
+        "name": "Excel avancé",
+        "level": "avance"
+      },
+      {
+        "name": "Planification",
+        "level": "intermediaire"
+      },
+      {
+        "name": "Inventaire tournant",
+        "level": "avance"
+      },
+      {
+        "name": "Négociation transporteurs",
+        "level": "intermediaire"
+      }
+    ],
+    "softSkills": [
+      {
+        "name": "Rigueur"
+      },
+      {
+        "name": "Sens de l'organisation"
+      },
+      {
+        "name": "Travail en équipe"
+      }
+    ],
+    "languages": [
+      {
+        "name": "Français",
+        "level": "Courant"
+      },
+      {
+        "name": "Mooré",
+        "level": "Langue maternelle"
+      },
+      {
+        "name": "Anglais",
+        "level": "Scolaire"
+      }
+    ],
+    "opportunityTypes": [
+      "emploi"
+    ],
+    "contractTypes": [
+      "cdi",
+      "cdd"
+    ],
+    "availability": "Sous 1 mois",
+    "salaryExpectation": 500000,
+    "geographicMobility": true,
+    "workModes": [
+      "presentiel",
+      "hybride"
+    ],
+    "profileVisibility": "complet"
+  }
+}

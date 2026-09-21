@@ -20,3 +20,6 @@ image.png
 # Système
 .DS_Store
 Thumbs.db
+
+# Client Prisma généré (npm run prepare:local le recrée)
+apps/api/src/generated/

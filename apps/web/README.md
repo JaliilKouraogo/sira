@@ -4,7 +4,7 @@ Plateforme panafricaine de mise en relation entre talents, recruteurs et organis
 
 **Démonstration en ligne : https://jaliilkouraogo.github.io/sira/**
 
-Ce dépôt contient le frontend web. Il n'est pas encore relié à une API : toutes les données sont des données de démonstration.
+Ce dossier contient le site web. L'API existe désormais (`apps/api`), mais le site n'y est pas encore relié : il affiche ses données de démonstration, que l'API charge à l'identique.
 
 ## Parcourir la démonstration
 
@@ -21,16 +21,16 @@ L'authentification n'est pas branchée : chaque espace s'ouvre directement par s
 
 ## Lancer le projet en local
 
-Prérequis : Node.js 20.9 ou plus récent.
+Prérequis : Node.js 20.9 ou plus récent. Le dépôt est un monorepo : l'installation se fait à la racine.
 
 ```bash
-npm install
-npm run dev
+npm install          # à la racine du dépôt
+npm run dev:web      # à la racine, ou « npm run dev » dans apps/web
 ```
 
 Le site est alors disponible sur http://localhost:3100.
 
-| Commande | Effet |
+| Commande (dans apps/web) | Effet |
 |---|---|
 | `npm run dev` | Serveur de développement avec rechargement à chaud |
 | `npm run build` | Construction de l'application Next.js |
@@ -59,7 +59,8 @@ src/
 ├── components/
 │   └── site/          Kit du site vitrine : blocs, cartes, animations, navigation
 ├── data/              Données de démonstration et couche d'accès
-└── lib/               Référentiel des énumérations, types, chemin de base
+└── lib/               Types, chemin de base ; enums.ts réexporte le référentiel
+                       partagé avec l'API (packages/shared)
 ```
 
 ## Assistant SIRA
