@@ -1,10 +1,16 @@
 # Construit l'export statique du site et le publie sur GitHub Pages.
 # Déclenché à chaque envoi sur la branche main, ou à la main depuis l'onglet Actions.
+# Le dépôt est un monorepo : seule l'application web est publiée ici.
 name: Déploiement GitHub Pages
 
 on:
   push:
     branches: [main]
+    paths:
+      - "apps/web/**"
+      - "packages/**"
+      - "package.json"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 permissions:
@@ -29,18 +35,18 @@ jobs:
 
       # npm install plutôt que npm ci : le verrou produit sous Windows omet des
       # dépendances optionnelles propres à Linux. Les versions restent figées
-      # dans package.json.
+      # dans les package.json.
       - name: Installer les dépendances
-        run: npm install --no-audit --no-fund
+        run: npm install --no-audit --no-fund --workspaces --include-workspace-root
 
       - name: Construire l'export statique
-        run: npm run build
+        run: npm run build --workspace @sira/web
         env:
           GITHUB_PAGES: "true"
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: apps/web/out
 
   deploy:
     needs: build

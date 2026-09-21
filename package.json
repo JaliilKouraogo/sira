@@ -1,27 +1,19 @@
 {
-  "name": "sira-web",
+  "name": "sira",
   "version": "0.1.0",
   "private": true,
-  "description": "SIRA — Le chemin vers l'opportunité. Frontend web (Next.js App Router).",
+  "description": "SIRA — Le chemin vers l'opportunité. Monorepo : site public, API et paquets partagés.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev -p 3100",
-    "build": "next build",
-    "start": "next start -p 3100",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "next": "16.3.5",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "4.3.3",
-    "@types/node": "22.20.2",
-    "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0",
-    "postcss": "8.5.28",
-    "tailwindcss": "4.3.3",
-    "typescript": "7.0.2"
+    "dev:web": "npm run dev --workspace @sira/web",
+    "dev:api": "npm run dev --workspace @sira/api",
+    "build:web": "npm run build --workspace @sira/web",
+    "build:api": "npm run build --workspace @sira/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
   },
   "engines": {
     "node": ">=20.9.0"

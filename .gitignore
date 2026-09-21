@@ -1,7 +1,22 @@
-node_modules
-.next
-out
-.env*
-!.env.example
+# Dépendances et artefacts de construction
+node_modules/
+.next/
+out/
+dist/
 *.tsbuildinfo
 next-env.d.ts
+
+# Secrets : jamais versionnés
+.env
+.env.*
+!.env.example
+
+# Sources de conception fournies par le client : gardées hors du dépôt public
+SIRA_Cahier_des_charges*.pdf
+PLAN_CONCEPTION_SIRA.md
+image.png
+*Color Palette*.png
+
+# Système
+.DS_Store
+Thumbs.db

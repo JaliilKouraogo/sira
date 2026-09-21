@@ -1,0 +1,29 @@
+{
+  "name": "@sira/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SIRA — Le chemin vers l'opportunité. Frontend web (Next.js App Router).",
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "next start -p 3100",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "22.20.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "postcss": "8.5.28",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
