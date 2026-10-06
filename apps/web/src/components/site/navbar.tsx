@@ -13,6 +13,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { InstallAppButton } from "@/components/install-app-button";
 import { SiraLogo } from "@/components/icons";
 import { cn } from "./kit";
 import { lockBodyScroll } from "./scroll-lock";
@@ -96,6 +97,7 @@ export function SiteNavbar() {
             ))}
           </ul>
           <div className="flex items-center gap-5">
+            <InstallAppButton variant="public" />
             <Link href="/connexion" className="site-link text-[0.9375rem] font-medium text-site-ink/80 hover:text-site-navy">
               Connexion
             </Link>
@@ -176,6 +178,7 @@ export function SiteNavbar() {
             ))}
           </ul>
           <div className="mt-10 flex flex-col gap-3">
+            <InstallAppButton variant="public" />
             <Link
               href="/inscription"
               className="inline-flex min-h-14 items-center justify-center rounded-[0.5rem] bg-site-navy px-6 text-[1.0625rem] font-semibold text-white"

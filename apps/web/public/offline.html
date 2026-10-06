@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#19196f">
+    <title>Hors connexion · Syvaa</title>
+    <style>
+      :root { color-scheme: light; font-family: system-ui, sans-serif; color: #17171c; background: #f7f7f9; }
+      body { min-height: 100vh; margin: 0; display: grid; place-items: center; }
+      main { width: min(28rem, calc(100% - 3rem)); border-top: 4px solid #19196f; padding: 1.5rem 0; }
+      h1 { margin: 0; font-size: 1.5rem; }
+      p { color: #5f606b; line-height: 1.6; }
+      button { min-height: 2.75rem; padding: 0 1rem; border: 0; border-radius: 4px; color: white; background: #19196f; font: inherit; font-weight: 600; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Vous êtes hors connexion</h1>
+      <p>Les espaces candidat, recruteur, formateur et administration nécessitent une connexion pour protéger et actualiser leurs données.</p>
+      <button type="button" onclick="location.reload()">Réessayer</button>
+    </main>
+  </body>
+</html>

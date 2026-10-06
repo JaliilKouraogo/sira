@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { themeInitScript } from "@/components/theme-toggle";
+import { ServiceWorkerRegistration } from "@/components/service-worker-registration";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,6 +11,15 @@ export const metadata: Metadata = {
   description:
     "Syvaa rapproche les talents et les recruteurs partout en Afrique : offres d'emploi et de stage, score de compatibilité expliqué, préparation de candidature assistée et formations pour combler vos lacunes.",
   applicationName: "Syvaa",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Syvaa",
+    statusBarStyle: "default",
+  },
+  icons: {
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
   keywords: ["emploi", "stage", "Afrique", "recrutement", "formation", "talents"],
   openGraph: {
     title: "Syvaa — Le chemin vers l'opportunité",
@@ -37,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-screen antialiased">
+        <ServiceWorkerRegistration />
         <a
           href="#contenu"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-[var(--color-primary)] focus:px-4 focus:py-2 focus:text-[var(--color-primary-fg)]"

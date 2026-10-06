@@ -24,6 +24,8 @@ docker compose --env-file deploy.env -f docker-compose.deploy.yml ps
 
 Les migrations s'exécutent à chaque nouveau déploiement avant le démarrage de l'API. Les données PostgreSQL persistent dans le volume `syvaa-deploy-pgdata`.
 
+Syvaa est installable comme application web depuis le navigateur. En local, `localhost` autorise l'installation ; sur le VPS, HTTPS est obligatoire. Le manifeste propose des raccourcis vers les espaces candidat, recruteur, formateur et administration. Hors connexion, seule la page d'information et les ressources statiques restent disponibles : aucune page de compte ni réponse API privée n'est mise en cache.
+
 Pour reconstruire après un changement de code :
 
 ```powershell

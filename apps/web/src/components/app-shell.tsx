@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
+import { InstallAppButton } from "@/components/install-app-button";
 import { IconClose, IconLogout, IconMenu, SiraLogo } from "./icons";
 import { ThemeToggle } from "./theme-toggle";
 import { ZoneMark, type ZoneKey } from "./illustrations";
@@ -192,6 +193,7 @@ export function AppShell({
             <ZoneMark zone={zone} size={13} />
             {zoneLabel}
           </span>
+          <InstallAppButton compact />
           <ThemeToggle className="inline-flex h-8 w-8 items-center justify-center rounded-md text-[var(--color-text-muted)] hover:bg-[var(--color-surface-2)]" />
         </header>
 
@@ -208,6 +210,7 @@ export function AppShell({
             >
               Voir le site public
             </Link>
+            <InstallAppButton />
             <ThemeToggle />
           </div>
         </div>
