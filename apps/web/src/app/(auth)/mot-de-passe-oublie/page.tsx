@@ -67,7 +67,7 @@ export default function MotDePasseOubliePage() {
           </span>
           <h1 className="text-[22px] font-semibold text-[var(--color-text)]">Instructions envoyées</h1>
           <p className="mx-auto mt-2 max-w-sm text-[13.5px] leading-relaxed text-[var(--color-text-muted)]">
-            Si un compte SIRA est associé à{" "}
+            Si un compte Syvaa est associé à{" "}
             <strong className="font-semibold text-[var(--color-text)]">{valeur}</strong>, vous recevez un lien
             de réinitialisation valable 30 minutes.
           </p>

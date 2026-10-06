@@ -48,7 +48,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Tableau de bord | Administration SIRA",
+  title: "Tableau de bord | Administration Syvaa",
 };
 
 export default function AdminDashboardPage() {

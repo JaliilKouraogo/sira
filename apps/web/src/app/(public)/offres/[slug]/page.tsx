@@ -203,7 +203,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
 
   const applyLabel =
     job.applicationChannel === "sira"
-      ? "Postuler sur SIRA"
+      ? "Postuler sur Syvaa"
       : job.applicationChannel === "email"
         ? "Postuler par e-mail"
         : "Postuler auprès du recruteur";
@@ -577,7 +577,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                     <p className="mt-4 flex items-start gap-2.5 border-t border-site-line pt-4 text-[0.875rem] leading-relaxed text-site-muted">
                       <IconShield size={18} strokeWidth={1.6} className="mt-px shrink-0 text-site-navy" />
                       <span>
-                        SIRA ne demande jamais d&apos;argent pour une candidature. Si un recruteur vous réclame des
+                        Syvaa ne demande jamais d&apos;argent pour une candidature. Si un recruteur vous réclame des
                         frais, signalez l&apos;offre.
                       </span>
                     </p>
@@ -587,7 +587,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                     <div className="mt-6 rounded-[1rem] border border-l-4 border-site-border bg-white p-5 md:p-6" role="note">
                       <p className="text-[1rem] font-semibold text-site-navy">{JOB_ORIGIN_LABEL[job.origin]}</p>
                       <p className="mt-2 text-[0.9375rem] leading-relaxed text-site-ink/80">
-                        Cette offre provient d&apos;une source externe relayée par SIRA. Vérifiez les informations
+                        Cette offre provient d&apos;une source externe relayée par Syvaa. Vérifiez les informations
                         auprès de l&apos;organisation avant de postuler.
                         {job.sourceUrl ? (
                           <>
@@ -703,7 +703,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                         </SiteButtonLink>
                       </div>
                       <p className="mt-3 text-[0.8125rem] leading-relaxed text-site-muted">
-                        SIRA adapte votre CV et rédige une première lettre, sans rien inventer. Rien n&apos;est envoyé
+                        Syvaa adapte votre CV et rédige une première lettre, sans rien inventer. Rien n&apos;est envoyé
                         sans votre validation.
                       </p>
                       <Link
@@ -759,7 +759,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
                           {verified ? (
                             <p className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-site-border px-3 py-1 text-[0.8125rem] font-semibold text-site-navy">
                               <SiteIcon.Check size={14} className="text-site-gold" />
-                              Recruteur vérifié par SIRA
+                              Recruteur vérifié par Syvaa
                             </p>
                           ) : null}
                           <p className="mt-4 text-[0.9375rem] leading-relaxed text-site-ink/80">
@@ -849,7 +849,7 @@ export default async function OffreDetailPage({ params }: { params: Promise<{ sl
             Une candidature <Hl>qui vous ressemble</Hl>
           </>
         }
-        text="Créez votre profil à partir de votre CV : SIRA estime votre compatibilité avec chaque offre, adapte votre dossier sans rien inventer et n'envoie rien sans votre validation."
+        text="Créez votre profil à partir de votre CV : Syvaa estime votre compatibilité avec chaque offre, adapte votre dossier sans rien inventer et n'envoie rien sans votre validation."
         action={{ href: "/inscription/candidat", label: "Créer mon profil" }}
         image={ctaImage}
       />

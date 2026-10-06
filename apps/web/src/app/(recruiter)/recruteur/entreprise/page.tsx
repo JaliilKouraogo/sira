@@ -88,7 +88,7 @@ export default function OrganizationPage() {
               {organization.tradeName ?? organization.legalName}
             </h2>
             <VerificationChip status={organization.verificationStatus} />
-            {organization.isPartner ? <Badge tone="primary">Partenaire SIRA</Badge> : null}
+            {organization.isPartner ? <Badge tone="primary">Partenaire Syvaa</Badge> : null}
           </div>
           <p className="mt-0.5 text-[13px] text-[var(--color-text-muted)]">
             {organization.legalName} · {ORGANIZATION_TYPE_LABEL[organization.type]} · {organization.city},{" "}
@@ -281,7 +281,7 @@ export default function OrganizationPage() {
                 <h2 id="verification" className="text-[14px] font-semibold text-[var(--color-text)]">
                   État de vérification
                 </h2>
-                <p className={SUB}>Contrôlé par la modération SIRA.</p>
+                <p className={SUB}>Contrôlé par la modération Syvaa.</p>
               </div>
               <span className="shrink-0 text-[var(--color-text-subtle)]" aria-hidden>
                 <IconShield size={18} />

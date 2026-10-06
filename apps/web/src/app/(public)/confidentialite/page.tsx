@@ -2,7 +2,7 @@
  * Politique de confidentialité : données collectées, finalités, durées de
  * conservation (section 10 du plan) et droits des personnes.
  *
- * Cadre panafricain : SIRA applique les lois de protection des données des
+ * Cadre panafricain : Syvaa applique les lois de protection des données des
  * pays où elle opère, dont la loi burkinabè, pays de son siège.
  */
 
@@ -14,7 +14,7 @@ import { LegalLayout, LegalTable, type LegalSection } from "@/components/site/le
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description:
-    "Données collectées par SIRA, finalités, durées de conservation, sous-traitants et exercice de vos droits d'accès, d'export et de suppression, partout en Afrique.",
+    "Données collectées par Syvaa, finalités, durées de conservation, sous-traitants et exercice de vos droits d'accès, d'export et de suppression, partout en Afrique.",
 };
 
 const SECTIONS: LegalSection[] = [
@@ -24,7 +24,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          SIRA est une plateforme panafricaine de mise en relation entre candidats, recruteurs et organismes de
+          Syvaa est une plateforme panafricaine de mise en relation entre candidats, recruteurs et organismes de
           formation, dont le siège est établi à Ouagadougou, Burkina Faso. Elle est responsable du traitement des
           données décrites ci-dessous, quel que soit le pays depuis lequel vous utilisez le service.
         </p>
@@ -178,7 +178,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          SIRA respecte les lois de protection des données à caractère personnel de chaque pays où elle opère : au
+          Syvaa respecte les lois de protection des données à caractère personnel de chaque pays où elle opère : au
           Burkina Faso, pays de son siège, la loi n° 010-2004/AN portant protection des données à caractère personnel et
           les décisions de la Commission de l&apos;informatique et des libertés (CIL) ; ailleurs, la loi nationale
           applicable et les décisions de l&apos;autorité de protection des données compétente. Où que vous résidiez,
@@ -223,7 +223,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          SIRA utilise des modèles d&apos;intelligence artificielle pour analyser un CV, calculer un score de
+          Syvaa utilise des modèles d&apos;intelligence artificielle pour analyser un CV, calculer un score de
           compatibilité, résumer un profil et rédiger des documents de candidature. Trois règles encadrent cet usage.
         </p>
         <ul>
@@ -280,7 +280,7 @@ export default function ConfidentialitePage() {
         </>
       }
       updatedAt="2026-09-01"
-      lead="Cette page décrit les données que SIRA collecte, pourquoi elle les traite, combien de temps elle les conserve, et comment exercer vos droits. Elle est écrite pour être lue, pas pour être subie."
+      lead="Cette page décrit les données que Syvaa collecte, pourquoi elle les traite, combien de temps elle les conserve, et comment exercer vos droits. Elle est écrite pour être lue, pas pour être subie."
       sections={SECTIONS}
       footer={{
         title: "Une question sur vos données ?",

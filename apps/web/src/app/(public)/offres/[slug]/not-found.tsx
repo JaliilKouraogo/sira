@@ -75,7 +75,7 @@ export default function OffreNotFound() {
             Ne manquez plus <Hl>la bonne offre</Hl>
           </>
         }
-        text="Créez votre profil : SIRA vous signale les offres compatibles dès leur publication, avec un score expliqué qui reste une estimation et ne garantit pas le recrutement."
+        text="Créez votre profil : Syvaa vous signale les offres compatibles dès leur publication, avec un score expliqué qui reste une estimation et ne garantit pas le recrutement."
         action={{ href: "/inscription/candidat", label: "Créer mon profil" }}
         image={IMG.reunionEquipe}
       />

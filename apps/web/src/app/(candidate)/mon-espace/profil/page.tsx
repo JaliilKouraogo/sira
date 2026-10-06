@@ -52,7 +52,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata = {
-  title: "Mon profil — SIRA",
+  title: "Mon profil — Syvaa",
 };
 
 const SKILL_LEVEL_LABEL: Record<"debutant" | "intermediaire" | "avance" | "expert", string> = {

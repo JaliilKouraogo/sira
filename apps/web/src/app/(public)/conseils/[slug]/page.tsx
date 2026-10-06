@@ -5,7 +5,7 @@
  *   1. en-tête clair centré (thème, date, temps de lecture, titre, chapô)
  *      et grande image dévoilée par un rideau, en parallaxe
  *   2. corps de l'article dans une colonne de lecture d'environ 68 signes,
- *      encadré « ce que fait SIRA » et encadré de partage
+ *      encadré « ce que fait Syvaa » et encadré de partage
  *   3. articles similaires
  *   4. appel à l'action
  *
@@ -106,8 +106,8 @@ export default async function ConseilPage({ params }: { params: Promise<{ slug: 
     datePublished: post.date,
     articleSection: post.category,
     inLanguage: "fr",
-    author: { "@type": "Organization", name: "SIRA" },
-    publisher: { "@type": "Organization", name: "SIRA" },
+    author: { "@type": "Organization", name: "Syvaa" },
+    publisher: { "@type": "Organization", name: "Syvaa" },
   };
 
   return (
@@ -164,7 +164,7 @@ export default async function ConseilPage({ params }: { params: Promise<{ slug: 
               <p className="mt-8 inline-flex items-center gap-3 text-left">
                 <InitialsAvatar initials="S" size={40} />
                 <span className="leading-tight">
-                  <span className="block text-[0.9375rem] font-semibold text-site-ink">Rédaction SIRA</span>
+                  <span className="block text-[0.9375rem] font-semibold text-site-ink">Rédaction Syvaa</span>
                   <span className="block text-[0.8125rem] text-site-muted">Conseils emploi et recrutement</span>
                 </span>
               </p>
@@ -206,7 +206,7 @@ export default async function ConseilPage({ params }: { params: Promise<{ slug: 
                 className="site-on-dark rounded-[1rem] border border-site-border bg-site-navy p-6 md:p-8"
               >
                 <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-site-gold">
-                  Ce que fait SIRA
+                  Ce que fait Syvaa
                 </p>
                 <h2 id="note-titre" className="site-display mt-3 text-[1.375rem] leading-tight md:text-[1.5rem]">
                   {note.title}

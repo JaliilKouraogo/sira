@@ -1,5 +1,5 @@
 /**
- * Données servant à l'assistant SIRA affiché en bulle sur le site public.
+ * Données servant à l'assistant Syvaa affiché en bulle sur le site public.
  *
  * Le module est lu côté serveur, au moment du rendu : il réduit les offres et
  * les formations à quelques champs, que le gabarit passe ensuite au composant

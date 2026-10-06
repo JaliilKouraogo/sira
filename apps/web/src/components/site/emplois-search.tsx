@@ -67,7 +67,7 @@ const VARIANTS: Record<JobSearchVariant, VariantConfig> = {
     count: (n) => (n === 0 ? "Aucune offre trouvée" : n === 1 ? "1 offre trouvée" : `${n} offres trouvées`),
     emptyTitle: "Aucune offre ne correspond à votre recherche",
     emptyText:
-      "Élargissez la zone géographique, retirez un filtre ou essayez un mot-clé plus général. Avec un profil SIRA, vous pouvez aussi être prévenu dès qu'une offre correspond.",
+      "Élargissez la zone géographique, retirez un filtre ou essayez un mot-clé plus général. Avec un profil Syvaa, vous pouvez aussi être prévenu dès qu'une offre correspond.",
     emptyAction: { href: "/inscription/candidat", label: "Créer mon profil" },
   },
   stages: {
@@ -580,7 +580,7 @@ export function JobSearchResultsView({ variant, values }: { variant: JobSearchVa
           automatiquement la liste.
         </p>
         <p>
-          Avec un profil SIRA, chaque offre affiche un score de compatibilité. Ce score est une estimation
+          Avec un profil Syvaa, chaque offre affiche un score de compatibilité. Ce score est une estimation
           algorithmique : il éclaire votre choix mais ne garantit pas le recrutement.
         </p>
       </div>

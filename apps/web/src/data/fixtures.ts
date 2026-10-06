@@ -1,5 +1,5 @@
 /**
- * Jeu de données de démonstration SIRA.
+ * Jeu de données de démonstration Syvaa.
  *
  * Le backend n'existe pas encore : ces fixtures tiennent lieu de source de
  * données pour que chaque écran soit réel et navigable. Elles sont typées
@@ -204,7 +204,7 @@ export const organizations: Organization[] = [
     city: "Ouagadougou",
     logoInitials: "UJ",
     logoColor: "#0019a8",
-    description: "Première université publique du Burkina Faso, partenaire institutionnel de SIRA.",
+    description: "Première université publique du Burkina Faso, partenaire institutionnel de Syvaa.",
     verificationStatus: "verifie",
     isPartner: true,
     createdAt: ago(600),

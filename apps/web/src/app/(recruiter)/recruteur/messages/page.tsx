@@ -1,7 +1,7 @@
 /**
  * Journal des contacts.
  *
- * Décision de conception assumée : pas de messagerie interne. SIRA relaie des
+ * Décision de conception assumée : pas de messagerie interne. Syvaa relaie des
  * e-mails et des messages WhatsApp vers les outils que candidats et recruteurs
  * utilisent déjà, et garde la trace de chaque envoi.
  *
@@ -56,7 +56,7 @@ export default function RecruiterMessagesPage() {
         <Alert tone="info" icon={<IconChat size={15} />} title="Pourquoi il n'y a pas de messagerie interne">
           <p>
             Une messagerie interne suppose que les deux parties reviennent s&apos;y connecter. Au Burkina Faso, la
-            conversation se tient sur WhatsApp et par e-mail, sur des téléphones à connexion intermittente. SIRA ne
+            conversation se tient sur WhatsApp et par e-mail, sur des téléphones à connexion intermittente. Syvaa ne
             cherche pas à déplacer cette conversation : elle envoie le message par le canal que le candidat utilise
             déjà, à partir d&apos;un modèle, et conserve la trace de l&apos;envoi.
           </p>
@@ -210,7 +210,7 @@ export default function RecruiterMessagesPage() {
                   Depuis la recherche de talents
                 </Link>
                 <span className="mt-0.5 block text-[12px] leading-relaxed text-[var(--color-text-muted)]">
-                  SIRA relaie le message sans vous communiquer les coordonnées, tant que le candidat n&apos;a pas
+                  Syvaa relaie le message sans vous communiquer les coordonnées, tant que le candidat n&apos;a pas
                   accepté la prise de contact.
                 </span>
               </li>

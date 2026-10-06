@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const job = getJobBySlug(id);
   return {
     title: job ? `Score de compatibilité — ${job.title}` : "Score de compatibilité",
-    description: "Le détail des six composantes qui forment votre score SIRA et les actions pour le faire progresser.",
+    description: "Le détail des six composantes qui forment votre score Syvaa et les actions pour le faire progresser.",
   };
 }
 
@@ -102,7 +102,7 @@ export default async function ScoreExplanationPage({ params }: { params: Promise
                 <div className="min-w-0">
                   <p className="text-[17px] font-semibold text-[var(--color-text)]">{scoreLabel(score.score)}</p>
                   <p className="mt-1.5 text-[13.5px] leading-relaxed text-[var(--color-text-muted)]">
-                    Ce score compare votre profil SIRA aux exigences de cette offre, composante par composante. Il ne
+                    Ce score compare votre profil Syvaa aux exigences de cette offre, composante par composante. Il ne
                     dit pas si vous devez postuler&nbsp;: il vous dit où vous êtes attendue et ce qui manque.
                   </p>
                   <p className="mt-2 text-[12.5px] text-[var(--color-text-subtle)]">

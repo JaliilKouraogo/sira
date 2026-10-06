@@ -46,7 +46,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Modération des offres | Administration SIRA",
+  title: "Modération des offres | Administration Syvaa",
 };
 
 /** Motifs de rejet normalisés : un rejet sans motif n'est pas notifiable au recruteur. */

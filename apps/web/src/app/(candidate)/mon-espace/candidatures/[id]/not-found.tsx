@@ -5,7 +5,7 @@ import { IllustrationNoApplications } from "@/components/illustrations";
 import { Breadcrumb, ButtonLink, EmptyState } from "@/components/ui";
 
 export const metadata = {
-  title: "Candidature introuvable — SIRA",
+  title: "Candidature introuvable — Syvaa",
 };
 
 export default function ApplicationNotFound() {

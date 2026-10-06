@@ -20,7 +20,7 @@ import { PageHeader, Stat } from "@/components/ui";
 import { getAllUsers } from "@/data/queries";
 
 export const metadata: Metadata = {
-  title: "Utilisateurs | Administration SIRA",
+  title: "Utilisateurs | Administration Syvaa",
 };
 
 export default function AdminUsersPage() {

@@ -1,7 +1,7 @@
 /**
  * Kit de composants du site public.
  *
- * Grammaire reprise du gabarit de référence, adaptée à la marque SIRA :
+ * Grammaire reprise du gabarit de référence, adaptée à la marque Syvaa :
  * - la page est un fond or sur lequel sont posés des blocs arrondis (24 px),
  *   séparés par un liseré de 6 px ;
  * - un bloc est soit marine (`tone="dark"`), soit clair (`tone="light"`) ;

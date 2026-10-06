@@ -1,5 +1,5 @@
 /**
- * Bibliothèque d'illustrations SIRA.
+ * Bibliothèque d'illustrations Syvaa.
  *
  * Parti pris : dessin au trait, géométrique, sans aplat ni dégradé, cohérent
  * avec la direction visuelle épurée. Chaque illustration « parle » : elle
@@ -12,7 +12,7 @@
  * - un seul élément porte l'accent, passé par la propriété `accent`, qui vaut
  *   par défaut la teinte de l'espace courant.
  *
- * Motif de marque : SIRA signifie « chemin » en dioula et en bambara. Le
+ * Motif de marque : Syvaa signifie « chemin » en dioula et en bambara. Le
  * chemin ascendant qui mène à un point est le fil conducteur de la série.
  */
 

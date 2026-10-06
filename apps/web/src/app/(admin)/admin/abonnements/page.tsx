@@ -33,7 +33,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Abonnements | Administration SIRA",
+  title: "Abonnements | Administration Syvaa",
 };
 
 /** Grille tarifaire mensuelle, en francs CFA. Enterprise se négocie. */

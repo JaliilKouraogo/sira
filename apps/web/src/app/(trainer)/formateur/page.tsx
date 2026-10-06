@@ -35,7 +35,7 @@ import { CAMPAIGN_STATUS_LABEL, TRAINING_ACCESS_LABEL, TRAINING_FORMAT_LABEL, fo
 import { getTrainerCampaigns, getTrainerOrganization, getTrainerTrainings } from "../trainer-context";
 
 export const metadata: Metadata = {
-  title: "Tableau de bord | Espace formateur SIRA",
+  title: "Tableau de bord | Espace formateur Syvaa",
 };
 
 export default function TrainerDashboardPage() {
@@ -50,7 +50,7 @@ export default function TrainerDashboardPage() {
     (c) => c.status === "en_moderation" || c.status === "en_attente_paiement",
   );
 
-  /** Chiffre d'affaires du catalogue, encaissé par l'organisme et non par SIRA. */
+  /** Chiffre d'affaires du catalogue, encaissé par l'organisme et non par Syvaa. */
   const revenue = trainings
     .filter((t) => t.access === "payant")
     .reduce((sum, t) => sum + (t.price ?? 0) * (t.seatsTaken ?? 0), 0);
@@ -139,7 +139,7 @@ export default function TrainerDashboardPage() {
         <Stat
           label="Revenus du catalogue"
           value={formatMoney(revenue)}
-          hint="Encaissés par vos soins, hors SIRA"
+          hint="Encaissés par vos soins, hors Syvaa"
         />
       </div>
 

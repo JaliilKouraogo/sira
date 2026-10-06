@@ -31,7 +31,7 @@ import { getPublishedJobs } from "@/data/queries";
 export const metadata: Metadata = {
   title: "Offres d'emploi en Afrique",
   description:
-    "Consultez les offres publiées sur SIRA, partout en Afrique, et filtrez-les par ville, domaine, contrat, mode de travail et expérience demandée.",
+    "Consultez les offres publiées sur Syvaa, partout en Afrique, et filtrez-les par ville, domaine, contrat, mode de travail et expérience demandée.",
 };
 
 export default function EmploisPage() {
@@ -46,7 +46,7 @@ export default function EmploisPage() {
             Trouvez l&apos;offre qui <Hl>vous fait avancer</Hl>
           </>
         }
-        text="Emplois, stages, alternances, missions et volontariats : toutes les opportunités publiées sur SIRA, des postes en CDI aux missions courtes. Affinez la recherche, puis ouvrez une offre pour comprendre ce qui est attendu."
+        text="Emplois, stages, alternances, missions et volontariats : toutes les opportunités publiées sur Syvaa, des postes en CDI aux missions courtes. Affinez la recherche, puis ouvrez une offre pour comprendre ce qui est attendu."
         image={IMG.villeSoir}
         search={
           <Suspense fallback={<JobSearchHeroView variant="emplois" />}>
@@ -84,7 +84,7 @@ export default function EmploisPage() {
             Une candidature prête, <Hl>validée par vous</Hl>
           </>
         }
-        text="À partir de votre profil, SIRA prépare un CV adapté et une lettre de motivation sans rien inventer. Vous relisez, vous modifiez, et rien n'est envoyé sans votre validation."
+        text="À partir de votre profil, Syvaa prépare un CV adapté et une lettre de motivation sans rien inventer. Vous relisez, vous modifiez, et rien n'est envoyé sans votre validation."
         action={{ href: "/inscription/candidat", label: "Créer mon profil" }}
         image={IMG.accompagnement}
       />

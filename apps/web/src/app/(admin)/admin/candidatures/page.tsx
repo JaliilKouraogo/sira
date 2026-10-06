@@ -36,7 +36,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Candidatures | Administration SIRA",
+  title: "Candidatures | Administration Syvaa",
 };
 
 export default function AdminApplicationsPage() {

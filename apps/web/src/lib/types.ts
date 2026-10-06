@@ -1,5 +1,5 @@
 /**
- * Types du domaine SIRA — section 7.3 du plan de conception.
+ * Types du domaine Syvaa — section 7.3 du plan de conception.
  * Les 15 entités de [T §14] plus les 13 entités ajoutées parce qu'un écran
  * ou une règle les exige.
  */

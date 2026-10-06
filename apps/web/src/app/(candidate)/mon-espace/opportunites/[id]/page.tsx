@@ -201,7 +201,7 @@ export default async function CandidateJobPage({ params }: { params: Promise<{ i
           <section className="border-b border-[var(--color-border)] pb-7 lg:pt-1">
             <h2 className="text-[14px] font-semibold text-[var(--color-text)]">Votre compatibilité</h2>
             <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">
-              Calculée à partir de votre profil SIRA.
+              Calculée à partir de votre profil Syvaa.
             </p>
             {score ? (
               <div className="mt-4">
@@ -535,7 +535,7 @@ export default async function CandidateJobPage({ params }: { params: Promise<{ i
 
           <div className="py-7">
             <Alert tone="neutral" title="Vigilance">
-              SIRA ne demande jamais d&apos;argent pour postuler. Si cette offre exige un paiement ou des données
+              Syvaa ne demande jamais d&apos;argent pour postuler. Si cette offre exige un paiement ou des données
               bancaires, signalez-la depuis le panneau d&apos;actions.
             </Alert>
           </div>

@@ -170,8 +170,8 @@ export function TrainingsCatalog() {
         </Alert>
       ) : null}
       {current === "partenaires" ? (
-        <Alert tone="info" title="Organismes partenaires de SIRA">
-          Ces formations sont dispensées par des organismes dont SIRA a vérifié les agréments.
+        <Alert tone="info" title="Organismes partenaires de Syvaa">
+          Ces formations sont dispensées par des organismes dont Syvaa a vérifié les agréments.
         </Alert>
       ) : null}
 
@@ -338,7 +338,7 @@ function TrainingCard({
             <h3 className="text-[14.5px] font-semibold leading-snug text-[var(--color-text)]">{training.title}</h3>
             <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">
               {organization?.tradeName ?? organization?.legalName ?? "Organisme"}
-              {organization?.isPartner ? " · partenaire SIRA" : ""}
+              {organization?.isPartner ? " · partenaire Syvaa" : ""}
             </p>
           </div>
           <span className="flex shrink-0 items-center gap-1.5">

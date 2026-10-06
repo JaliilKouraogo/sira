@@ -33,7 +33,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Paiements | Administration SIRA",
+  title: "Paiements | Administration Syvaa",
 };
 
 /** Causes d'échec observées sur le mobile money, et conduite à tenir. */

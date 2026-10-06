@@ -10,7 +10,7 @@ import { LegalLayout, LegalTable, type LegalSection } from "@/components/site/le
 export const metadata: Metadata = {
   title: "Politique de cookies",
   description:
-    "Les cookies et traceurs utilisés par SIRA, leur finalité, leur durée de vie et la façon de les refuser ou de les supprimer.",
+    "Les cookies et traceurs utilisés par Syvaa, leur finalité, leur durée de vie et la façon de les refuser ou de les supprimer.",
 };
 
 const SECTIONS: LegalSection[] = [
@@ -25,7 +25,7 @@ const SECTIONS: LegalSection[] = [
           d&apos;affichage. Nous employons aussi le stockage local du navigateur, qui joue un rôle comparable.
         </p>
         <p>
-          SIRA en utilise peu, et aucun à des fins publicitaires. Nous ne déposons aucun traceur de régie publicitaire,
+          Syvaa en utilise peu, et aucun à des fins publicitaires. Nous ne déposons aucun traceur de régie publicitaire,
           ni de réseau social.
         </p>
       </>
@@ -37,7 +37,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <LegalTable
-          caption="Cookies et traceurs déposés par SIRA"
+          caption="Cookies et traceurs déposés par Syvaa"
           head={["Nom", "Finalité", "Catégorie", "Durée"]}
           rows={[
             ["sira_session", "Maintenir votre session ouverte après connexion", "Nécessaire", "Session"],
@@ -117,7 +117,7 @@ const SECTIONS: LegalSection[] = [
     title: "Mise à jour",
     body: (
       <p>
-        Cette politique évolue avec le service et avec les règles applicables dans les pays où SIRA opère. Toute
+        Cette politique évolue avec le service et avec les règles applicables dans les pays où Syvaa opère. Toute
         nouvelle catégorie de traceur donnera lieu à une nouvelle demande de consentement. La date de dernière mise à
         jour figure en tête de page.
       </p>
@@ -135,7 +135,7 @@ export default function CookiesPage() {
         </>
       }
       updatedAt="2026-09-01"
-      lead="SIRA utilise un nombre réduit de cookies : maintenir votre session, retenir vos préférences, et mesurer l'audience du site de façon anonyme. Aucun cookie publicitaire."
+      lead="Syvaa utilise un nombre réduit de cookies : maintenir votre session, retenir vos préférences, et mesurer l'audience du site de façon anonyme. Aucun cookie publicitaire."
       sections={SECTIONS}
       footer={{
         title: "Pour aller plus loin",

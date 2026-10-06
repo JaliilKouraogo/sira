@@ -174,7 +174,7 @@ export function TrainingCard({ training, headingLevel = "h3" }: { training: Trai
             {organization?.tradeName ?? organization?.legalName ?? "Organisme de formation"}
           </span>
           {verified ? (
-            <span className="inline-flex shrink-0 text-site-navy" title="Organisme vérifié par SIRA">
+            <span className="inline-flex shrink-0 text-site-navy" title="Organisme vérifié par Syvaa">
               <SiteIcon.Check size={14} />
               <span className="sr-only">Organisme vérifié</span>
             </span>

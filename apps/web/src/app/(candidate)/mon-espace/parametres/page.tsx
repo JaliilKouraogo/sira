@@ -50,7 +50,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata = {
-  title: "Paramètres — SIRA",
+  title: "Paramètres — Syvaa",
 };
 
 /** Ce que chaque niveau de visibilité implique concrètement. */
@@ -58,7 +58,7 @@ const VISIBILITY_DETAIL: Record<(typeof PROFILE_VISIBILITIES)[number], string> =
   invisible:
     "Aucun recruteur ne peut vous trouver dans la recherche de talents. Vous continuez à postuler normalement : seules vos candidatures vous rendent visible.",
   anonyme:
-    "Les recruteurs voient votre expérience, vos compétences et votre domaine, sans votre nom, votre photo ni vos coordonnées. Ils peuvent vous contacter par un message relayé par SIRA.",
+    "Les recruteurs voient votre expérience, vos compétences et votre domaine, sans votre nom, votre photo ni vos coordonnées. Ils peuvent vous contacter par un message relayé par Syvaa.",
   complet:
     "Les recruteurs vérifiés voient votre profil complet et peuvent vous contacter directement. Vos coordonnées restent masquées tant que vous n'avez pas candidaté chez eux.",
 };
@@ -359,7 +359,7 @@ export default function SettingsPage() {
           <div className="mt-4 space-y-2">
             <Alert tone="info" title={CONSENT_BASIS_LABEL.service}>
               Les messages de service — sécurité du compte, avancement de vos candidatures — sont indispensables au
-              fonctionnement de SIRA. Ces cases sont cochées et verrouillées : les désactiver reviendrait à ne plus
+              fonctionnement de Syvaa. Ces cases sont cochées et verrouillées : les désactiver reviendrait à ne plus
               vous prévenir qu&apos;un recruteur a répondu.
             </Alert>
             <Alert tone="neutral" title={CONSENT_BASIS_LABEL.preference}>
@@ -389,7 +389,7 @@ export default function SettingsPage() {
         <SettingsSection
           id="marketing"
           title="Communications commerciales"
-          description="Offres promotionnelles de SIRA et de ses partenaires."
+          description="Offres promotionnelles de Syvaa et de ses partenaires."
           icon={<IconMegaphone size={18} />}
         >
           <div className="space-y-3">
@@ -411,7 +411,7 @@ export default function SettingsPage() {
           <Alert tone="success" title="Refuser ne vous retire rien">
             <strong>
               Refuser les communications commerciales n&apos;entraîne aucune restriction sur les fonctions
-              essentielles de SIRA.
+              essentielles de Syvaa.
             </strong>{" "}
             Vos recommandations d&apos;offres, vos scores, la préparation de vos candidatures, vos notifications de
             service et l&apos;ensemble de votre plan continuent de fonctionner à l&apos;identique. Ce choix est
@@ -475,7 +475,7 @@ export default function SettingsPage() {
                   </h3>
                   <p className="mt-1 text-[12.5px] leading-relaxed text-[var(--color-text-muted)]">
                     Un code à six chiffres vous est envoyé par SMS ou WhatsApp à chaque connexion depuis un nouvel
-                    appareil. Recommandé si vous consultez SIRA depuis un téléphone partagé.
+                    appareil. Recommandé si vous consultez Syvaa depuis un téléphone partagé.
                   </p>
                 </div>
                 <SimulatedActionBar

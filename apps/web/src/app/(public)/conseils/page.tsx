@@ -26,7 +26,7 @@ import { featuredPosts } from "@/data/site-conseils";
 export const metadata: Metadata = {
   title: "Conseils emploi et recrutement",
   description:
-    "CV, entretien, stage, recrutement et formation : des conseils concrets pour les candidats et les recruteurs partout en Afrique, par l'équipe SIRA.",
+    "CV, entretien, stage, recrutement et formation : des conseils concrets pour les candidats et les recruteurs partout en Afrique, par l'équipe Syvaa.",
 };
 
 export default function ConseilsPage() {
@@ -102,7 +102,7 @@ export default function ConseilsPage() {
               Ils ont mis ces conseils <Hl>en pratique</Hl>
             </Heading>
             <Lead align="center" tone="muted" className="mt-5">
-              Candidats, recruteurs et formateurs racontent comment SIRA a fait avancer leur recherche ou leur
+              Candidats, recruteurs et formateurs racontent comment Syvaa a fait avancer leur recherche ou leur
               recrutement.
             </Lead>
           </Reveal>

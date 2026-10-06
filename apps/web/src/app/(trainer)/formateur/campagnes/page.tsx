@@ -25,12 +25,12 @@ import { getTrainerCampaigns, getTrainerTrainings } from "../../trainer-context"
 import { CampaignComposer } from "./campaign-composer";
 
 export const metadata: Metadata = {
-  title: "Mes campagnes | Espace formateur SIRA",
+  title: "Mes campagnes | Espace formateur Syvaa",
 };
 
 const WORKFLOW = [
   { label: "Création", detail: "Vous rédigez le message, choisissez le ciblage et fixez le budget." },
-  { label: "Modération", detail: "SIRA contrôle le message et le ciblage. Un refus est motivé et sans frais." },
+  { label: "Modération", detail: "Syvaa contrôle le message et le ciblage. Un refus est motivé et sans frais." },
   { label: "Paiement", detail: "Le règlement n'est appelé qu'après validation, par mobile money ou virement." },
   { label: "Diffusion", detail: "La campagne part à la date prévue et s'arrête quand le budget est consommé." },
 ];
@@ -38,7 +38,7 @@ const WORKFLOW = [
 /** Ce qui vous attend, selon l'étape où se trouve la campagne. */
 const NEXT_STEP: Record<CampaignStatus, string> = {
   brouillon: "À compléter puis à déposer en modération.",
-  en_moderation: "En attente d'un contrôle par SIRA. Aucun frais à ce stade.",
+  en_moderation: "En attente d'un contrôle par Syvaa. Aucun frais à ce stade.",
   validee: "Validée : le paiement peut être réglé pour lancer la diffusion.",
   en_attente_paiement: "En attente de votre règlement. La diffusion démarre dès le paiement confirmé.",
   diffusion: "En diffusion. Le budget se consomme jusqu'à la date de fin.",

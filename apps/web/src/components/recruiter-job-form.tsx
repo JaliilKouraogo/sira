@@ -667,8 +667,8 @@ export function RecruiterJobForm({
                     htmlFor="job-target"
                     hint={
                       applicationChannel === "email"
-                        ? "SIRA relaie le dossier vers cette adresse et conserve la trace de l'envoi."
-                        : "Le candidat quitte SIRA : le suivi de sa candidature ne pourra pas être affiché."
+                        ? "Syvaa relaie le dossier vers cette adresse et conserve la trace de l'envoi."
+                        : "Le candidat quitte Syvaa : le suivi de sa candidature ne pourra pas être affiché."
                     }
                   >
                     <Input

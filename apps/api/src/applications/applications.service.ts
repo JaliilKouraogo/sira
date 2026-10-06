@@ -125,7 +125,7 @@ export class ApplicationsService {
 
   /**
    * Envoi effectif. RM-06 : il faut une candidature validée par le candidat.
-   * Sur SIRA, le dossier est déposé ; pour un canal externe ou un e-mail, la
+   * Sur Syvaa, le dossier est déposé ; pour un canal externe ou un e-mail, la
    * réponse indique où l'envoyer (l'envoi relayé arrivera avec le module
    * de notifications).
    */

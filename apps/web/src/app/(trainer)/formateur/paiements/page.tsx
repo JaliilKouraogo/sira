@@ -1,7 +1,7 @@
 /**
  * Espace formateur — paiements [T §3.4].
  *
- * Point de clarté indispensable : SIRA facture la promotion, pas
+ * Point de clarté indispensable : Syvaa facture la promotion, pas
  * l'inscription. Aucun reversement n'est dû, parce qu'aucune place
  * n'est vendue sur la plateforme.
  *
@@ -18,7 +18,7 @@ import { PAYMENT_PROVIDER_LABEL, PAYMENT_STATUS_LABEL, formatMoney } from "@/lib
 import { TRAINER_USER_ID, getTrainerTrainings } from "../../trainer-context";
 
 export const metadata: Metadata = {
-  title: "Paiements | Espace formateur SIRA",
+  title: "Paiements | Espace formateur Syvaa",
 };
 
 export default function TrainerPaymentsPage() {
@@ -40,11 +40,11 @@ export default function TrainerPaymentsPage() {
     <>
       <PageHeader
         title="Paiements"
-        description="Ce que vous réglez à SIRA pour vos campagnes de promotion, et ce que vous encaissez vous-même auprès de vos stagiaires."
+        description="Ce que vous réglez à Syvaa pour vos campagnes de promotion, et ce que vous encaissez vous-même auprès de vos stagiaires."
       />
 
-      <Alert tone="warning" title="SIRA est un annuaire et un service de promotion">
-        L&apos;inscription à une formation et son règlement se font chez vous, par vos moyens habituels. SIRA ne
+      <Alert tone="warning" title="Syvaa est un annuaire et un service de promotion">
+        L&apos;inscription à une formation et son règlement se font chez vous, par vos moyens habituels. Syvaa ne
         collecte aucun paiement de stagiaire, ne prend aucune commission sur vos ventes et ne vous doit donc aucun
         reversement. La place de marché avec reversements est une option ultérieure, non retenue à ce stade : elle
         supposerait un tiers de confiance, une garantie de remboursement et un traitement des litiges que la
@@ -52,19 +52,19 @@ export default function TrainerPaymentsPage() {
       </Alert>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Réglé à SIRA" value={formatMoney(spent)} hint="Campagnes de promotion" />
+        <Stat label="Réglé à Syvaa" value={formatMoney(spent)} hint="Campagnes de promotion" />
         <Stat label="Transactions" value={formatInt(payments.length)} hint={`${paid.length} réglées`} />
         <Stat label="Échecs de paiement" value={formatInt(failed.length)} />
         <Stat
           label="Encaissé par vos soins"
           value={formatMoney(catalogueRevenue)}
-          hint="Hors SIRA, d'après les places pourvues"
+          hint="Hors Syvaa, d'après les places pourvues"
         />
       </div>
 
       <section className="mt-10 border-t border-[var(--color-border)] pt-6">
         <div className="mb-4">
-          <h2 className="text-[17px] font-semibold text-[var(--color-text)]">Vos règlements à SIRA</h2>
+          <h2 className="text-[17px] font-semibold text-[var(--color-text)]">Vos règlements à Syvaa</h2>
           <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">
             Historique : campagnes de promotion et services facturés
           </p>
@@ -97,7 +97,7 @@ export default function TrainerPaymentsPage() {
 
       <section className="mt-10 grid gap-8 border-t border-[var(--color-border)] pt-6 lg:grid-cols-2">
         <div>
-          <h2 className="text-[14px] font-semibold text-[var(--color-text)]">Ce que SIRA facture</h2>
+          <h2 className="text-[14px] font-semibold text-[var(--color-text)]">Ce que Syvaa facture</h2>
           <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">Aujourd&apos;hui</p>
           <ul className="mt-3 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
             {[
@@ -115,7 +115,7 @@ export default function TrainerPaymentsPage() {
         </div>
 
         <div>
-          <h2 className="text-[14px] font-semibold text-[var(--color-text)]">Ce que SIRA ne facture pas</h2>
+          <h2 className="text-[14px] font-semibold text-[var(--color-text)]">Ce que Syvaa ne facture pas</h2>
           <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">Et ne collecte pas</p>
           <ul className="mt-3 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
             {[

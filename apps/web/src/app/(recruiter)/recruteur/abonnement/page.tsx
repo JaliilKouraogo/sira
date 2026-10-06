@@ -1,7 +1,7 @@
 /**
  * Abonnement recruteur.
  * Plan « Pro, offre de lancement » : gratuit pendant la phase de lancement,
- * avec une date d'expiration fixée par l'administration SIRA.
+ * avec une date d'expiration fixée par l'administration Syvaa.
  *
  * Direction épurée : aucun aplat coloré, aucun grand bloc de marque. Les
  * tableaux portent un en-tête discret et des lignes séparées par un filet.
@@ -93,7 +93,7 @@ export default function SubscriptionPage() {
               <Badge tone="success">{SUBSCRIPTION_STATUS_LABEL[subscription.status]}</Badge>
             </div>
             <p className="mt-2 max-w-2xl text-[13.5px] leading-relaxed text-[var(--color-text-muted)]">
-              Pendant la phase de lancement de SIRA, le plan Pro est offert aux organisations vérifiées. Vous
+              Pendant la phase de lancement de Syvaa, le plan Pro est offert aux organisations vérifiées. Vous
               disposez de toutes les fonctions Pro sans aucun paiement. La date d&apos;expiration de l&apos;offre
               est fixée par l&apos;administration de la plateforme et peut être prolongée : vous serez prévenu au
               moins trente jours avant l&apos;échéance.

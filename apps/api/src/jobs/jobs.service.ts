@@ -67,7 +67,7 @@ export class JobsService {
   /**
    * Détail d'une offre, par identifiant ou par adresse lisible. Une offre non
    * publiée n'existe, pour les autres, que pour les membres de son organisation
-   * et l'équipe SIRA.
+   * et l'équipe Syvaa.
    */
   async detail(idOrSlug: string, user?: AuthUser) {
     const job = await this.prisma.job.findFirst({

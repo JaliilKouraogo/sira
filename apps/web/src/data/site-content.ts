@@ -144,7 +144,7 @@ export function trainingImage(training: Pick<Training, "category">): SiteImage {
 export const HOME_PERKS: { title: string; text: string; image: SiteImage }[] = [
   {
     title: "Un score qui s'explique",
-    text: "Pour chaque offre, SIRA calcule une compatibilité sur 100 et détaille ce qui correspond, ce qui manque et comment progresser. Une estimation claire, jamais une promesse d'embauche.",
+    text: "Pour chaque offre, Syvaa calcule une compatibilité sur 100 et détaille ce qui correspond, ce qui manque et comment progresser. Une estimation claire, jamais une promesse d'embauche.",
     image: IMG.reunionEquipe,
   },
   {
@@ -159,7 +159,7 @@ export const HOME_PERKS: { title: string; text: string; image: SiteImage }[] = [
   },
   {
     title: "Des formations pour combler l'écart",
-    text: "Quand une compétence vous manque, SIRA vous oriente vers les formations qui la couvrent, proposées par des centres partenaires en présentiel ou en ligne.",
+    text: "Quand une compétence vous manque, Syvaa vous oriente vers les formations qui la couvrent, proposées par des centres partenaires en présentiel ou en ligne.",
     image: IMG.salleFormation,
   },
 ];
@@ -179,7 +179,7 @@ export const HOME_SERVICES: { title: string; text: string; href: string; icon: "
   },
   {
     title: "Pour les formateurs",
-    text: "Présentez vos formations aux candidats qui en ont réellement besoin : SIRA les recommande à partir des compétences qui manquent dans leurs profils.",
+    text: "Présentez vos formations aux candidats qui en ont réellement besoin : Syvaa les recommande à partir des compétences qui manquent dans leurs profils.",
     href: "/formations",
     icon: "trainer",
   },
@@ -217,7 +217,7 @@ export const TESTIMONIALS: Testimonial[] = [
     rating: 5,
   },
   {
-    quote: "Nous recevions deux cents CV par offre sans aucune structure. Avec SIRA, les candidatures arrivent complètes et le classement suggéré nous fait gagner des jours.",
+    quote: "Nous recevions deux cents CV par offre sans aucune structure. Avec Syvaa, les candidatures arrivent complètes et le classement suggéré nous fait gagner des jours.",
     name: "Issouf T.",
     role: "Responsable RH, secteur agroalimentaire",
     initials: "IT",
@@ -325,7 +325,7 @@ export const POSTS: Post[] = [
       {
         heading: "Adapter sans jamais inventer",
         paragraphs: [
-          "Adapter un CV à une offre, c'est mettre en avant ce qui est pertinent, pas ajouter ce que l'on n'a pas fait. C'est le principe appliqué par SIRA : l'assistant réorganise votre parcours réel, il n'ajoute jamais une expérience, un diplôme ou une compétence.",
+          "Adapter un CV à une offre, c'est mettre en avant ce qui est pertinent, pas ajouter ce que l'on n'a pas fait. C'est le principe appliqué par Syvaa : l'assistant réorganise votre parcours réel, il n'ajoute jamais une expérience, un diplôme ou une compétence.",
         ],
       },
     ],
@@ -414,7 +414,7 @@ export const POSTS: Post[] = [
       {
         heading: "Où chercher",
         list: [
-          "Les offres de stage publiées par les entreprises vérifiées sur SIRA",
+          "Les offres de stage publiées par les entreprises vérifiées sur Syvaa",
           "Le service des relations entreprises de votre université ou de votre école",
           "Les ONG et institutions, qui recrutent régulièrement des stagiaires",
         ],

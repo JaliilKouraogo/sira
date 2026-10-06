@@ -27,7 +27,7 @@ import { getCampaigns, getOrganization, getTrainingById } from "@/data/queries";
 import { CAMPAIGN_STATUSES, CAMPAIGN_STATUS_LABEL, formatMoney } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Campagnes | Administration SIRA",
+  title: "Campagnes | Administration Syvaa",
 };
 
 const WORKFLOW = [

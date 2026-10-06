@@ -36,7 +36,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "IA et matching | Administration SIRA",
+  title: "IA et matching | Administration Syvaa",
 };
 
 /** Affectation des modèles par tâche — section 9 du plan. */

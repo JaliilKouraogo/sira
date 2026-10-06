@@ -90,13 +90,13 @@ export function applicationBucket(application: Application): ApplicationBucket {
 export function channelExplanation(channel: ApplicationChannel, target?: string): string {
   switch (channel) {
     case "sira":
-      return "Votre dossier est déposé directement sur SIRA. Le recruteur y accède depuis son espace, et l'avancement vous est remonté automatiquement.";
+      return "Votre dossier est déposé directement sur Syvaa. Le recruteur y accède depuis son espace, et l'avancement vous est remonté automatiquement.";
     case "email":
-      return `Après votre validation, SIRA envoie l'e-mail de candidature${
+      return `Après votre validation, Syvaa envoie l'e-mail de candidature${
         target ? ` à ${target}` : ""
       } en votre nom. Rien n'est expédié tant que vous n'avez pas relu et validé le message.`;
     case "externe":
-      return `SIRA ne peut pas transmettre cette candidature à votre place${
+      return `Syvaa ne peut pas transmettre cette candidature à votre place${
         target ? ` : ${target.toLowerCase()}` : ""
       }. Téléchargez votre dossier, envoyez-le par le canal indiqué, puis marquez la candidature comme envoyée pour garder le suivi.`;
   }
@@ -126,7 +126,7 @@ export function NotificationChannelIcon({ channel, size = 14 }: { channel: Notif
 export const ACTOR_LABEL: Record<ApplicationEvent["actor"], string> = {
   candidat: "Vous",
   recruteur: "Recruteur",
-  systeme: "SIRA",
+  systeme: "Syvaa",
 };
 
 const ACTOR_DOT: Record<ApplicationEvent["actor"], string> = {

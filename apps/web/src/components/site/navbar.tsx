@@ -73,7 +73,7 @@ export function SiteNavbar() {
       )}
     >
       <div className="relative flex min-h-16 items-center justify-between rounded-[1.5rem] border border-site-border bg-site-light px-6 text-site-ink md:min-h-[4.5rem] md:px-12">
-        <Link href="/" aria-label="SIRA, retour à l'accueil" className="shrink-0">
+        <Link href="/" aria-label="Syvaa, retour à l'accueil" className="shrink-0">
           <SiraLogo size={30} />
         </Link>
 

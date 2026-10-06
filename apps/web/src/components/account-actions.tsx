@@ -14,7 +14,7 @@ import { Alert, Button, cx, type Tone } from "./ui";
 
 export interface SimulatedAction {
   label: string;
-  /** Message affiché après le clic : ce que SIRA ferait vraiment. */
+  /** Message affiché après le clic : ce que Syvaa ferait vraiment. */
   message: string;
   variant?: "primary" | "accent" | "outline" | "ghost" | "danger";
   size?: "sm" | "md" | "lg";

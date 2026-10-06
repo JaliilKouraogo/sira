@@ -1,4 +1,4 @@
-# SIRA — Le chemin vers l'opportunité
+# Syvaa — Le chemin vers l'opportunité
 
 Plateforme de mise en relation entre talents, recruteurs et organismes de formation, lancée au Burkina Faso.
 
@@ -24,6 +24,18 @@ npm run dev:web          # site sur http://localhost:3100
 ```
 
 Pour l'API, voir [apps/api/README.md](apps/api/README.md) : base de données, variables d'environnement et données de démonstration.
+
+### Déploiement Docker (web + API + PostgreSQL)
+
+Un Compose de production locale et de préparation VPS est disponible dans [DEPLOYMENT.md](DEPLOYMENT.md). Il construit les images du web et de l'API, attend PostgreSQL, applique les migrations Prisma puis démarre les services.
+
+```powershell
+Copy-Item deploy.env.example deploy.env
+# Renseigner POSTGRES_PASSWORD, JWT_ACCESS_SECRET, WEB_ORIGIN et NEXT_PUBLIC_API_URL dans deploy.env
+docker compose --env-file deploy.env -f docker-compose.deploy.yml up --build -d
+```
+
+La stack de développement existante (`docker compose up -d`) reste inchangée et continue de ne démarrer que PostgreSQL.
 
 | Commande (à la racine) | Effet |
 |---|---|

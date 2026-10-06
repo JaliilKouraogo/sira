@@ -44,7 +44,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <Backdrop />
         <Link href="/" className="inline-flex items-center gap-2.5 self-start rounded-md">
           <SiraLogo size={30} withText={false} />
-          <span className="text-[17px] font-semibold tracking-tight text-[var(--color-text)]">SIRA</span>
+          <span className="text-[17px] font-semibold tracking-tight text-[var(--color-text)]">Syvaa</span>
         </Link>
 
         <div className="max-w-sm">
@@ -81,7 +81,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center justify-between gap-3 border-b border-[var(--color-border)] px-4 py-3.5 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">
-            <Link href="/" className="rounded-md lg:hidden" aria-label="Accueil SIRA">
+            <Link href="/" className="rounded-md lg:hidden" aria-label="Accueil Syvaa">
               <SiraLogo size={26} />
             </Link>
             <Link

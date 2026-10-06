@@ -314,7 +314,7 @@ export default function InscriptionRecruteurPage() {
                     value={nomLegal}
                     onChange={(e) => setNomLegal(e.target.value)}
                     autoComplete="organization"
-                    placeholder="SIRA Technologies SARL"
+                    placeholder="Syvaa Technologies SARL"
                     aria-invalid={!!errors.nomLegal || undefined}
                     aria-describedby={describe("nomLegal")}
                   />
@@ -328,7 +328,7 @@ export default function InscriptionRecruteurPage() {
                     id="nom-commercial"
                     value={nomCommercial}
                     onChange={(e) => setNomCommercial(e.target.value)}
-                    placeholder="SIRA"
+                    placeholder="Syvaa"
                   />
                 </AuthField>
               </div>

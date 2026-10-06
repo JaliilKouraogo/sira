@@ -1,7 +1,7 @@
 /**
  * Back-office — catalogue des formations [T §21.3].
  *
- * SIRA référence et promeut des formations ; elle ne les dispense pas et
+ * Syvaa référence et promeut des formations ; elle ne les dispense pas et
  * n'encaisse pas l'inscription. La modération porte donc sur l'exactitude de
  * la fiche et sur l'organisme, pas sur la qualité pédagogique.
  *
@@ -35,7 +35,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Formations | Administration SIRA",
+  title: "Formations | Administration Syvaa",
 };
 
 export default function AdminTrainingsPage() {
@@ -63,10 +63,10 @@ export default function AdminTrainingsPage() {
     <>
       <PageHeader
         title="Formations"
-        description="Catalogue référencé sur SIRA. L'administration contrôle la fiche, l'organisme et la cohérence du tarif annoncé."
+        description="Catalogue référencé sur Syvaa. L'administration contrôle la fiche, l'organisme et la cohérence du tarif annoncé."
       />
 
-      <Alert tone="info" title="SIRA reste un annuaire de formations">
+      <Alert tone="info" title="Syvaa reste un annuaire de formations">
         L&apos;inscription et le règlement se font chez l&apos;organisme. Une fiche doit donc porter un contact ou un
         lien d&apos;inscription valide : c&apos;est le premier point de contrôle, avant même le contenu pédagogique.
       </Alert>

@@ -20,7 +20,7 @@ import { TabbedListSkeleton } from "../list-skeleton";
 import { TrainingsCatalog } from "./trainings-client";
 
 export const metadata = {
-  title: "Formations — SIRA",
+  title: "Formations — Syvaa",
 };
 
 export default function TrainingsPage() {

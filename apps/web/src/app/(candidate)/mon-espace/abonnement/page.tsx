@@ -5,7 +5,7 @@
  * renouvellement, moyen de paiement, historique et comparatif.
  *
  * Point de modèle économique rappelé à l'écran : le paiement se fait par
- * Mobile Money, en prépayé, avec rappel avant échéance. SIRA ne détient aucun
+ * Mobile Money, en prépayé, avec rappel avant échéance. Syvaa ne détient aucun
  * mandat de prélèvement automatique.
  */
 
@@ -40,7 +40,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata = {
-  title: "Mon abonnement — SIRA",
+  title: "Mon abonnement — Syvaa",
 };
 
 const PREMIUM_PRICE = 5000;
@@ -291,7 +291,7 @@ export default function SubscriptionPage() {
           {/* ---------------- Historique ---------------- */}
           <section className="border-t border-[var(--color-border)] py-7">
             <h2 className="text-[17px] font-semibold text-[var(--color-text)]">Historique de paiement</h2>
-            <p className="mb-4 mt-1 text-[12.5px] text-[var(--color-text-muted)]">Vos transactions liées à SIRA.</p>
+            <p className="mb-4 mt-1 text-[12.5px] text-[var(--color-text-muted)]">Vos transactions liées à Syvaa.</p>
             <div>
               {payments.length === 0 ? (
                 <EmptyState
@@ -372,12 +372,12 @@ export default function SubscriptionPage() {
                 L&apos;abonnement se règle par <strong className="font-semibold text-[var(--color-text)]">Mobile
                 Money</strong>, Orange Money ou Moov Money, en{" "}
                 <strong className="font-semibold text-[var(--color-text)]">prépayé</strong> : vous payez 30 jours
-                d&apos;avance. Trois jours avant l&apos;échéance, SIRA vous envoie un rappel et vous décidez de
+                d&apos;avance. Trois jours avant l&apos;échéance, Syvaa vous envoie un rappel et vous décidez de
                 renouveler ou non.
               </p>
 
               <Alert tone="success" title="Aucun prélèvement automatique">
-                SIRA ne conserve aucun mandat de prélèvement et ne peut pas débiter votre compte Mobile Money sans une
+                Syvaa ne conserve aucun mandat de prélèvement et ne peut pas débiter votre compte Mobile Money sans une
                 validation de votre part sur votre téléphone. Si vous ne renouvelez pas, votre compte repasse
                 simplement en plan Gratuit.
               </Alert>

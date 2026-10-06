@@ -48,7 +48,7 @@ import { ORGANIZATION_CAPABILITIES, ORGANIZATION_TYPE_LABEL, ORGANIZATION_TYPES,
 export const metadata: Metadata = {
   title: "Espace recruteurs",
   description:
-    "Publiez vos offres d'emploi et de stage partout en Afrique, recevez les candidatures au même endroit et laissez SIRA vous proposer un classement des profils. Gratuit pendant la phase de lancement.",
+    "Publiez vos offres d'emploi et de stage partout en Afrique, recevez les candidatures au même endroit et laissez Syvaa vous proposer un classement des profils. Gratuit pendant la phase de lancement.",
 };
 
 /** Ce qu'un type d'organisation peut publier, en toutes lettres. */
@@ -84,7 +84,7 @@ export default function RecruteursPage() {
                 Recrutez les bons talents, <Hl>partout en Afrique</Hl>
               </Heading>
               <Lead className="mt-6 text-white/90">
-                Publiez votre offre, recevez des candidatures complètes et laissez SIRA vous proposer un ordre de lecture
+                Publiez votre offre, recevez des candidatures complètes et laissez Syvaa vous proposer un ordre de lecture
                 argumenté, sans trier deux cents CV à la main. La décision de recruter reste entièrement la vôtre.
               </Lead>
               <div className="mt-9 flex flex-wrap gap-3">
@@ -273,7 +273,7 @@ export default function RecruteursPage() {
                     Pièces attendues selon votre type d&apos;organisation
                   </h3>
                   <p className="mt-2 text-[0.875rem] text-site-muted">
-                    Elles ne sont jamais publiques : seuls les administrateurs SIRA y accèdent.
+                    Elles ne sont jamais publiques : seuls les administrateurs Syvaa y accèdent.
                   </p>
 
                   {/* Bureau et tablette : tableau. */}
@@ -471,7 +471,7 @@ export default function RecruteursPage() {
               Ce qu&apos;en disent <Hl>ceux qui l&apos;utilisent</Hl>
             </Heading>
             <Lead align="center" tone="muted" className="mt-5">
-              Recruteurs en tête, mais aussi candidats et formateurs : ils racontent ce que SIRA a changé dans leur
+              Recruteurs en tête, mais aussi candidats et formateurs : ils racontent ce que Syvaa a changé dans leur
               recrutement ou leur recherche.
             </Lead>
           </Reveal>

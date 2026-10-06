@@ -39,7 +39,7 @@ import {
 import { getTrainerTrainings } from "../../trainer-context";
 
 export const metadata: Metadata = {
-  title: "Mes formations | Espace formateur SIRA",
+  title: "Mes formations | Espace formateur Syvaa",
 };
 
 export default function TrainerTrainingsPage() {
@@ -66,7 +66,7 @@ export default function TrainerTrainingsPage() {
     <>
       <PageHeader
         title="Mes formations"
-        description="Votre catalogue tel qu'il apparaît dans l'annuaire public de SIRA. Une fiche complète et datée remonte mieux et rassure le candidat."
+        description="Votre catalogue tel qu'il apparaît dans l'annuaire public de Syvaa. Une fiche complète et datée remonte mieux et rassure le candidat."
         action={
           <ButtonLink href="/formateur/formations/nouvelle">
             <IconPlus size={16} />
@@ -90,8 +90,8 @@ export default function TrainerTrainingsPage() {
         <Stat label="Note moyenne" value={averageRating.toFixed(1)} hint="Sur 5" />
       </div>
 
-      <Alert tone="info" title="Ce que SIRA fait, et ne fait pas">
-        SIRA référence votre formation, la recommande aux candidats dont le profil présente la lacune correspondante,
+      <Alert tone="info" title="Ce que Syvaa fait, et ne fait pas">
+        Syvaa référence votre formation, la recommande aux candidats dont le profil présente la lacune correspondante,
         et vous apporte des contacts. L&apos;inscription et le règlement se font chez vous : aucune place n&apos;est
         vendue sur la plateforme.
       </Alert>

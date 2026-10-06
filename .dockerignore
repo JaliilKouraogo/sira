@@ -1,0 +1,16 @@
+.git
+**/node_modules
+**/.next
+**/out
+**/dist
+**/.env
+**/.env.*
+!**/.env.example
+deploy.env
+**/*.tsbuildinfo
+**/coverage
+**/test-results
+**/playwright-report
+SIRA_Cahier_des_charges*.pdf
+PLAN_CONCEPTION_SIRA.md
+/*.png

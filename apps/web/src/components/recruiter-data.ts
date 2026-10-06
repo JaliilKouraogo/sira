@@ -1158,21 +1158,21 @@ export const VERIFICATION_DOCUMENTS: VerificationDocument[] = [
     fileName: "RCCM_Sahel_Agro.pdf",
     submittedAt: dAgo(380),
     status: "valide",
-    reviewedBy: "Modération SIRA",
+    reviewedBy: "Modération Syvaa",
   },
   {
     label: "Identifiant financier unique (IFU)",
     fileName: "IFU_Sahel_Agro.pdf",
     submittedAt: dAgo(380),
     status: "valide",
-    reviewedBy: "Modération SIRA",
+    reviewedBy: "Modération Syvaa",
   },
   {
     label: "Pièce d'identité du responsable",
     fileName: "CNIB_I_Compaore.pdf",
     submittedAt: dAgo(378),
     status: "valide",
-    reviewedBy: "Modération SIRA",
+    reviewedBy: "Modération Syvaa",
   },
   {
     label: "Attestation de situation fiscale 2026",
@@ -1203,7 +1203,7 @@ export const VERIFICATION_LEVELS = [
     title: "Vérifié",
     rule: "Publication immédiate, badge vérifié, modération a posteriori.",
     detail:
-      "Justificatifs légaux contrôlés par la modération SIRA. Les offres sont en ligne dès la publication et restent soumises au contrôle a posteriori et au signalement.",
+      "Justificatifs légaux contrôlés par la modération Syvaa. Les offres sont en ligne dès la publication et restent soumises au contrôle a posteriori et au signalement.",
   },
 ];
 
@@ -1213,7 +1213,7 @@ export const VERIFICATION_LEVELS = [
 
 /**
  * Plan Pro en offre de lancement : gratuit pendant la phase de lancement,
- * avec une date d'expiration pilotée par l'administration SIRA.
+ * avec une date d'expiration pilotée par l'administration Syvaa.
  */
 export const RECRUITER_SUBSCRIPTION: Subscription = {
   id: "sub_rec_01",
@@ -1526,7 +1526,7 @@ export function getRecruiterAlerts(): RecruiterAlert[] {
     alerts.push({
       tone: "accent",
       title: "Un justificatif est en cours de contrôle",
-      body: `${pendingDoc.label} déposée, en attente de la modération SIRA. Votre badge vérifié reste actif.`,
+      body: `${pendingDoc.label} déposée, en attente de la modération Syvaa. Votre badge vérifié reste actif.`,
       href: "/recruteur/entreprise",
       linkLabel: "Voir le dossier",
     });

@@ -60,12 +60,12 @@ export function AppShell({
   const sidebar = (
     <div className="flex h-full flex-col">
       <div className="flex h-14 shrink-0 items-center gap-2.5 border-b border-[var(--color-border)] px-4">
-        <Link href="/" aria-label="SIRA, accueil">
+        <Link href="/" aria-label="Syvaa, accueil">
           <SiraLogo size={22} withText={false} />
         </Link>
         <div className="min-w-0">
           <Link href={zoneHref} className="block truncate text-[13px] font-semibold text-[var(--color-text)]">
-            SIRA
+            Syvaa
           </Link>
           <p className="flex items-center gap-1 truncate text-[11px] leading-tight text-[var(--color-text-subtle)]">
             <ZoneMark zone={zone} size={12} />

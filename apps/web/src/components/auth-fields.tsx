@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Briques de formulaire propres au parcours d'authentification SIRA.
+ * Briques de formulaire propres au parcours d'authentification Syvaa.
  * Elles s'appuient sur les primitives partagées de `@/components/ui` et
  * n'introduisent aucune dépendance : l'état est géré avec `useState`.
  *

@@ -165,7 +165,7 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
                 : `Il reste ${remaining} jour${remaining > 1 ? "s" : ""} avant la clôture automatique.`}
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
-              <Badge tone="neutral">Origine : publiée sur SIRA</Badge>
+              <Badge tone="neutral">Origine : publiée sur Syvaa</Badge>
               <Badge tone="neutral">{job.requiredDocuments.length} pièce(s) demandée(s)</Badge>
             </div>
           </section>

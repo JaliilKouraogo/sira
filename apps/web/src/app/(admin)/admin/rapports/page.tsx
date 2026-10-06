@@ -27,7 +27,7 @@ import {
 import { formatMoney } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Rapports | Administration SIRA",
+  title: "Rapports | Administration Syvaa",
 };
 
 /** Hypothèse de coût unitaire WhatsApp, en francs CFA par message de modèle. */
@@ -264,7 +264,7 @@ export default function AdminReportsPage() {
     <>
       <PageHeader
         title="Rapports"
-        description="Les indicateurs de pilotage de SIRA, avec pour chacun sa définition, sa formule et sa source. Ce qui n'est pas mesurable aujourd'hui est signalé comme non instrumenté."
+        description="Les indicateurs de pilotage de Syvaa, avec pour chacun sa définition, sa formule et sa source. Ce qui n'est pas mesurable aujourd'hui est signalé comme non instrumenté."
       />
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

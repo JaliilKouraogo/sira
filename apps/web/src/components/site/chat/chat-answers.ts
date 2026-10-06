@@ -1,5 +1,5 @@
 /**
- * Moteur de réponses de l'assistant SIRA.
+ * Moteur de réponses de l'assistant Syvaa.
  *
  * Il n'y a ici aucune intelligence artificielle : chaque réponse est écrite à
  * l'avance et choisie par mots-clés. Les seules données citées sont les offres
@@ -10,7 +10,7 @@
  *
  * Les règles de la plateforme rappelées dans les réponses sont celles du
  * cahier des charges : le score est une estimation, rien n'est envoyé sans la
- * validation du candidat, SIRA ne demande jamais de frais pour postuler et
+ * validation du candidat, Syvaa ne demande jamais de frais pour postuler et
  * l'inscription à une formation se fait chez l'organisme.
  */
 
@@ -166,7 +166,7 @@ export const STARTER_CHIPS = [
 export function openingAnswer(data: ChatData): ChatAnswer {
   return {
     text: [
-      "Bonjour, je suis l'assistant SIRA.",
+      "Bonjour, je suis l'assistant Syvaa.",
       `Je réponds à partir de réponses préparées et des ${data.jobCount} offres publiées sur la plateforme : je ne suis pas encore relié à une intelligence artificielle. Pour une demande particulière, l'équipe prend le relais.`,
     ],
     chips: STARTER_CHIPS,
@@ -266,7 +266,7 @@ function trainingsAnswer(input: string, data: ChatData): ChatAnswer {
     .map((r) => r.training);
 
   const rule =
-    "SIRA référence les formations : l'inscription et le paiement se font directement auprès de l'organisme qui les dispense.";
+    "Syvaa référence les formations : l'inscription et le paiement se font directement auprès de l'organisme qui les dispense.";
 
   if (ranked.length > 0) {
     return {
@@ -344,7 +344,7 @@ const RECRUITER_ANSWER: ChatAnswer = {
 
 const VERIFICATION_ANSWER: ChatAnswer = {
   text: [
-    "Une organisation dépose ses justificatifs, qui restent confidentiels : seuls les administrateurs SIRA y accèdent.",
+    "Une organisation dépose ses justificatifs, qui restent confidentiels : seuls les administrateurs Syvaa y accèdent.",
     "Le niveau obtenu détermine si les offres sont publiées tout de suite ou après contrôle. Les organisations vérifiées portent un badge sur leurs offres.",
   ],
   links: [{ label: "Les niveaux de vérification", href: "/recruteurs#verification" }],
@@ -387,7 +387,7 @@ const DELETE_ACCOUNT_ANSWER: ChatAnswer = {
 const TRAINER_ANSWER: ChatAnswer = {
   text: [
     "Les organismes de formation ont leur propre espace : ils référencent leurs formations, suivent les inscriptions et voient les compétences les plus demandées.",
-    "SIRA recommande ensuite ces formations aux candidats à qui il manque justement ces compétences. L'inscription et le paiement se font chez l'organisme.",
+    "Syvaa recommande ensuite ces formations aux candidats à qui il manque justement ces compétences. L'inscription et le paiement se font chez l'organisme.",
   ],
   links: [
     { label: "Référencer une formation", href: "/contact" },
@@ -422,9 +422,9 @@ const DATA_ANSWER: ChatAnswer = {
 
 const FRAUD_ANSWER: ChatAnswer = {
   text: [
-    "SIRA ne demande jamais d'argent pour postuler à une offre, ni pour « réserver » un poste.",
+    "Syvaa ne demande jamais d'argent pour postuler à une offre, ni pour « réserver » un poste.",
     "Si une annonce ou un interlocuteur vous réclame des frais, ne payez pas et signalez l'offre : le bouton « Signaler » se trouve sur chaque page d'offre.",
-    "Seules les formations peuvent être payantes, et dans ce cas le paiement va à l'organisme qui les dispense, jamais à SIRA.",
+    "Seules les formations peuvent être payantes, et dans ce cas le paiement va à l'organisme qui les dispense, jamais à Syvaa.",
   ],
   links: [{ label: "Prévenir l'équipe", href: "/contact" }],
   chips: ["Trouver une offre", "Parler à l'équipe"],
@@ -453,11 +453,11 @@ const CONTACT_ANSWER: ChatAnswer = {
 
 const ABOUT_ANSWER: ChatAnswer = {
   text: [
-    "SIRA rapproche les talents et les recruteurs partout en Afrique : un score de compatibilité qui s'explique, des candidatures préparées sans rien inventer et des formations qui comblent les écarts.",
+    "Syvaa rapproche les talents et les recruteurs partout en Afrique : un score de compatibilité qui s'explique, des candidatures préparées sans rien inventer et des formations qui comblent les écarts.",
     "« Sira » signifie le chemin, la route, la voie en dioula et en bambara.",
   ],
   links: [
-    { label: "À propos de SIRA", href: "/a-propos" },
+    { label: "À propos de Syvaa", href: "/a-propos" },
     { label: "Nos garde-fous sur l'IA", href: "/a-propos#ia" },
   ],
   chips: ["Trouver une offre", "Publier une offre", "Parler à l'équipe"],
@@ -623,7 +623,7 @@ function fallbackAnswer(input: string, data: ChatData): ChatAnswer {
   return {
     text: [
       "Je ne sais pas répondre à cette question : mes réponses sont préparées à l'avance et je préfère ne rien inventer.",
-      "L'équipe SIRA peut vous répondre directement, ou vous pouvez reformuler avec un mot plus simple, par exemple « offre », « formation », « score » ou « compte ».",
+      "L'équipe Syvaa peut vous répondre directement, ou vous pouvez reformuler avec un mot plus simple, par exemple « offre », « formation », « score » ou « compte ».",
     ],
     links: [
       { label: "Parler à l'équipe", href: "/contact" },

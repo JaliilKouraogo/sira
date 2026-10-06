@@ -37,7 +37,7 @@ import { DOCUMENT_TYPE_LABEL } from "@/lib/enums";
 import type { Application, ApplicationDocument, Job } from "@/lib/types";
 
 export const metadata = {
-  title: "Mon CV et mes documents — SIRA",
+  title: "Mon CV et mes documents — Syvaa",
 };
 
 const LANGUAGE_LABEL: Record<"fr" | "en", string> = { fr: "Français", en: "Anglais" };
@@ -80,9 +80,16 @@ export default function DocumentsPage() {
               Le document de référence : toutes les adaptations en sont dérivées.
             </p>
           </div>
-          <SimulatedActionBar
-            align="end"
-            actions={[
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            <Link
+              href="/mon-espace/documents/editeur"
+              className="inline-flex h-8 items-center rounded-md bg-[var(--color-primary)] px-3 text-[12px] font-medium text-[var(--color-primary-fg)] hover:bg-[var(--color-primary-hover)]"
+            >
+              Éditer mon CV
+            </Link>
+            <SimulatedActionBar
+              align="end"
+              actions={[
               {
                 label: "Remplacer",
                 message:
@@ -94,8 +101,9 @@ export default function DocumentsPage() {
                 message: "Téléchargement du fichier original, tel que vous l'avez déposé.",
                 icon: <IconDownload size={14} />,
               },
-            ]}
-          />
+              ]}
+            />
+          </div>
         </div>
 
         {resume ? (
@@ -238,7 +246,7 @@ export default function DocumentsPage() {
           <EmptyState
             icon={<IllustrationNoDocuments size={170} accent="var(--color-zone-candidate)" />}
             title="Aucun CV déposé"
-            description="Déposez votre CV pour que SIRA l'analyse et calcule vos scores de compatibilité."
+            description="Déposez votre CV pour que Syvaa l'analyse et calcule vos scores de compatibilité."
           />
         )}
       </section>
@@ -333,7 +341,7 @@ export default function DocumentsPage() {
                             label: "Aperçu",
                             message: document.content
                               ? "Le contenu est dépliable juste au-dessus, et s'ouvre en plein écran dans la visionneuse."
-                              : "Ouverture du fichier dans la visionneuse SIRA, sans téléchargement.",
+                              : "Ouverture du fichier dans la visionneuse Syvaa, sans téléchargement.",
                             tone: "info",
                           },
                           {
@@ -376,7 +384,7 @@ export default function DocumentsPage() {
           <div>
             <DataList
               rows={[
-                { label: "Stockage", value: "Espace personnel SIRA, accessible à vous seule" },
+                { label: "Stockage", value: "Espace personnel Syvaa, accessible à vous seule" },
                 { label: "Partage", value: "Un recruteur ne reçoit un document que si vous envoyez la candidature" },
                 { label: "Archivage", value: "Conservation pour traçabilité, sans réapparaître dans vos listes" },
                 {

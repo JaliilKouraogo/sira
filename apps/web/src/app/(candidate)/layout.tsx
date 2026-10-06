@@ -32,7 +32,7 @@ export default function CandidateLayout({ children }: { children: React.ReactNod
     {
       title: "Progresser",
       items: [
-        { href: "/mon-espace/assistant", label: "Assistant SIRA", icon: <IconChat size={17} /> },
+        { href: "/mon-espace/assistant", label: "Assistant Syvaa", icon: <IconChat size={17} /> },
         { href: "/mon-espace/formations", label: "Formations", icon: <IconGraduation size={17} /> },
       ],
     },

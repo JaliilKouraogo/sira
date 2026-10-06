@@ -1,4 +1,4 @@
-# SIRA — Le chemin vers l'opportunité
+# Syvaa — Le chemin vers l'opportunité
 
 Plateforme panafricaine de mise en relation entre talents, recruteurs et organismes de formation : offres d'emploi et de stage, score de compatibilité expliqué, préparation de candidature assistée et formations pour combler les écarts.
 
@@ -63,7 +63,7 @@ src/
                        partagé avec l'API (packages/shared)
 ```
 
-## Assistant SIRA
+## Assistant Syvaa
 
 Une bulle de discussion est présente sur toutes les pages du site public. Elle fonctionne **sans intelligence artificielle** : les réponses sont écrites à l'avance et choisies par mots-clés, et les seules données citées sont les offres et les formations réellement publiées. Quand la question sort de ce cadre, l'assistant le dit et renvoie vers l'équipe.
 
@@ -75,7 +75,7 @@ Le branchement à une vraie IA passera par le remplacement de `answerFor()` par 
 
 ## Design
 
-Le site vitrine reprend la **grammaire de mise en page** du modèle Webflow « HireEdge » (blocs arrondis, navigation flottante, cartes à bordure basse épaissie, animations d'entrée, rideaux sur les images, défilements infinis). Aucun code, aucune image et aucun texte de ce modèle n'est réutilisé : l'implémentation, les contenus et l'identité visuelle sont propres à SIRA.
+Le site vitrine reprend la **grammaire de mise en page** du modèle Webflow « HireEdge » (blocs arrondis, navigation flottante, cartes à bordure basse épaissie, animations d'entrée, rideaux sur les images, défilements infinis). Aucun code, aucune image et aucun texte de ce modèle n'est réutilisé : l'implémentation, les contenus et l'identité visuelle sont propres à Syvaa.
 
 - Fond blanc, blocs marine et gris très clair, filets or sur les blocs et les cartes.
 - Couleurs de marque relevées sur le logo : marine `#19196F`, or `#C6A11D`.
@@ -100,7 +100,7 @@ L'export statique impose quelques règles, documentées dans `src/lib/base-path.
 - **Chiffres** : ce sont des objectifs, présentés comme tels.
 - **Articles de conseils, organisations et offres** : contenus de démonstration.
 - **Coordonnées** du pied de page et de la page contact.
-- **Assistant SIRA** : réponses préparées à l'avance, à remplacer par un vrai service de dialogue.
+- **Assistant Syvaa** : réponses préparées à l'avance, à remplacer par un vrai service de dialogue.
 
 ## Crédits
 

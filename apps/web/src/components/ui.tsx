@@ -1,5 +1,5 @@
 /**
- * Primitives du design system SIRA.
+ * Primitives du design system Syvaa.
  *
  * Direction visuelle : épuré et clair. Pas d'ombre, pas de dégradé, pas de
  * grand aplat coloré. Les blocs sont délimités par un filet de 1 pixel ou

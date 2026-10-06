@@ -147,7 +147,7 @@ export function PreparationPanel({
         <div className="mt-3 space-y-3">
           {/* ---- Garde-fou permanent ---- */}
           <Alert tone="warning" title="Rien ne part sans votre validation" icon={<IconCheck size={15} />}>
-            Les documents générés restent dans votre espace tant que vous ne les avez pas relus et validés. SIRA
+            Les documents générés restent dans votre espace tant que vous ne les avez pas relus et validés. Syvaa
             n&apos;envoie jamais une candidature à votre place.
           </Alert>
 

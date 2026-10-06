@@ -318,7 +318,7 @@ export function TrainingForm({ categories }: { categories: string[] }) {
         </Card>
 
         <Card>
-          <CardHeader title="Conditions d'accès et tarif" subtitle="Le règlement se fait chez vous, pas sur SIRA" />
+          <CardHeader title="Conditions d'accès et tarif" subtitle="Le règlement se fait chez vous, pas sur Syvaa" />
           <div className="space-y-4 p-4">
             <Field label="Condition d'accès" htmlFor="acces" required>
               <Select

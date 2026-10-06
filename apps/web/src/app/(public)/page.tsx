@@ -12,7 +12,7 @@
  *   8. appel à l'action
  * Le pied de page est fourni par le gabarit de page.
  *
- * Contenu propre à SIRA, exigences du cahier des charges respectées : le
+ * Contenu propre à Syvaa, exigences du cahier des charges respectées : le
  * score reste une estimation, l'IA ne décide pas, rien n'est envoyé sans
  * validation du candidat.
  */
@@ -80,7 +80,7 @@ export default function HomePage() {
               </div>
 
               <Heading as="h1" size="h1" className="mt-8 max-w-[34rem]">
-                SIRA, le chemin vers <Hl>l&apos;opportunité</Hl>
+                Syvaa, le chemin vers <Hl>l&apos;opportunité</Hl>
               </Heading>
 
               <Lead className="mt-6 text-white/90">
@@ -121,7 +121,7 @@ export default function HomePage() {
       {/* 2. Bandeau de partenaires ----------------------------------------- */}
       <Section>
         <Panel tone="light" pad={false} className="py-9 md:py-11">
-          <h2 className="sr-only">Organisations présentes sur SIRA</h2>
+          <h2 className="sr-only">Organisations présentes sur Syvaa</h2>
           <Reveal dir="up">
             <Marquee duration={38} gapClass="gap-6">
               {partners.map((org, i) => (
@@ -229,11 +229,11 @@ export default function HomePage() {
                 Nos objectifs <Hl>en chiffres</Hl>
               </Heading>
               <Lead className="mt-5 text-white/90">
-                SIRA se construit pour l&apos;Afrique. Voici ce que nous visons pour nos premières années d&apos;exploitation,
+                Syvaa se construit pour l&apos;Afrique. Voici ce que nous visons pour nos premières années d&apos;exploitation,
                 aux côtés des organisations et des centres de formation partenaires du continent.
               </Lead>
               <SiteButtonLink href="/a-propos" variant="gold" size="lg" className="mt-8">
-                En savoir plus sur SIRA
+                En savoir plus sur Syvaa
               </SiteButtonLink>
             </Reveal>
             <div className="grid gap-x-8 gap-y-12 md:grid-cols-2">
@@ -255,7 +255,7 @@ export default function HomePage() {
               Des parcours <Hl>qui avancent</Hl>
             </Heading>
             <Lead align="center" tone="muted" className="mt-5">
-              Candidats, recruteurs et formateurs racontent ce que SIRA a changé dans leur recherche ou leur
+              Candidats, recruteurs et formateurs racontent ce que Syvaa a changé dans leur recherche ou leur
               recrutement.
             </Lead>
           </Reveal>
@@ -276,7 +276,7 @@ export default function HomePage() {
             Recrutez mieux, <Hl>avancez plus vite</Hl>
           </>
         }
-        text="De la publication de l'offre à la décision finale, SIRA structure chaque étape du recrutement avec des outils conçus pour les réalités des marchés africains de l'emploi."
+        text="De la publication de l'offre à la décision finale, Syvaa structure chaque étape du recrutement avec des outils conçus pour les réalités des marchés africains de l'emploi."
         action={{ href: "/recruteurs", label: "Publier une offre" }}
       />
     </>

@@ -4,15 +4,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "SIRA — Le chemin vers l'opportunité",
-    template: "%s · SIRA",
+    default: "Syvaa — Le chemin vers l'opportunité",
+    template: "%s · Syvaa",
   },
   description:
-    "SIRA rapproche les talents et les recruteurs partout en Afrique : offres d'emploi et de stage, score de compatibilité expliqué, préparation de candidature assistée et formations pour combler vos lacunes.",
-  applicationName: "SIRA",
+    "Syvaa rapproche les talents et les recruteurs partout en Afrique : offres d'emploi et de stage, score de compatibilité expliqué, préparation de candidature assistée et formations pour combler vos lacunes.",
+  applicationName: "Syvaa",
   keywords: ["emploi", "stage", "Afrique", "recrutement", "formation", "talents"],
   openGraph: {
-    title: "SIRA — Le chemin vers l'opportunité",
+    title: "Syvaa — Le chemin vers l'opportunité",
     description:
       "Plateforme de mise en relation entre talents, opportunités et recruteurs en Afrique.",
     locale: "fr_BF",

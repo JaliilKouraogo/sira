@@ -63,7 +63,7 @@ import {
 import type { Application } from "@/lib/types";
 
 export const metadata = {
-  title: "Détail de la candidature — SIRA",
+  title: "Détail de la candidature — Syvaa",
 };
 
 export const dynamicParams = false;
@@ -74,7 +74,7 @@ export function generateStaticParams(): { id: string }[] {
 
 /**
  * Actions disponibles : le croisement de l'état de préparation et du canal.
- * Le canal externe n'autorise jamais un envoi par SIRA, seulement un
+ * Le canal externe n'autorise jamais un envoi par Syvaa, seulement un
  * téléchargement suivi d'une déclaration manuelle.
  */
 function actionsFor(application: Application, target?: string): SimulatedAction[] {
@@ -106,7 +106,7 @@ function actionsFor(application: Application, target?: string): SimulatedAction[
         {
           label: "Vérifier et valider le dossier",
           message:
-            "Vous relisez chaque document, vous corrigez ce qui doit l'être, puis vous validez. Tant que vous n'avez pas validé, SIRA n'envoie rien.",
+            "Vous relisez chaque document, vous corrigez ce qui doit l'être, puis vous validez. Tant que vous n'avez pas validé, Syvaa n'envoie rien.",
           variant: "primary",
           size: "md",
           icon: <IconCheckCircle size={15} />,
@@ -131,7 +131,7 @@ function actionsFor(application: Application, target?: string): SimulatedAction[
           {
             label: "Marquer comme envoyée",
             message:
-              "Vous déclarez avoir transmis le dossier par le canal indiqué. SIRA enregistre la date et bascule la candidature en « Envoyée » pour le suivi, sans prétendre l'avoir expédiée à votre place.",
+              "Vous déclarez avoir transmis le dossier par le canal indiqué. Syvaa enregistre la date et bascule la candidature en « Envoyée » pour le suivi, sans prétendre l'avoir expédiée à votre place.",
             size: "md",
             icon: <IconCheckCircle size={15} />,
           },
@@ -141,7 +141,7 @@ function actionsFor(application: Application, target?: string): SimulatedAction[
         return [
           {
             label: "Relire et autoriser l'envoi",
-            message: `Après votre accord, SIRA expédierait l'e-mail de candidature${
+            message: `Après votre accord, Syvaa expédierait l'e-mail de candidature${
               target ? ` à ${target}` : ""
             } avec vos pièces jointes, en votre nom et avec votre adresse en réponse.`,
             variant: "primary",
@@ -159,7 +159,7 @@ function actionsFor(application: Application, target?: string): SimulatedAction[
         {
           label: "Envoyer ma candidature",
           message:
-            "Le dossier serait déposé sur SIRA et rendu visible au recruteur. Votre score serait figé à cet instant et n'évoluerait plus.",
+            "Le dossier serait déposé sur Syvaa et rendu visible au recruteur. Votre score serait figé à cet instant et n'évoluerait plus.",
           variant: "primary",
           size: "md",
           icon: <IconArrowRight size={15} />,
@@ -385,7 +385,7 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
               <ApplicationTimeline events={history} />
               {application.preparationStatus === "envoyee" ? (
                 <p className="mt-4 rounded-md bg-[var(--color-surface-2)] p-3 text-[12px] leading-relaxed text-[var(--color-text-muted)]">
-                  Vous voyez l&apos;avancement tel que SIRA vous le présente :{" "}
+                  Vous voyez l&apos;avancement tel que Syvaa vous le présente :{" "}
                   <strong className="font-medium text-[var(--color-text)]">{candidateStateLabel(application)}</strong>.
                   Le détail interne du tri effectué par le recruteur ne vous est pas communiqué.
                 </p>
@@ -431,7 +431,7 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
                   { label: "Date limite de l'offre", value: formatDate(job.deadline) },
                   {
                     label: "Destinataire",
-                    value: job.applicationTarget ?? "Espace recruteur SIRA",
+                    value: job.applicationTarget ?? "Espace recruteur Syvaa",
                   },
                   { label: "Référence", value: <span className="font-mono text-[12.5px]">{application.id}</span> },
                 ]}

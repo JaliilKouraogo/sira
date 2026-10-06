@@ -27,7 +27,7 @@ import { getOrganizations, getTrainings } from "@/data/queries";
 import { JOB_ORIGIN_LABEL, ORGANIZATION_TYPE_LABEL, VERIFICATION_STATUS_LABEL } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Partenaires | Administration SIRA",
+  title: "Partenaires | Administration Syvaa",
 };
 
 interface Convention {
@@ -108,7 +108,7 @@ export default function AdminPartnersPage() {
     <>
       <PageHeader
         title="Partenaires"
-        description="Institutions, établissements et organismes liés à SIRA par une convention. Les droits de diffusion s'ouvrent et se ferment ici, convention par convention."
+        description="Institutions, établissements et organismes liés à Syvaa par une convention. Les droits de diffusion s'ouvrent et se ferment ici, convention par convention."
       />
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

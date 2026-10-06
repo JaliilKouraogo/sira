@@ -222,7 +222,7 @@ export default function InscriptionCandidatPage() {
             <IconCheckCircle size={20} />
           </span>
           <h1 className="text-[22px] font-semibold text-[var(--color-text)]">
-            Bienvenue sur SIRA, {prenom || "candidat"}
+            Bienvenue sur Syvaa, {prenom || "candidat"}
           </h1>
           <p className="mx-auto mt-2 max-w-md text-[13.5px] leading-relaxed text-[var(--color-text-muted)]">
             Votre compte est créé. Il ne reste qu&apos;à confirmer votre e-mail et votre téléphone pour
@@ -913,7 +913,7 @@ export default function InscriptionCandidatPage() {
                   checked={whatsappLie}
                   onChange={(e) => setWhatsappLie(e.target.checked)}
                   label="Lier mon compte WhatsApp"
-                  description="Pour recevoir vos documents de candidature et discuter avec l'assistant SIRA sur WhatsApp."
+                  description="Pour recevoir vos documents de candidature et discuter avec l'assistant Syvaa sur WhatsApp."
                 />
                 {whatsappLie ? (
                   <div className="mt-3 pl-6">
@@ -981,7 +981,7 @@ export default function InscriptionCandidatPage() {
                   <ConsentRow
                     id="consent-marketing"
                     basis={CONSENT_MATRIX.marketing.email}
-                    title="Recevoir les actualités et offres commerciales de SIRA"
+                    title="Recevoir les actualités et offres commerciales de Syvaa"
                     description="Consentement explicite, décoché par défaut."
                     checked={optMarketing}
                     onChange={setOptMarketing}
@@ -991,13 +991,13 @@ export default function InscriptionCandidatPage() {
                 <div className="mt-4">
                   <Alert tone="info" icon={<IconCheckCircle size={16} />}>
                     Refuser les communications commerciales n&apos;entraîne aucune restriction : toutes les
-                    fonctionnalités de SIRA restent accessibles, offres comprises.
+                    fonctionnalités de Syvaa restent accessibles, offres comprises.
                   </Alert>
                 </div>
 
                 <p className="mt-4 text-[12px] leading-relaxed text-[var(--color-text-muted)]">
                   En créant votre compte, vous acceptez les conditions générales d&apos;utilisation et la
-                  politique de confidentialité de SIRA. Votre profil est créé{" "}
+                  politique de confidentialité de Syvaa. Votre profil est créé{" "}
                   <strong className="font-semibold text-[var(--color-text)]">invisible</strong> dans la
                   recherche de talents : vous choisirez ensuite ce que les recruteurs peuvent voir.
                 </p>

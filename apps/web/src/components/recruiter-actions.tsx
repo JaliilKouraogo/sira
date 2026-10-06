@@ -264,7 +264,7 @@ export function ContactPanel({
           <p className="mt-1 text-[12.5px] leading-relaxed text-[var(--color-text-muted)]">
             {unlocked
               ? "Les coordonnées de ce candidat sont accessibles : il a postulé à une de vos offres."
-              : "Les coordonnées restent masquées. SIRA relaie votre message ; elles ne vous seront communiquées que si le candidat accepte la prise de contact."}
+              : "Les coordonnées restent masquées. Syvaa relaie votre message ; elles ne vous seront communiquées que si le candidat accepte la prise de contact."}
           </p>
 
           <div className="mt-3.5 flex flex-wrap gap-2" role="group" aria-label="Canal de contact">
@@ -329,7 +329,7 @@ export function ContactPanel({
                 variant={channel === "whatsapp" ? "accent" : "primary"}
               >
                 {channel === "whatsapp" ? <IconWhatsApp size={14} /> : <IconMail size={14} />}
-                Envoyer via SIRA
+                Envoyer via Syvaa
               </Button>
               <Button size="sm" variant="ghost" onClick={() => setOpen(false)}>
                 Fermer

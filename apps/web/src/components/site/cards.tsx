@@ -164,7 +164,7 @@ export function SiteJobCard({
         <p className="flex items-center gap-1.5 text-[0.8125rem] text-site-muted">
           {orgName}
           {verified ? (
-            <span className="inline-flex text-site-navy" title="Recruteur vérifié par SIRA">
+            <span className="inline-flex text-site-navy" title="Recruteur vérifié par Syvaa">
               <SiteIcon.Check size={14} />
               <span className="sr-only">Recruteur vérifié</span>
             </span>

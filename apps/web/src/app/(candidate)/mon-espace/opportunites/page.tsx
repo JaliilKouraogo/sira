@@ -27,7 +27,7 @@ export default function OpportunitiesPage() {
     <>
       <PageHeader
         title="Opportunités"
-        description="Les offres publiées sur SIRA, ordonnées par compatibilité avec votre profil."
+        description="Les offres publiées sur Syvaa, ordonnées par compatibilité avec votre profil."
         action={
           <ButtonLink href="/mon-espace/offres-enregistrees" variant="outline" size="sm">
             Mes offres enregistrées ({saved.length})

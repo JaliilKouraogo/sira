@@ -99,20 +99,20 @@ export function SiteFooter() {
             </ul>
           </div>
           <Column title="Pages principales" links={MAIN_PAGES} />
-          <Column title="SIRA" links={COMPANY_PAGES} />
+          <Column title="Syvaa" links={COMPANY_PAGES} />
           <Column title="Informations légales" links={LEGAL_PAGES} />
         </div>
 
         {/* Logo et réseaux */}
         <div className="mt-14 flex flex-col items-start justify-between gap-6 xs:flex-row xs:items-center">
-          <Link href="/" aria-label="SIRA, retour à l'accueil">
+          <Link href="/" aria-label="Syvaa, retour à l'accueil">
             <SiraLogo size={36} withTagline />
           </Link>
           <SocialLinks className="-ml-2.5 xs:ml-0" />
         </div>
 
         <div className="mt-8 border-t border-site-line pt-6 text-center text-[0.875rem] text-site-muted">
-          © 2026 SIRA, Ouagadougou. Les scores affichés sur la plateforme sont des estimations algorithmiques et ne
+          © 2026 Syvaa, Ouagadougou. Les scores affichés sur la plateforme sont des estimations algorithmiques et ne
           garantissent aucun recrutement.
         </div>
       </Panel>

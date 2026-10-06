@@ -16,7 +16,7 @@ import { getAuditLogs } from "@/data/queries";
 import { BLOCKING_CRITERIA_CAP, CURRENCY } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Paramètres | Administration SIRA",
+  title: "Paramètres | Administration Syvaa",
 };
 
 /** Les onze règles métier du produit. Énoncé normatif, écran d'application. */
@@ -89,7 +89,7 @@ const BUSINESS_RULES: { code: string; statement: string; applies: string }[] = [
 ];
 
 const GENERAL_SETTINGS: { label: string; value: string }[] = [
-  { label: "Nom de la plateforme", value: "SIRA — Le chemin vers l'opportunité" },
+  { label: "Nom de la plateforme", value: "Syvaa — Le chemin vers l'opportunité" },
   { label: "Pays de référence", value: "Burkina Faso" },
   { label: "Fuseau horaire", value: "UTC (heure du Burkina Faso)" },
   { label: "Langue par défaut", value: "Français" },

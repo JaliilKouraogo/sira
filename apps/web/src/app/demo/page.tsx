@@ -75,7 +75,7 @@ const ZONES: Zone[] = [
       { href: "/mon-espace/candidatures", label: "Mes candidatures" },
       { href: "/mon-espace/candidatures/app_01", label: "Détail d'une candidature" },
       { href: "/mon-espace/documents", label: "CV et documents" },
-      { href: "/mon-espace/assistant", label: "Assistant SIRA" },
+      { href: "/mon-espace/assistant", label: "Assistant Syvaa" },
       { href: "/mon-espace/formations", label: "Formations recommandées" },
       { href: "/mon-espace/notifications", label: "Notifications" },
       { href: "/mon-espace/abonnement", label: "Abonnement et quotas" },

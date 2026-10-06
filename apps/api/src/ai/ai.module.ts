@@ -9,6 +9,7 @@ import { ENV, type Env } from "../config/env";
 import { JobsModule } from "../jobs/jobs.module";
 import { AiJobsService } from "./ai-jobs.service";
 import { ChatSchema, ChatService, type ChatInput } from "./chat.service";
+import { CvAssistantService, CvAssistInputSchema, type CvAssistInput } from "./cv-assistant.service";
 import { MatchService } from "./match.service";
 import { AI_PROVIDER, type AiProvider } from "./providers/ai-provider";
 import { HuggingFaceProvider } from "./providers/huggingface.provider";
@@ -27,6 +28,7 @@ export class AiController {
     private readonly match: MatchService,
     private readonly chat: ChatService,
     private readonly aiJobs: AiJobsService,
+    private readonly cvAssistant: CvAssistantService,
   ) {}
 
   @Post("match")
@@ -51,10 +53,23 @@ export class AiController {
   @HttpCode(200)
   @Public()
   @Throttle(AI_LIMIT)
-  @ApiOperation({ summary: "Poser une question à l'assistant SIRA" })
+  @ApiOperation({ summary: "Poser une question à l'assistant Syvaa" })
   @ApiZodBody(ChatSchema)
   ask(@Body(new ZodPipe(ChatSchema)) body: ChatInput, @CurrentUser() user?: AuthUser) {
     return this.chat.reply(body, user);
+  }
+
+  @Post("cv-assist")
+  @HttpCode(200)
+  @Public()
+  @Throttle({ default: { limit: 3, ttl: 60_000 } })
+  @ApiOperation({ summary: "Proposer une amélioration ou adaptation du CV après accord du candidat" })
+  @ApiZodBody(CvAssistInputSchema)
+  assistCv(
+    @Body(new ZodPipe(CvAssistInputSchema)) body: CvAssistInput,
+    @CurrentUser() user?: AuthUser,
+  ) {
+    return this.cvAssistant.assist(body, user?.id);
   }
 
   @Get("jobs/:id")
@@ -86,6 +101,7 @@ export class AiController {
     AiJobsService,
     MatchService,
     ChatService,
+    CvAssistantService,
   ],
   exports: [MatchService],
 })

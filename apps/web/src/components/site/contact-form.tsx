@@ -497,7 +497,7 @@ export function ContactForm() {
               className="mt-1 h-5 w-5 shrink-0 cursor-pointer accent-site-navy"
             />
             <span>
-              J&apos;accepte que SIRA utilise ces informations uniquement pour répondre à ma demande.
+              J&apos;accepte que Syvaa utilise ces informations uniquement pour répondre à ma demande.
               <Required />
             </span>
           </label>
@@ -517,7 +517,7 @@ export function ContactForm() {
             className="mt-1 h-5 w-5 shrink-0 cursor-pointer accent-site-navy"
           />
           <span>
-            Je souhaite recevoir la lettre mensuelle de SIRA (facultatif). Refuser n&apos;entraîne aucune restriction.
+            Je souhaite recevoir la lettre mensuelle de Syvaa (facultatif). Refuser n&apos;entraîne aucune restriction.
           </span>
         </label>
 

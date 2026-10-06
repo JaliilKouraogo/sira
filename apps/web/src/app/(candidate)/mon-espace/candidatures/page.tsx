@@ -17,7 +17,7 @@ import { TabbedListSkeleton } from "../list-skeleton";
 import { ApplicationsList } from "./applications-client";
 
 export const metadata = {
-  title: "Mes candidatures — SIRA",
+  title: "Mes candidatures — Syvaa",
 };
 
 export default function ApplicationsPage() {

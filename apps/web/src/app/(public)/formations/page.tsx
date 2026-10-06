@@ -12,7 +12,7 @@
  * `FormationsCatalogue`, rendu dans un `<Suspense>` dont le repli affiche le
  * catalogue complet.
  *
- * SIRA reste un annuaire : l'inscription et le paiement se font chez
+ * Syvaa reste un annuaire : l'inscription et le paiement se font chez
  * l'organisme qui dispense la formation.
  */
 
@@ -36,9 +36,9 @@ import { getTrainings } from "@/data/queries";
 import { IMG } from "@/data/site-content";
 
 export const metadata: Metadata = {
-  title: "Catalogue de formations | SIRA",
+  title: "Catalogue de formations | Syvaa",
   description:
-    "Formations courtes, certifiantes ou gratuites proposées par les organismes partenaires de SIRA, filtrables par catégorie, accès, format et niveau.",
+    "Formations courtes, certifiantes ou gratuites proposées par les organismes partenaires de Syvaa, filtrables par catégorie, accès, format et niveau.",
 };
 
 const STEPS: { title: string; text: string }[] = [
@@ -48,7 +48,7 @@ const STEPS: { title: string; text: string }[] = [
   },
   {
     title: "Choisissez la formation",
-    text: "SIRA vous oriente vers les formations qui couvrent ces compétences. La plateforme reste un annuaire : l'inscription et le paiement se font directement auprès de l'organisme.",
+    text: "Syvaa vous oriente vers les formations qui couvrent ces compétences. La plateforme reste un annuaire : l'inscription et le paiement se font directement auprès de l'organisme.",
   },
   {
     title: "Mettez votre profil à jour",
@@ -76,7 +76,7 @@ export default function FormationsPage() {
                 Des formations pour <Hl>combler l&apos;écart</Hl>
               </Heading>
               <Lead className="mt-6 text-white/90">
-                Quand une offre vous échappe pour une compétence précise, SIRA vous dit laquelle et où l&apos;acquérir.
+                Quand une offre vous échappe pour une compétence précise, Syvaa vous dit laquelle et où l&apos;acquérir.
                 Ces formations sont proposées par des centres et établissements partenaires, en présentiel, en ligne ou
                 en format hybride.
               </Lead>
@@ -144,7 +144,7 @@ export default function FormationsPage() {
 
             <p className="mt-10 border-t border-site-line pt-5 text-[0.875rem] leading-relaxed text-site-muted">
               Les formations incluses avec Premium sont accessibles sans frais supplémentaires aux abonnés. Les
-              formations payantes sont facturées par l&apos;organisme qui les dispense : SIRA référence les formations,
+              formations payantes sont facturées par l&apos;organisme qui les dispense : Syvaa référence les formations,
               l&apos;inscription et le paiement se font directement auprès de l&apos;organisme.
             </p>
           </Inner>
@@ -198,7 +198,7 @@ export default function FormationsPage() {
             </Hl>
           </>
         }
-        text="Présentez vos formations aux candidats qui en ont réellement besoin, partout en Afrique : SIRA les recommande à partir des compétences qui manquent dans leurs profils."
+        text="Présentez vos formations aux candidats qui en ont réellement besoin, partout en Afrique : Syvaa les recommande à partir des compétences qui manquent dans leurs profils."
         action={{ href: "/contact", label: "Référencer une formation" }}
         image={IMG.remiseDiplomes}
       />

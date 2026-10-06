@@ -26,7 +26,7 @@ import { searchJobs } from "@/data/queries";
 export const metadata: Metadata = {
   title: "Offres de stage en Afrique",
   description:
-    "Stages conventionnés publiés sur SIRA, partout en Afrique : filtrez par ville, domaine et mode de travail pour trouver le stage qui correspond à votre formation.",
+    "Stages conventionnés publiés sur Syvaa, partout en Afrique : filtrez par ville, domaine et mode de travail pour trouver le stage qui correspond à votre formation.",
 };
 
 export default function StagesPage() {
@@ -41,7 +41,7 @@ export default function StagesPage() {
             Le stage qui <Hl>lance votre parcours</Hl>
           </>
         }
-        text="Les stages publiés sur SIRA, pour les étudiants et les jeunes diplômés. Un stage n'exige pas d'expérience longue : concentrez-vous sur la ville, le domaine et les compétences demandées, et préparez une candidature soignée."
+        text="Les stages publiés sur Syvaa, pour les étudiants et les jeunes diplômés. Un stage n'exige pas d'expérience longue : concentrez-vous sur la ville, le domaine et les compétences demandées, et préparez une candidature soignée."
         image={IMG.diplomes}
         search={
           <Suspense fallback={<JobSearchHeroView variant="stages" />}>

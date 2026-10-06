@@ -91,12 +91,12 @@ export function readingLabel(minutes: number): string {
 }
 
 /**
- * Encadré affiché à la fin de chaque article : ce que SIRA fait concrètement
+ * Encadré affiché à la fin de chaque article : ce que Syvaa fait concrètement
  * sur le sujet, avec les garde-fous du cahier des charges.
  */
 export const CATEGORY_NOTE: Record<PostCategory, { title: string; text: string }> = {
   CV: {
-    title: "Sur SIRA, votre CV reste le vôtre",
+    title: "Sur Syvaa, votre CV reste le vôtre",
     text: "L'assistant adapte votre CV à chaque offre à partir de votre parcours réel : il réorganise, il n'invente jamais une expérience, un diplôme ou une compétence. Rien n'est envoyé sans votre validation.",
   },
   Entretien: {
@@ -109,11 +109,11 @@ export const CATEGORY_NOTE: Record<PostCategory, { title: string; text: string }
   },
   Recrutement: {
     title: "L'IA classe, vous décidez",
-    text: "Sur SIRA, l'IA classe les candidatures, les résume et signale des points d'attention. Elle ne décide jamais : aucun candidat n'est écarté sans une action de votre part.",
+    text: "Sur Syvaa, l'IA classe les candidatures, les résume et signale des points d'attention. Elle ne décide jamais : aucun candidat n'est écarté sans une action de votre part.",
   },
   Formation: {
     title: "Des formations qui comblent l'écart",
-    text: "Quand une compétence vous manque pour une offre, SIRA vous oriente vers les formations qui la couvrent, proposées par des centres partenaires en présentiel ou en ligne.",
+    text: "Quand une compétence vous manque pour une offre, Syvaa vous oriente vers les formations qui la couvrent, proposées par des centres partenaires en présentiel ou en ligne.",
   },
   Plateforme: {
     title: "Une estimation, jamais une promesse",

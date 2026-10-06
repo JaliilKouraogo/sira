@@ -23,7 +23,7 @@ import {
 import { getTrainerOrganization, getTrainerTrainings, getTrainerUser } from "../../trainer-context";
 
 export const metadata: Metadata = {
-  title: "Profil | Espace formateur SIRA",
+  title: "Profil | Espace formateur Syvaa",
 };
 
 export default function TrainerProfilePage() {
@@ -124,7 +124,7 @@ export default function TrainerProfilePage() {
         <div className="min-w-0 space-y-8">
           <div>
             <h2 className="text-[14px] font-semibold text-[var(--color-text)]">Responsable du compte</h2>
-            <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">Contact de référence pour SIRA</p>
+            <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">Contact de référence pour Syvaa</p>
             <div className="mt-3 border-t border-[var(--color-border)]">
               <DataList
                 rows={[

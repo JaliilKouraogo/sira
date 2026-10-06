@@ -11,7 +11,13 @@
   },
   "dependencies": {
     "@sira/shared": "*",
+    "@tiptap/extension-image": "^3.31.4",
+    "@tiptap/react": "^3.31.4",
+    "@tiptap/starter-kit": "^3.31.4",
+    "docx": "^9.8.1",
+    "fflate": "^0.8.3",
     "next": "16.3.5",
+    "pdfjs-dist": "^6.4.299",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

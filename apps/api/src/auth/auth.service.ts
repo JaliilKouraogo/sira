@@ -67,7 +67,7 @@ export class AuthService {
       throw new AppError(401, "invalid_credentials", "Adresse e-mail ou mot de passe incorrect.");
     }
     if (user.status !== "active" || user.deletedAt) {
-      throw new AppError(403, "account_inactive", "Ce compte est suspendu ou fermé. Contactez l'équipe SIRA.");
+      throw new AppError(403, "account_inactive", "Ce compte est suspendu ou fermé. Contactez l'équipe Syvaa.");
     }
     return { user, tokens: await this.tokens.issue(user, meta) };
   }

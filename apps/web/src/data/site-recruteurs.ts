@@ -37,7 +37,7 @@ export const RECRUITER_FEATURES: { title: string; text: string; image: SiteImage
   },
 ];
 
-/** Grandes étapes du recrutement sur SIRA, en cartes horizontales. */
+/** Grandes étapes du recrutement sur Syvaa, en cartes horizontales. */
 export const RECRUITER_STEPS: {
   n: string;
   title: string;
@@ -55,7 +55,7 @@ export const RECRUITER_STEPS: {
   {
     n: "02",
     title: "Faites vérifier votre organisation",
-    text: "Déposez les justificatifs propres à votre type d'organisation. Ils ne sont jamais publics, seuls les administrateurs SIRA y accèdent. Le niveau obtenu détermine si vos offres sont publiées immédiatement ou après validation.",
+    text: "Déposez les justificatifs propres à votre type d'organisation. Ils ne sont jamais publics, seuls les administrateurs Syvaa y accèdent. Le niveau obtenu détermine si vos offres sont publiées immédiatement ou après validation.",
     image: IMG.finance,
     href: "#verification",
   },
@@ -69,7 +69,7 @@ export const RECRUITER_STEPS: {
   {
     n: "04",
     title: "Recevez et traitez les candidatures",
-    text: "Chaque dossier arrive complet dans votre tableau de suivi. Vous décidez ; SIRA se contente de vous proposer un ordre de lecture et un résumé de chaque profil.",
+    text: "Chaque dossier arrive complet dans votre tableau de suivi. Vous décidez ; Syvaa se contente de vous proposer un ordre de lecture et un résumé de chaque profil.",
     image: IMG.entretien,
     href: "#outils",
   },
@@ -100,7 +100,7 @@ export const VERIFICATION_LEVELS: {
     subtitle: "Identité et coordonnées contrôlées",
     status: "Publication après validation",
     points: [
-      "Vos offres sont publiables, après validation par un administrateur SIRA",
+      "Vos offres sont publiables, après validation par un administrateur Syvaa",
       "Le délai d'examen est de un à deux jours ouvrés",
       "Les candidatures vous parviennent normalement une fois l'offre en ligne",
     ],
@@ -140,7 +140,7 @@ export const RECRUITER_PLANS: {
     features: [
       "Compte organisation et invitation de collègues",
       "Publication d'offres d'emploi et de stage",
-      "Réception des candidatures dans SIRA",
+      "Réception des candidatures dans Syvaa",
       "Profils de base des candidats",
       "Alertes WhatsApp sur les nouvelles candidatures",
     ],

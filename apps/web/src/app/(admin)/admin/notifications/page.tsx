@@ -38,7 +38,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Notifications | Administration SIRA",
+  title: "Notifications | Administration Syvaa",
 };
 
 /**
@@ -123,7 +123,7 @@ const TEMPLATES: {
     code: "securite_connexion",
     type: "systeme",
     channels: ["E-mail"],
-    object: "Nouvelle connexion à votre compte SIRA",
+    object: "Nouvelle connexion à votre compte Syvaa",
     variables: "{prenom} {appareil} {date}",
   },
 ];
@@ -170,7 +170,7 @@ export default function AdminNotificationsPage() {
         <Stat
           label="Contacts recruteur"
           value={formatInt(contactEvents.length)}
-          hint="E-mail et WhatsApp relayés par SIRA"
+          hint="E-mail et WhatsApp relayés par Syvaa"
         />
         <Stat
           label="Consentements publicitaires"

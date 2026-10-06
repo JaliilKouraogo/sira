@@ -50,9 +50,9 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "À propos de SIRA | Notre mission et notre IA",
+  title: "À propos de Syvaa | Notre mission et notre IA",
   description:
-    "SIRA signifie le chemin en dioula et en bambara. Plateforme panafricaine de mise en relation entre talents, recruteurs et formateurs : notre mission, le calcul du score de compatibilité, nos garde-fous et nos partenaires.",
+    "Syvaa signifie le chemin en dioula et en bambara. Plateforme panafricaine de mise en relation entre talents, recruteurs et formateurs : notre mission, le calcul du score de compatibilité, nos garde-fous et nos partenaires.",
 };
 
 // ---------------------------------------------------------------------------
@@ -181,7 +181,7 @@ const COMPONENT_DETAIL: Record<ScoreComponent, string> = {
 const GUARDRAILS: { title: string; text: string; glyph: GlyphName }[] = [
   {
     title: "Jamais d'invention de faits",
-    text: "Un CV adapté ou une lettre générée ne contient que des éléments présents dans votre profil ou votre CV d'origine. SIRA reformule, hiérarchise et met en valeur, mais n'ajoute ni diplôme, ni expérience, ni compétence que vous n'avez pas déclarés.",
+    text: "Un CV adapté ou une lettre générée ne contient que des éléments présents dans votre profil ou votre CV d'origine. Syvaa reformule, hiérarchise et met en valeur, mais n'ajoute ni diplôme, ni expérience, ni compétence que vous n'avez pas déclarés.",
     glyph: "pen",
   },
   {
@@ -322,7 +322,7 @@ export default function AProposPage() {
                 Apprenez à <Hl>nous connaître</Hl>
               </Heading>
               <Lead tone="muted" className="mt-5">
-                SIRA est une plateforme panafricaine qui met en relation les talents, les recruteurs et les formateurs.
+                Syvaa est une plateforme panafricaine qui met en relation les talents, les recruteurs et les formateurs.
                 Nous aidons chaque candidat à comprendre où il en est, chaque recruteur à traiter ses candidatures
                 avec méthode, et chaque centre de formation à rejoindre ceux qui ont besoin de lui.
               </Lead>
@@ -379,7 +379,7 @@ export default function AProposPage() {
           <Inner>
             <div className="grid items-center gap-12 tab:grid-cols-[1.1fr_0.9fr] tab:gap-16">
               <Reveal dir="left">
-                <Eyebrow className="text-site-gold opacity-100">Pourquoi « SIRA »</Eyebrow>
+                <Eyebrow className="text-site-gold opacity-100">Pourquoi « Syvaa »</Eyebrow>
                 <Heading size="h2">
                   Un nom qui montre <Hl>la voie</Hl>
                 </Heading>
@@ -416,7 +416,7 @@ export default function AProposPage() {
                   </ol>
                   <figcaption className="mt-5 flex items-center gap-3 text-[0.875rem] text-white/75">
                     <SiraMark height={22} color="var(--color-site-gold)" />
-                    SIRA, le chemin vers l&apos;opportunité
+                    Syvaa, le chemin vers l&apos;opportunité
                   </figcaption>
                 </figure>
               </Reveal>
@@ -685,7 +685,7 @@ export default function AProposPage() {
                 Des moments <Hl>qui comptent</Hl>
               </Heading>
               <Lead align="center" tone="muted" className="mt-5">
-                Un premier entretien, une formation terminée, une offre acceptée : SIRA accompagne les étapes qui font
+                Un premier entretien, une formation terminée, une offre acceptée : Syvaa accompagne les étapes qui font
                 avancer un parcours, dans tous les secteurs et partout sur le continent.
               </Lead>
             </Reveal>
@@ -704,12 +704,12 @@ export default function AProposPage() {
                 </Heading>
                 <Lead className="mt-5 text-white/85">
                   Institutions, universités, centres de formation et organisations qui diffusent leurs opportunités sur
-                  SIRA ou dont les programmes alimentent notre catalogue de formations. Nous voulons étendre ce réseau à
+                  Syvaa ou dont les programmes alimentent notre catalogue de formations. Nous voulons étendre ce réseau à
                   l&apos;ensemble du continent.
                 </Lead>
                 {others.length > 0 ? (
                   <p className="mt-5 max-w-[35rem] text-[0.9375rem] leading-relaxed text-white/70">
-                    {others.length} autres organisations publient leurs offres sur SIRA sans convention de partenariat.
+                    {others.length} autres organisations publient leurs offres sur Syvaa sans convention de partenariat.
                     Devenir partenaire donne accès à la diffusion de formations et de campagnes ciblées.
                   </p>
                 ) : null}
@@ -756,7 +756,7 @@ export default function AProposPage() {
 
           <div className="mt-16 border-t border-white/15 pt-10">
             <p className="px-8 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-white/70">
-              Ils publient leurs opportunités sur SIRA
+              Ils publient leurs opportunités sur Syvaa
             </p>
             <Reveal dir="up" className="mt-8">
               <Marquee duration={40} gapClass="gap-10">
@@ -872,7 +872,7 @@ export default function AProposPage() {
       <CtaBlock
         title={
           <>
-            Tracez votre chemin <Hl>avec SIRA</Hl>
+            Tracez votre chemin <Hl>avec Syvaa</Hl>
           </>
         }
         text="Créez votre profil en quelques minutes, découvrez les offres qui vous correspondent et avancez avec un score qui explique chaque étape. L'inscription est gratuite."

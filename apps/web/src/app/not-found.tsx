@@ -38,7 +38,7 @@ export default function NotFound() {
     <div className={`${inter.variable} ${instrument.variable} site-root flex min-h-screen flex-col`}>
       <header className="px-2 pt-2 md:px-3 md:pt-3">
         <div className="flex min-h-16 items-center justify-between gap-4 rounded-[1.5rem] border border-site-border bg-site-light px-5 md:min-h-[4.5rem] md:px-12">
-          <Link href="/" aria-label="SIRA, retour à l'accueil" className="shrink-0">
+          <Link href="/" aria-label="Syvaa, retour à l'accueil" className="shrink-0">
             <SiraLogo size={30} />
           </Link>
           <Link
@@ -123,7 +123,7 @@ export default function NotFound() {
       </main>
 
       <footer className="px-4 pb-6 pt-2 text-center text-[0.875rem] text-site-muted">
-        © 2026 SIRA, plateforme panafricaine de mise en relation entre talents, recruteurs et formateurs.
+        © 2026 Syvaa, plateforme panafricaine de mise en relation entre talents, recruteurs et formateurs.
       </footer>
     </div>
   );

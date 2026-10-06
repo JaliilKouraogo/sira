@@ -25,7 +25,7 @@ import {
 import { getTrainerOrganization, getTrainerUser } from "../../trainer-context";
 
 export const metadata: Metadata = {
-  title: "Paramètres | Espace formateur SIRA",
+  title: "Paramètres | Espace formateur Syvaa",
 };
 
 /** Membres du compte organisme, simulés. */
@@ -142,7 +142,7 @@ export default function TrainerSettingsPage() {
         </Table>
         <div className="mt-5">
           <Alert tone="accent" title="Communications commerciales">
-            Les messages promotionnels que SIRA vous adresse exigent votre consentement explicite sur chaque canal,
+            Les messages promotionnels que Syvaa vous adresse exigent votre consentement explicite sur chaque canal,
             y compris dans l&apos;application. La même règle s&apos;applique aux candidats que vous ciblez avec vos
             campagnes.
           </Alert>
@@ -197,7 +197,7 @@ export default function TrainerSettingsPage() {
           <div className="mt-4 space-y-3">
             <Alert tone="danger" title="Ce qui se passe à la fermeture">
               Vos formations sortent du catalogue le jour même. Les candidats déjà inscrits chez vous ne sont pas
-              affectés : SIRA n&apos;a jamais été partie à leur inscription. Les campagnes non diffusées sont
+              affectés : Syvaa n&apos;a jamais été partie à leur inscription. Les campagnes non diffusées sont
               remboursées au prorata du budget non consommé.
             </Alert>
             <AdminActions

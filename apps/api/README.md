@@ -1,6 +1,6 @@
-# API SIRA
+# API Syvaa
 
-API REST de SIRA : comptes, organisations, profils candidats, offres, candidatures et IA. Elle suit le plan de conception (sections 4, 7, 8, 9 et 11).
+API REST de Syvaa : comptes, organisations, profils candidats, offres, candidatures et IA. Elle suit le plan de conception (sections 4, 7, 8, 9 et 11).
 
 - **Pile.** NestJS 11, PostgreSQL 16, Prisma 7, Zod 4, TypeScript 5.9.
 - **IA.** Modèles gratuits de Hugging Face, derrière une couche d'abstraction qui permet de changer de fournisseur.
@@ -22,7 +22,7 @@ npm run db:seed                      # comptes, organisations et offres du site
 npm run dev                          # http://localhost:4000/api/v1
 ```
 
-Le seed charge les données de démonstration du site : 4 comptes, 10 organisations et 18 offres. Les dates sont décalées pour que les offres restent ouvertes. Les comptes partagent le mot de passe `Demo-SIRA-2026` :
+Le seed charge les données de démonstration du site : 4 comptes, 10 organisations et 18 offres. Les dates sont décalées pour que les offres restent ouvertes. Les comptes partagent le mot de passe `Demo-Syvaa-2026` :
 
 | Rôle | Adresse |
 |---|---|
@@ -83,7 +83,7 @@ Le modèle ne fait que **rédiger l'explication**, à partir du seul détail du 
 - promet une embauche ;
 - tutoie le candidat, ou répète un mot.
 
-L'**assistant** ne peut affirmer que les règles publiées de SIRA et le contenu des offres réelles qui lui sont transmises. Les liens vers des sites extérieurs sont retirés de ses réponses, et les offres sont renvoyées à part, depuis la base.
+L'**assistant** ne peut affirmer que les règles publiées de Syvaa et le contenu des offres réelles qui lui sont transmises. Les liens vers des sites extérieurs sont retirés de ses réponses, et les offres sont renvoyées à part, depuis la base.
 
 Chaque appel est journalisé dans `ai_jobs` : fournisseur, modèle, jetons, latence et échec éventuel. Le contenu des échanges n'y est pas conservé.
 

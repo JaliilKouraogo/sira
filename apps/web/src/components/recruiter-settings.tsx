@@ -155,7 +155,7 @@ const RECRUITER_NOTIFICATIONS: { type: NotificationType; consent: ConsentType; d
   {
     type: "promotion",
     consent: "marketing",
-    description: "Nouveautés SIRA et offres commerciales.",
+    description: "Nouveautés Syvaa et offres commerciales.",
   },
 ];
 
@@ -494,7 +494,7 @@ export function PlanActions() {
         <Button
           size="sm"
           variant="outline"
-          onClick={() => setTrace("Un conseiller SIRA vous rappelle sous 48 heures pour le plan Enterprise.")}
+          onClick={() => setTrace("Un conseiller Syvaa vous rappelle sous 48 heures pour le plan Enterprise.")}
         >
           Être rappelé pour Enterprise
         </Button>

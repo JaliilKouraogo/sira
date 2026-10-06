@@ -25,7 +25,7 @@ import { CAMPAIGN_STATUS_LABEL, TRAINING_FORMAT_LABEL, formatMoney } from "@/lib
 import { getTrainerCampaigns, getTrainerTrainings } from "../../trainer-context";
 
 export const metadata: Metadata = {
-  title: "Statistiques | Espace formateur SIRA",
+  title: "Statistiques | Espace formateur Syvaa",
 };
 
 export default function TrainerStatisticsPage() {
@@ -110,7 +110,7 @@ export default function TrainerStatisticsPage() {
           <h2 className="text-[14px] font-semibold text-[var(--color-text)]">
             Chiffre d&apos;affaires par formation
           </h2>
-          <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">Encaissé par vos soins, hors SIRA</p>
+          <p className="mt-0.5 text-[12.5px] text-[var(--color-text-muted)]">Encaissé par vos soins, hors Syvaa</p>
           <div className="mt-4">
             <BarChart items={revenueByTraining} tone="accent" emptyLabel="Aucune formation payante au catalogue" />
           </div>

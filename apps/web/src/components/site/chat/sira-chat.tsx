@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Assistant SIRA, en bulle sur toutes les pages du site public.
+ * Assistant Syvaa, en bulle sur toutes les pages du site public.
  *
  * Aucune requête réseau : les réponses viennent de `chat-answers.ts`, choisies
  * par mots-clés à partir des offres et des formations publiées. Le site étant
@@ -252,7 +252,7 @@ export function SiraChat({ data }: { data: ChatData }) {
         onClick={() => (open ? close() : setOpen(true))}
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? "Fermer l'assistant SIRA" : "Ouvrir l'assistant SIRA"}
+        aria-label={open ? "Fermer l'assistant Syvaa" : "Ouvrir l'assistant Syvaa"}
         className={cn(
           "fixed bottom-4 right-4 z-40 inline-flex h-14 items-center gap-2.5 rounded-full border border-site-border bg-site-navy px-4 text-white shadow-[0_10px_30px_rgba(17,17,73,0.28)] transition-colors duration-300 hover:bg-site-navy-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-navy md:bottom-6 md:right-6",
           open && "max-md:hidden",
@@ -260,7 +260,7 @@ export function SiraChat({ data }: { data: ChatData }) {
       >
         <SiraMark height={22} color="var(--color-site-gold)" />
         <span className="hidden text-[0.9375rem] font-semibold md:inline">
-          {open ? "Fermer" : "Assistant SIRA"}
+          {open ? "Fermer" : "Assistant Syvaa"}
         </span>
       </button>
 
@@ -286,7 +286,7 @@ export function SiraChat({ data }: { data: ChatData }) {
           </span>
           <div className="min-w-0 flex-1">
             <p id={titleId} className="site-display text-[1.0625rem] leading-tight">
-              Assistant SIRA
+              Assistant Syvaa
             </p>
             <p className="mt-0.5 text-[0.75rem] leading-snug text-white/75">
               Réponses préparées, sans IA connectée
@@ -359,7 +359,7 @@ export function SiraChat({ data }: { data: ChatData }) {
           className="flex items-center gap-2 border-t border-site-line bg-site-canvas px-3 py-3"
         >
           <label htmlFor={`${panelId}-champ`} className="sr-only">
-            Votre question pour l&apos;assistant SIRA
+            Votre question pour l&apos;assistant Syvaa
           </label>
           <input
             ref={inputRef}
@@ -416,7 +416,7 @@ function Bubble({ message, onNavigate }: { message: ChatMessage; onNavigate: () 
             : "border border-site-border bg-white text-site-ink",
         )}
       >
-        <p className="sr-only">{isUser ? "Vous" : "Assistant SIRA"} :</p>
+        <p className="sr-only">{isUser ? "Vous" : "Assistant Syvaa"} :</p>
         {message.text.map((paragraph, i) => (
           <p key={i} className={i > 0 ? "mt-2" : undefined}>
             {paragraph}

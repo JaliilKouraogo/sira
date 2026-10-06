@@ -1,6 +1,6 @@
 /**
  * Carte d'offre — [T §6.2] : titre, entreprise, logo, lieu, type, date,
- * date limite, résumé, score SIRA, et les actions Voir, Enregistrer, Préparer.
+ * date limite, résumé, score Syvaa, et les actions Voir, Enregistrer, Préparer.
  *
  * Direction épurée : pas d'ombre, pas de survol appuyé, un filet de 1 pixel
  * pour délimiter, et la hiérarchie portée par le texte plutôt que par la
@@ -63,7 +63,7 @@ export function JobCard({
             {organization?.verificationStatus === "verifie" && !anonymised ? (
               <span
                 className="inline-flex items-center text-[var(--color-success)]"
-                title="Recruteur vérifié par SIRA"
+                title="Recruteur vérifié par Syvaa"
               >
                 <IconCheckCircle size={12.5} />
                 <span className="sr-only">Recruteur vérifié</span>

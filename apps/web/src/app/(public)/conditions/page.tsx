@@ -12,7 +12,7 @@ import { LegalLayout, type LegalSection } from "@/components/site/legal-layout";
 export const metadata: Metadata = {
   title: "Conditions d'utilisation",
   description:
-    "Règles d'utilisation de SIRA : comptes, publication d'offres, vérification des recruteurs, usage de l'intelligence artificielle, abonnements et responsabilités.",
+    "Règles d'utilisation de Syvaa : comptes, publication d'offres, vérification des recruteurs, usage de l'intelligence artificielle, abonnements et responsabilités.",
 };
 
 const SECTIONS: LegalSection[] = [
@@ -22,7 +22,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          SIRA est une plateforme panafricaine de mise en relation entre des candidats à la recherche d&apos;une
+          Syvaa est une plateforme panafricaine de mise en relation entre des candidats à la recherche d&apos;une
           opportunité professionnelle, des organisations qui recrutent, et des organismes qui dispensent des formations.
           Les présentes conditions régissent l&apos;accès au site et l&apos;usage de ses fonctionnalités, quel que soit
           le pays depuis lequel vous y accédez.
@@ -62,7 +62,7 @@ const SECTIONS: LegalSection[] = [
     title: "Publication d'offres",
     body: (
       <>
-        <p>Une offre publiée sur SIRA doit correspondre à un poste réel, ouvert et localisé. Sont interdits :</p>
+        <p>Une offre publiée sur Syvaa doit correspondre à un poste réel, ouvert et localisé. Sont interdits :</p>
         <ul>
           <li>toute demande d&apos;argent au candidat, à quelque titre que ce soit, frais de dossier compris ;</li>
           <li>
@@ -93,7 +93,7 @@ const SECTIONS: LegalSection[] = [
           justificatifs permet la publication immédiate et donne droit au badge affiché sur les offres.
         </p>
         <p>
-          SIRA contrôle la cohérence des pièces fournies, sans garantir l&apos;exactitude permanente des informations
+          Syvaa contrôle la cohérence des pièces fournies, sans garantir l&apos;exactitude permanente des informations
           déclarées par une organisation. Le badge atteste d&apos;un contrôle documentaire, pas d&apos;un agrément. Le
           détail figure sur la page <Link href="/recruteurs#verification">recruteurs</Link>.
         </p>
@@ -106,12 +106,12 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          SIRA transmet votre candidature selon le canal indiqué par l&apos;offre : dépôt sur la plateforme, e-mail
+          Syvaa transmet votre candidature selon le canal indiqué par l&apos;offre : dépôt sur la plateforme, e-mail
           relayé, ou canal externe propre au recruteur. Une candidature n&apos;est envoyée qu&apos;après votre
           validation explicite.
         </p>
         <p>
-          SIRA ne garantit ni réponse du recruteur, ni entretien, ni recrutement. Le suivi affiché reflète ce que le
+          Syvaa ne garantit ni réponse du recruteur, ni entretien, ni recrutement. Le suivi affiché reflète ce que le
           recruteur renseigne ; l&apos;absence de mise à jour n&apos;est pas un refus.
         </p>
       </>
@@ -167,7 +167,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          La plateforme, sa marque, son interface et son code restent la propriété de SIRA. Vous conservez la propriété
+          La plateforme, sa marque, son interface et son code restent la propriété de Syvaa. Vous conservez la propriété
           des contenus que vous déposez, notamment vos CV, et nous accordez la licence strictement nécessaire pour les
           héberger, les afficher dans votre espace et les transmettre aux recruteurs auxquels vous candidatez.
         </p>
@@ -184,7 +184,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          SIRA fournit un service de mise en relation. Elle n&apos;est ni l&apos;employeur, ni le mandataire des
+          Syvaa fournit un service de mise en relation. Elle n&apos;est ni l&apos;employeur, ni le mandataire des
           organisations qui publient des offres, et n&apos;intervient pas dans la relation contractuelle qui peut en
           naître.
         </p>
@@ -213,11 +213,11 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          SIRA ayant son siège à Ouagadougou, les présentes conditions sont régies par le droit burkinabè, sous réserve
+          Syvaa ayant son siège à Ouagadougou, les présentes conditions sont régies par le droit burkinabè, sous réserve
           des dispositions impératives du pays de résidence de l&apos;utilisateur qui lui seraient plus favorables.
         </p>
         <p>
-          Le traitement des données personnelles obéit aux lois de protection des données des pays où SIRA opère,
+          Le traitement des données personnelles obéit aux lois de protection des données des pays où Syvaa opère,
           notamment, au Burkina Faso, la loi n° 010-2004/AN portant protection des données à caractère personnel. Le
           détail figure dans la <Link href="/confidentialite">politique de confidentialité</Link>.
         </p>
@@ -240,7 +240,7 @@ export default function ConditionsPage() {
         </>
       }
       updatedAt="2026-09-01"
-      lead="Ces conditions décrivent ce que SIRA s'engage à faire, ce qu'elle ne fait pas, et les règles que candidats, recruteurs et formateurs acceptent en utilisant la plateforme."
+      lead="Ces conditions décrivent ce que Syvaa s'engage à faire, ce qu'elle ne fait pas, et les règles que candidats, recruteurs et formateurs acceptent en utilisant la plateforme."
       sections={SECTIONS}
       footer={{
         title: "Documents liés",

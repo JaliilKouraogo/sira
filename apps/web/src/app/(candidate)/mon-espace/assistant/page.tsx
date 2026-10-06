@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Assistant SIRA — [T §6.7].
+ * Assistant Syvaa — [T §6.7].
  *
  * Fil de conversation, zone de saisie et 8 raccourcis de commande. Les
  * commandes réservées au plan Premium restent visibles et portent une
@@ -215,7 +215,7 @@ export default function AssistantPage() {
   return (
     <>
       <PageHeader
-        title="Assistant SIRA"
+        title="Assistant Syvaa"
         description="Posez vos questions sur vos scores, vos offres et vos candidatures. L'assistant propose, vous décidez."
       />
 
@@ -255,7 +255,7 @@ export default function AssistantPage() {
 
                   <div className={cx("min-w-0 max-w-[85%]", message.role === "user" ? "text-right" : undefined)}>
                     <p className="mb-1 text-[11.5px] font-medium uppercase tracking-wide text-[var(--color-text-subtle)]">
-                      {message.role === "assistant" ? "Assistant SIRA" : "Vous"}
+                      {message.role === "assistant" ? "Assistant Syvaa" : "Vous"}
                     </p>
                     <div
                       className={cx(

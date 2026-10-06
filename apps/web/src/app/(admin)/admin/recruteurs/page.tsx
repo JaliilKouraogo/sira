@@ -32,7 +32,7 @@ import {
 import type { Organization } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Recruteurs | Administration SIRA",
+  title: "Recruteurs | Administration Syvaa",
 };
 
 /** Les trois niveaux de la politique de vérification, et leurs conséquences. */

@@ -9,7 +9,7 @@
  *   3. formations proches ;
  *   4. appel à l'action.
  *
- * SIRA reste un annuaire : l'inscription définitive et le paiement se font
+ * Syvaa reste un annuaire : l'inscription définitive et le paiement se font
  * chez l'organisme. Suivre une formation ne modifie pas le score de
  * compatibilité, qui reste une estimation.
  *
@@ -59,9 +59,9 @@ export function generateStaticParams(): { slug: string }[] {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const training = getTrainingBySlug(slug);
-  if (!training) return { title: "Formation introuvable | SIRA" };
+  if (!training) return { title: "Formation introuvable | Syvaa" };
   return {
-    title: `${training.title} | Formations SIRA`,
+    title: `${training.title} | Formations Syvaa`,
     description: training.summary,
   };
 }
@@ -307,7 +307,7 @@ export default async function FormationDetailPage({ params }: { params: Promise<
                     <p className="mt-4 flex gap-2.5 text-[0.8125rem] leading-relaxed text-site-muted">
                       <TrainingIcon.Info size={16} className="mt-0.5 shrink-0 text-site-navy" />
                       <span>
-                        SIRA est un annuaire de formations : l&apos;inscription définitive et le paiement se font
+                        Syvaa est un annuaire de formations : l&apos;inscription définitive et le paiement se font
                         directement auprès de l&apos;organisme, qui vous confirme la place.
                       </span>
                     </p>
@@ -377,7 +377,7 @@ export default async function FormationDetailPage({ params }: { params: Promise<
                 )}
               </BodySection>
 
-              <BodySection title="Compétences couvertes" subtitle="Celles qui remontent dans votre profil SIRA">
+              <BodySection title="Compétences couvertes" subtitle="Celles qui remontent dans votre profil Syvaa">
                 <ul className="flex flex-wrap gap-2">
                   {training.skillsCovered.map((s) => (
                     <li key={s}>
@@ -406,7 +406,7 @@ export default async function FormationDetailPage({ params }: { params: Promise<
                         <p className="flex items-center gap-1.5 text-[1.0625rem] font-semibold text-site-ink">
                           <span className="truncate">{orgName}</span>
                           {organization.verificationStatus === "verifie" ? (
-                            <span className="inline-flex shrink-0 text-site-navy" title="Organisme vérifié par SIRA">
+                            <span className="inline-flex shrink-0 text-site-navy" title="Organisme vérifié par Syvaa">
                               <SiteIcon.Check size={16} />
                               <span className="sr-only">Organisme vérifié</span>
                             </span>
@@ -473,7 +473,7 @@ export default async function FormationDetailPage({ params }: { params: Promise<
             Sachez ce qui vous sépare <Hl>de l&apos;offre visée</Hl>
           </>
         }
-        text="Créez votre profil : SIRA calcule votre compatibilité avec chaque offre, détaille les compétences qui manquent et vous oriente vers les formations qui les couvrent. Une estimation claire, jamais une promesse d'embauche."
+        text="Créez votre profil : Syvaa calcule votre compatibilité avec chaque offre, détaille les compétences qui manquent et vous oriente vers les formations qui les couvrent. Une estimation claire, jamais une promesse d'embauche."
         action={{ href: "/inscription/candidat", label: "Créer mon profil" }}
         image={IMG.diplomes}
       />

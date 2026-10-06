@@ -1,4 +1,4 @@
-/** Jeu d'icônes SIRA — SVG en ligne, sans dépendance externe. */
+/** Jeu d'icônes Syvaa — SVG en ligne, sans dépendance externe. */
 
 type IconProps = { size?: number; className?: string; strokeWidth?: number };
 
@@ -277,7 +277,7 @@ export const IconMegaphone = (p: IconProps) => (
 );
 
 /**
- * Logo SIRA, reproduit d'après le fichier de marque fourni.
+ * Logo Syvaa, reproduit d'après le fichier de marque fourni.
  *
  * Le symbole est un rectangle encadrant une bande en zigzag : un chemin en
  * lacets, qui donne son sens au nom (sira signifie chemin en dioula et en
@@ -334,7 +334,7 @@ export function SiraMark({
 }
 
 /**
- * Logo complet : symbole, mot SIRA et, en option, la signature de marque.
+ * Logo complet : symbole, mot Syvaa et, en option, la signature de marque.
  * L'interface est inchangée pour les écrans existants : `size` et `withText`.
  */
 export function SiraLogo({
@@ -358,7 +358,7 @@ export function SiraLogo({
           className="font-semibold text-[var(--color-logo-word)]"
           style={{ fontSize: size * 0.78, letterSpacing: "-0.01em" }}
         >
-          SIRA
+          Syvaa
         </span>
         {withTagline ? (
           <span

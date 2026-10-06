@@ -23,7 +23,7 @@ import {
 import { getTrainerCampaigns, getTrainerTrainings } from "../../trainer-context";
 
 export const metadata: Metadata = {
-  title: "Audience | Espace formateur SIRA",
+  title: "Audience | Espace formateur Syvaa",
 };
 
 export default function TrainerAudiencePage() {
@@ -80,7 +80,7 @@ export default function TrainerAudiencePage() {
         <h2 className="text-[17px] font-semibold text-[var(--color-text)]">Recommandation automatique</h2>
         <p className="mt-1 max-w-3xl text-[12.5px] leading-relaxed text-[var(--color-text-muted)]">
           Vos formations sont proposées à la suite d&apos;une lacune détectée : quand le score d&apos;un candidat
-          baisse à cause d&apos;une compétence manquante, SIRA lui propose la formation qui la couvre.
+          baisse à cause d&apos;une compétence manquante, Syvaa lui propose la formation qui la couvre.
         </p>
         <div className="mt-4">
           {recommended.length === 0 ? (

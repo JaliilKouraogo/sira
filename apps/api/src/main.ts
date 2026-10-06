@@ -17,7 +17,7 @@ async function bootstrap(): Promise<void> {
   configureApp(app, env);
   await app.listen(env.PORT);
 
-  const logger = new Logger("SIRA");
+  const logger = new Logger("Syvaa");
   logger.log(`API prête sur http://localhost:${env.PORT}/api/v1`);
   logger.log(`Documentation : http://localhost:${env.PORT}/api/docs`);
   logger.log(

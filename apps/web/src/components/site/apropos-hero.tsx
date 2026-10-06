@@ -113,7 +113,7 @@ export function AproposHero() {
         <div className="px-8 pb-10 pt-16 md:px-16 md:pb-0 md:pt-20">
           <Reveal dir="up" className="mx-auto flex max-w-[48rem] flex-col items-center text-center">
             <p className="mb-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-site-muted">
-              À propos de SIRA
+              À propos de Syvaa
             </p>
             <Heading as="h1" size="h1" align="center">
               Rendre lisible le chemin <Hl>vers l&apos;opportunité</Hl>
@@ -121,7 +121,7 @@ export function AproposHero() {
             <Lead align="center" tone="muted" className="mt-6">
               Partout en Afrique, les offres existent et les talents aussi. Ce qui manque, c&apos;est un chemin clair
               entre les deux : savoir quelles opportunités correspondent vraiment, comprendre ce qui bloque et
-              présenter un dossier à la hauteur. C&apos;est ce que SIRA construit.
+              présenter un dossier à la hauteur. C&apos;est ce que Syvaa construit.
             </Lead>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <SiteButtonLink href="/inscription/candidat" variant="navy" size="md">

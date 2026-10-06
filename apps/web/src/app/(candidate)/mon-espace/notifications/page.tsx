@@ -24,7 +24,7 @@ import { NotificationRow } from "./notification-row";
 import { ServiceNotifications } from "./notifications-client";
 
 export const metadata = {
-  title: "Notifications — SIRA",
+  title: "Notifications — Syvaa",
 };
 
 export default function NotificationsPage() {
@@ -79,7 +79,7 @@ export default function NotificationsPage() {
 
         <Alert tone="neutral" title="Pourquoi cette liste est séparée">
           Les messages commerciaux ne vous sont adressés que si vous y avez consenti, et ce consentement est
-          révocable à tout moment. Le refuser ne restreint aucune fonction essentielle de SIRA.{" "}
+          révocable à tout moment. Le refuser ne restreint aucune fonction essentielle de Syvaa.{" "}
           <Link href="/mon-espace/parametres#notifications" className="font-medium underline">
             Gérer mes consentements
           </Link>
@@ -97,7 +97,7 @@ export default function NotificationsPage() {
               description={
                 marketingGranted
                   ? "Vous avez accepté de recevoir ces messages, mais aucun ne vous a été adressé récemment."
-                  : "Votre consentement marketing n'est pas accordé : SIRA ne vous adresse ni promotion ni message publicitaire, sur aucun canal."
+                  : "Votre consentement marketing n'est pas accordé : Syvaa ne vous adresse ni promotion ni message publicitaire, sur aucun canal."
               }
             />
           ) : (

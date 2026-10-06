@@ -5,7 +5,7 @@
  * les titres. `next/font` les télécharge au moment du build et les sert
  * depuis le site : aucun appel à Google Fonts depuis le navigateur.
  *
- * Le gabarit pose aussi l'assistant SIRA en bulle, commun à toutes les pages
+ * Le gabarit pose aussi l'assistant Syvaa en bulle, commun à toutes les pages
  * du site public.
  */
 

@@ -33,9 +33,9 @@ export function configureApp(app: INestApplication, env: Env): void {
   app.enableShutdownHooks();
 
   const config = new DocumentBuilder()
-    .setTitle("API SIRA")
+    .setTitle("API Syvaa")
     .setDescription(
-      "API REST de SIRA. Erreurs au format `{ error: { code, message, details, requestId } }`, " +
+      "API REST de Syvaa. Erreurs au format `{ error: { code, message, details, requestId } }`, " +
         "pagination par curseur, jeton d'accès dans l'en-tête `Authorization`.",
     )
     .setVersion("1.0")

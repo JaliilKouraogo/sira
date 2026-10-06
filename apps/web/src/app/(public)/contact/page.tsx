@@ -21,7 +21,7 @@ import { FAQ, IMG, OFFICES, type SiteImage } from "@/data/site-content";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Écrivez à l'équipe SIRA : candidats, recruteurs, centres de formation et partenaires de toute l'Afrique. Coordonnées, bureaux et questions fréquentes.",
+    "Écrivez à l'équipe Syvaa : candidats, recruteurs, centres de formation et partenaires de toute l'Afrique. Coordonnées, bureaux et questions fréquentes.",
 };
 
 interface Office {

@@ -14,7 +14,7 @@ import { getTrainings } from "@/data/queries";
 import { TrainingForm } from "./training-form";
 
 export const metadata: Metadata = {
-  title: "Créer une formation | Espace formateur SIRA",
+  title: "Créer une formation | Espace formateur Syvaa",
 };
 
 const STEPS = [

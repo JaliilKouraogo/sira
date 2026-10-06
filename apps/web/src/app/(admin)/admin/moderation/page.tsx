@@ -31,7 +31,7 @@ import { APPLICATION_CHANNEL_LABEL, JOB_STATUS_LABEL, VERIFICATION_STATUS_LABEL 
 import type { Job } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Modération | Administration SIRA",
+  title: "Modération | Administration Syvaa",
 };
 
 /** Mots qui, dans une annonce, appellent une lecture humaine immédiate. */

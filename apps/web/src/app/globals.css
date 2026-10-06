@@ -5,7 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* ---- Palette officielle SIRA ------------------------------------------
+  /* ---- Palette officielle Syvaa ------------------------------------------
      Couleurs relevées sur le fichier de marque fourni :
        bleu marine  #19196F
        or antique   #C6A11D
@@ -114,7 +114,7 @@
   /* ---- Site public : gabarit de présentation --------------------------
      Le site public suit la grammaire du modèle HireEdge : des blocs arrondis
      posés sur un fond de couleur, une barre de navigation flottante, des
-     cartes à bordure basse épaissie. Les couleurs sont celles de SIRA :
+     cartes à bordure basse épaissie. Les couleurs sont celles de Syvaa :
      une page blanche, des blocs marine et des blocs gris très clair ; l'or
      de la marque est réservé aux accents.
 

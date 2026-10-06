@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Créer un compte",
-  description: "Choisissez votre type de compte SIRA : candidat, recruteur ou formateur.",
+  description: "Choisissez votre type de compte Syvaa : candidat, recruteur ou formateur.",
   robots: { index: false, follow: false },
 };
 
@@ -74,7 +74,7 @@ const CHOICES: Choice[] = [
 export default function InscriptionPage() {
   return (
     <div>
-      <h1 className="text-[22px] font-semibold text-[var(--color-text)]">Créer mon compte SIRA</h1>
+      <h1 className="text-[22px] font-semibold text-[var(--color-text)]">Créer mon compte Syvaa</h1>
       <p className="mt-2 max-w-xl text-[13.5px] leading-relaxed text-[var(--color-text-muted)]">
         Choisissez le compte qui vous ressemble. Le parcours et les écrans s&apos;adaptent ensuite à votre
         rôle.

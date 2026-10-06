@@ -31,7 +31,7 @@ import {
 } from "@/lib/enums";
 
 export const metadata: Metadata = {
-  title: "Formateurs | Administration SIRA",
+  title: "Formateurs | Administration Syvaa",
 };
 
 export default function AdminTrainersPage() {
